@@ -1,10 +1,4 @@
-var express = require('express'),			router = express.Router(),		actor = require('../controllers/actor') , jwt = require('express-jwt');
-
-auth = jwt({
-							'secret': process.env.JWT_SECRET ,
-																									'userProperty': 'payload'
-});
-
+var express = require('express'),			router = express.Router(),		actor = require('../controllers/actor');
 
 
 
