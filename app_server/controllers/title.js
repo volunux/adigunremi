@@ -30,7 +30,7 @@ module.exports = {
 																																					res.render('error' , {'title' : 'Error' , 'error' : status})																										});
 	},
 
-	'titleDetail' : (req , res) => {	tDetail = req.params.title , 	url = String('http://localhost:3000/api/title/' + tDetail);
+	'titleDetail' : (req , res) => {	tDetail = req.params.title , 	url = String('http://limitless-stream-60828.herokuapp.com/api/title/' + tDetail);
 		
 		axios.get(url).then((response) => { 	data = response.data.status , title = data.title;
 																																														res.render('title-detail' , {'title' : title, 'detail' : data});	
@@ -118,14 +118,14 @@ module.exports = {
 																						res.render('title-detail-credit' , {'title' : 'Credits' , 'movieTitle' : 'Odunlade Adekola'});
 	},
 
-	'titleCast' : (req , res) => {	tDetail = req.params.title , url = 'http://localhost:3000/api/title/' + tDetail + '/cast';
+	'titleCast' : (req , res) => {	tDetail = req.params.title , url = 'http://limitless-stream-60828.herokuapp.com/api/title/' + tDetail + '/cast';
 
 		axios.get(url).then((response) => { 	data = response.data.status.Title.cast ,  title = response.data.status.Title;
 
 							res.render('title-detail-cast' , {'title' : title.title + ' Cast' , 'cast' : data });																																																				});
 	},
 
-	'titleReviews' : (req , res) => {		tDetail = req.params.title , url = 'http://localhost:3000/api/title/' + tDetail + '/reviews';
+	'titleReviews' : (req , res) => {		tDetail = req.params.title , url = 'http://limitless-stream-60828.herokuapp.com/api/title/' + tDetail + '/reviews';
 
 			axios.get(url).then((response) => { 	data = response.data.status.reviews ,  title = response.data.status;
 
@@ -234,7 +234,7 @@ module.exports = {
 
 	*/
 
-	'titleDelete' : (req , res) => { tDetail = req.params.title , url = String('http://localhost:3000/api/title/name/' + tDetail);
+	'titleDelete' : (req , res) => { tDetail = req.params.title , url = String('http://limitless-stream-60828.herokuapp.com/api/title/name/' + tDetail);
 		
 
 		axios.get(url).then((response) => { 	data = response.data.status;
@@ -250,7 +250,7 @@ module.exports = {
 
 	'titleDeleteP' : (req , res) => {		tDetail = req.params.title; 
 
-				axios({	'url' : 'http://localhost:3000/api/title/' + tDetail ,
+				axios({	'url' : 'http://limitless-stream-60828.herokuapp.com/api/title/' + tDetail ,
 																																				'method' : 'delete' })				
 				.then((response) => { 	data = response.data.status;
 																																res.redirect('/title')		})
@@ -258,7 +258,7 @@ module.exports = {
 																																					res.render('error' , {'title' : 'Error' , 'error' : status})	});
 	},
 
-	'titleUpdate' : (req , res) => {		tDetail = req.params.title , url = 'http://localhost:3000/api/title/' + tDetail + '/update';
+	'titleUpdate' : (req , res) => {		tDetail = req.params.title , url = 'http://limitless-stream-60828.herokuapp.com/api/title/' + tDetail + '/update';
 
 		axios.get(url).then((response) => { title = response.data.status.Title; data = response.data.status ,	genre = data.Genre ,	country = data.Country , year = data.Year ,
 
@@ -295,7 +295,7 @@ module.exports = {
 																																																																								preTitle = req.session.tData;
 																																														title = new Title(preTitle);
 			if (!errors.isEmpty()) {
-																url = String('http://localhost:3000/api/title/add');
+																url = String('http://limitless-stream-60828.herokuapp.com/api/title/add');
 
 			axios.get(url).then((response) => { 	
 																					if (err) { 	return next(err); }
@@ -324,7 +324,7 @@ module.exports = {
 																		var body = addTitle;
 		axios({
   					'method': 'put' ,
-  															'url' : 'http://localhost:3000/api/title/' + tDetail,
+  															'url' : 'http://limitless-stream-60828.herokuapp.com/api/title/' + tDetail,
   															 																												'data' : body
   										}).then((response) => { 
 
