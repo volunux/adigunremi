@@ -63,7 +63,7 @@ var actorSchema = new Schema({
 																'biography' : {	'type' : String,
 																																	'maxlength' : 5000 ,
 																																												'required' : true	},
-										'cover_image' : [photoSchema]	
+										//'cover_image' : [photoSchema]	
 },	{
 				'toObject' : {
 												'virtuals' : true
