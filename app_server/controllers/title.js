@@ -152,7 +152,7 @@ module.exports = {
         							else {
 															axios({
   																		'method': 'post' ,
-  															 													'url' : 'http://localhost:3000/api/title/' + title + '/reviews' ,
+  															 													'url' : 'http://limitless-stream-60828.herokuapp.com/api/title/' + title + '/reviews' ,
   															 																																														'data' : review
   										}).then((response) => {
   																							res.redirect('/title');
@@ -180,7 +180,7 @@ module.exports = {
 																																																						var body = addTitle;
 		axios({
   					'method': 'post' ,
-  															'url' : 'http://localhost:3000/api/title/' ,
+  															'url' : 'http://limitless-stream-60828.herokuapp.com/api/title/' ,
   															 																							'data' : body
   										}).then((response) => { 
 
