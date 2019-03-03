@@ -15,7 +15,7 @@ var studioSchema = new Schema({
 																																																				'year_founded' : {	'type' : Number,
 																																																																							'maxlength' : 5	},
 		'country_of_origin' : String,
-																		'cover_image' : [photoSchema],
+																		//'cover_image' : [photoSchema],
 																																		'about' : {	'type' : String,
 																																																	'maxlength' : 2000	}
 },	{
