@@ -1,0 +1,35 @@
+mixin fixDir(dir)
+	- var name = dir.slice(7)
+	-	var fName = name.replace(/\\/g , '/')
+		img(class ='img-fluid rounded mx-auto d-block', src = '/' + fName )
+
+mixin fixDirR(dir)
+	- var name = dir.slice(7)
+	-	var fName = name.replace(/\\/g , '/')
+		img(class ='img-fluid rounded mx-auto', src = '/' + fName )
+
+mixin fixDirA(dir)
+	- var name = dir.slice(7)
+	-	var fName = name.replace(/\\/g , '/')
+		img(class ='img-fluid rounded', src = '/' + fName )
+
+
+mixin fixDirT(dir)
+	- var name = dir.slice(12)
+	-	var fName = name.replace(/\\/g , '/')
+		img(class ='', src = fName)
+
+
+mixin fixDirTrailer(dir)
+	- var name = dir.slice(7)
+	-	var fName = name.replace(/\\/g , '/')
+		source(class ='', src ='/' + fName)
+
+mixin formatDate(dateString)
+	- var date = new Date(dateString);
+	- var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+	- var d = date.getDate();
+	- var m = monthNames[date.getMonth()];
+	- var y = date.getFullYear();
+	- var output = d + ' ' + m + ' ' + y;
+	=output

@@ -1,0 +1,14 @@
+extends layout
+
+include include/tmix
+
+block content
+
+	.title-body-actor
+		ul
+			for actor in cast
+				li.mr-4
+					a(href ='/title/name')
+						for cover in actor.cover_image
+							+fixDir(cover.path)
+					p #{actor.name}

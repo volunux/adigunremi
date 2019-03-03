@@ -1,0 +1,65 @@
+doctype html
+
+html
+
+	head
+		title 
+			if title
+				| #{title} - 
+			| Aremi Movie Database
+		meta(name ='description' 		,		content ='Aremi Movie Database is a site that offers information about African titles and actors')
+		meta(name ='author'					,		content ='Yusuf Musa Yusuf')
+		meta(name ='http-equiv'			,		content ='charset=utf-8')
+		meta(name ='viewport'				,		content ='width=device-width,initial-scale=1')
+
+
+		link(rel ='stylesheet'			, 	href='/stylesheets/bootstrap.css')
+		link(rel ='stylesheet'			, 	href='/stylesheets/style-s.css')
+
+	body
+		.container
+
+			.header
+
+				.navbar
+
+					ul
+						li.d-sm-inline-block.mr-4.p-sm-3
+							a(href ='/actor') Actor
+						li.d-sm-inline-block.mr-4.p-sm-3
+							a(href ='/genre') Genre
+						li.d-sm-inline-block.mr-4.p-sm-3
+							a(href ='/studio') Studio
+						li.d-sm-inline.block.mr-4.p-sm-3
+							a(href ='/title') Title
+
+				h1 #{title}
+
+				if messages.error
+					.alert.alert-danger
+						div= messages.error
+				if messages.info
+					.alert.alert-info
+						div= messages.info
+				if messages.success
+					.alert.alert-success
+						div= messages.success
+				
+				block content
+
+
+
+			.footer
+				p Copyright &copy; 2019 | All Rights Reserved.
+				ul
+					if user
+						li
+							a(href='/signout') Logout
+					else
+						li
+							a(href='/login') Login
+						li
+							a(href='/signup') Signup
+				p Powered by V Enterprise
+
+		script(src ='/js/bootstrap.js')

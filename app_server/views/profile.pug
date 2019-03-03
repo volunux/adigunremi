@@ -1,0 +1,23 @@
+extends layout
+
+include include/smix
+include include/tmix
+
+block content
+
+	.upage
+
+
+		.udmenu
+
+		.udetails
+
+			.sdbody
+				p Username : #{user.username}
+				p Full Name : #{user.fullName}
+				p E-mail Address :  #{user.email}
+				p Profile Established Date : 
+					+formatDate(user.created_on)
+				p Provider : #{user.provider}
+
+				button(type ='submit'	, title ='Edit') Edit Details

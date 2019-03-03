@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+
+	.adelete
+		h4  #{title}
+		
+		form(action =''	, method ='post' , enctype ='application/x-www-form-urlencoded')
+			
+			p Do you want to delete and remove this title, #{tData.title}?
+
+			button(type ='submit' , title ='Confirm') Confirm

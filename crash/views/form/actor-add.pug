@@ -1,0 +1,109 @@
+extends ../layout
+
+block content
+	.aadd
+		.aaddhead
+			h2 #{title}
+
+		.aadderrmsg
+			if errors
+				p Errors found trying to process form. These include : -
+				ul
+					for error in errors
+						li!= error.msg
+
+		.aform
+			form(action =''	, method ='post' ,	enctype ='multipart/form-data')
+				p
+					label(for ='name') Name :
+						span *
+					input(type ='text'	,	name ='name'	,	id ='title' value =(undefined === actor ? '' : actor.name))
+
+				p
+					label(for ='nickname') Nickname :
+						span *
+					input(type ='text'	,	name ='nickname'	,	id ='nickname' value =(undefined === actor ? '' : actor.nickname))
+
+				p
+					label(for ='occupation') Occupation :
+						span *
+					input(type ='text'	,	name ='occupation'	,	id ='occupation' value =(undefined === actor ? '' : actor.occupation))
+
+				p
+					label(for ='date_of_birth') Date of Birth :
+						span *
+					input(type ='text'	,	name ='date_of_birth'	,	id ='date_of_birth' , placeholder ='dd/mm/yyyy' value =(undefined === actor ? '' : actor.date_of_birth))
+
+				p
+					label(for ='gender') Gender :
+						span *
+					select(name ='gender')
+						option(value ='male') Male
+						option(value ='female') Female
+
+				p
+					label(for ='nationality') Nationality :
+						span *
+					input(type ='text'	,	name ='nationality'	,	id ='nationality' value =(undefined === actor ? '' : actor.nationality))
+
+				p
+					label(for ='place_of_birth') Place of Birth :
+						span *
+					input(type ='text'	,	name ='place_of_birth'	,	id ='place_of_birth' value =(undefined === actor ? '' : actor.place_of_birth))
+
+				p
+					label(for ='country_of_origin') Country of Origin :
+						span *
+					input(type ='text'	,	name ='country_of_origin'	,	id ='country_of_origin' value =(undefined === actor ? '' : actor.country_of_origin))
+
+				p
+					label(for ='state_of_origin') State of Origin :
+						span *
+					input(type ='text'	,	name ='state_of_origin'	,	id ='state_of_origin' value =(undefined === actor ? '' : actor.state_of_origin))
+
+				p
+					label(for ='networth') Networth :
+						span *
+					input(type ='text'	,	name ='networth'	,	id ='networth' value =(undefined === actor ? '' : actor.networth))
+
+				p
+					label(for ='partner_or_spouse') Partner or Spouse :
+						span *
+					input(type ='text'	,	name ='spouse_or_partner'	,	id ='spouse_or_partner' value =(undefined === actor ? '' : actor.spouse_or_partner))
+
+				p 
+					label(for ='cover_image') Photo :
+					input(type ='file' ,	name ='cover_image'	,	accept ='image/*')
+
+
+
+				h5 Social Profiles
+
+				.asprofiles
+					p
+						label(for ='sp_facebook') Facebook profile url :
+							span *
+						input(type ='text'	,	name ='sp_facebook'	,	id ='sp_facebook' value =(undefined === actor ? '' : actor.sp_facebook))
+
+					p
+						label(for ='sp_twitter') Twitter profile url :
+							span *
+						input(type ='text'	,	name ='sp_twitter'	,	id ='sp_twitter' value =(undefined === actor ? '' : actor.sp_twitter))
+
+					p
+						label(for ='sp_instagram') Insta G profile url :
+							span *
+						input(type ='text'	,	name ='sp_instagram'	,	id ='sp_instagram' value =(undefined === actor ? '' : actor.sp_instagram))
+
+					p
+						label(for ='sp_others') Others :
+							span *
+						input(type ='text'	,	name ='sp_others'	,	id ='sp_others' value =(undefined === actor ? '' : actor.sp_others))
+
+				p
+					label(for ='biography') Biography :
+						span *
+
+				textarea(id ='biography'	, name ='biography' value =(undefined === actor ? '' : actor.biography))
+
+				button(type ='submit'	, title ='Submit') Submit

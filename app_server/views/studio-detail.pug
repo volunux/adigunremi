@@ -1,0 +1,18 @@
+extends layout
+
+include include/smix
+
+block content
+
+	.studio-detail
+
+		.studio-nav
+			include ./include/sdmenu
+
+		.studio-detail-image
+			for cover in studio.cover_image
+				+fixDir(cover.path)
+
+		p Name : #{studio.name}
+		p Year Founded :  #{studio.year_founded}
+		p.bio Biography : #{studio.biography}

@@ -1,0 +1,20 @@
+extends ../layout
+
+block content
+
+	h1 Reset Password
+
+	.forgot
+		form(action =''	method ='post')
+			p
+				label(for ='password') Password :
+					span *
+				input(name ='password'  id ='password' type ='password'  placeholder ='**********' required ='true' autofocus ='true')
+
+			p
+				label(for ='confirm') Confirm Password :
+					span *
+				input(name ='confirm'  id ='confirm' type ='password'  placeholder ='*********' required ='true')
+				
+			button(type ='submit' title ='Submit') Update Password
+

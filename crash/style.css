@@ -1,0 +1,587 @@
+* {
+
+	font-family : Arial	;
+	font-size : 11px;
+	font-style : normal;
+	font-weight : normal;
+	box-sizing : border-box;
+	text-decoration : none;	
+	border : 0;
+	padding : 0;
+	margin : 0;
+	color : #000;
+	background-color : #fff;
+}
+
+img , video {
+
+	max-width : 100%;
+	border-radius : 8px;
+	border : 0.5px solid gray;
+}
+
+a:link , a:visited , a:hover , a:focus {
+
+	color : blue;
+}
+
+.footer ul {
+
+	list-style-type : none;
+}
+
+.footer li { 
+
+	display : inline-block;
+	margin-right : 1em;
+}
+
+.tform h5 , .signup h5{
+	
+	font-weight: bold;
+}
+
+p.del input {
+
+	display : inline-block;
+}
+
+form h5, h6 , h4 {
+
+	margin-bottom : 1.3125em;
+}
+
+h2 , h6.photos ~ p input   {
+
+	margin-bottom : 1.5em;
+}
+
+h6.photos ~ p > input + label {
+
+	display : block;
+}
+
+h6.photos , h6.trailer {
+
+	margin-bottom : 1.5em;
+}
+
+.container {
+
+	width : 98%;
+	margin : 2.0em auto;
+	padding : 0.875em;
+	list-style-position : inside;
+}
+
+.header , .shead , .phead {
+
+	line-height : 2.0;
+	margin-bottom : 2.875em;
+}
+
+
+.header .phead .nav ul {
+
+	list-style-type: none;
+	text-align : center;
+}
+
+.header .phead .nav ul li {
+
+	display : inline-block;
+	margin-right : 2.1875em;
+	padding : 1.125em;
+}
+
+.main {
+
+	overflow : hidden;
+	margin-bottom: 1em;
+	padding : 1%;
+
+}
+
+.main .pcontent {
+
+	width : 77%;
+	float : left;
+	line-height : 2.0em;
+	margin-right : 1.3125em;
+	padding : 1%;
+}
+
+.main .psection {
+
+	width : 20%;
+	float : left;
+	line-height : 2.0em;
+	padding : 1%;
+}
+
+.main .pcontent .tsum , .gsum , .atsum , .stsum  , .ysum , .csum , .lsum {
+
+	float : left;
+	width : 45%;
+	margin : 0 1.875em 2.0em 0;
+}
+
+.main .pcontent .tsum .tsumbody , .main .pcontent .gsum .tsumbody , .main .pcontent .asum .atsumbody  , .main .pcontent .stsum .stsumbody  , .main .pcontent .ysum .ysumbody ,
+.main .pcontent .csum csumbody , .main .pcontent .lsum .lsumbody
+
+{
+
+	margin-top : 0.875em;
+}
+
+.main .pcontent .tsum .tsumdet , .main .pcontent .gsum .gsumdet , .main .pcontent .atsum .atsumdet , .main .pcontent .stsum .stsumdet , .main .pcontent .ysum .ysumdet ,
+.main .pcontent .csum .csumdet , .main .pcontent .lsum .lsumdet {
+
+	width : 140px;
+	height : 140px;
+	float : left;
+	margin-right : 1.375em;
+}
+
+.main .pcontent .tsum img , .main .pcontent .gsum img , .main .pcontent .atsum img , .main .pcontent .stsum img , .main .pcontent .ysum img , .main .pcontent .csum img ,
+ .main .pcontent .lsum img {
+
+	height : 130px;
+	width : 140px;
+}
+
+.tsum .thead h3 {
+
+	margin-bottom : 1.5em;
+}
+
+.main .psection .pgenre, .main .psection .pyear {
+
+	margin-bottom : 1.5em;
+}
+
+.alistd , .sbody {
+
+	width : 150px;
+	float : left;
+	padding : 2%;
+	text-align : center;
+}
+
+.alistdd , .slistdd {
+
+	width : 80%;
+	display : block;
+	margin : 0px auto;
+	height : 120px;
+	margin-bottom : 0.3125em;
+}
+
+.glist , .slist , .ylist , .clist , .llist {
+
+	padding : 1.3125em;
+}
+
+.glist li , .slist li , .ylist li , .clist li , .llist li {
+
+	margin-bottom : 0.5em;
+}
+
+.tdpage {
+
+	width : 100%;
+}
+
+.tdpage .tdimage img , .sdpage .sdimage img {
+
+	height : 400px;
+	width : 300px;
+	display : block;
+	margin : 0px auto;
+}
+
+.tdci {
+
+	width : 100%;
+	padding : 2%;
+	text-align: center;
+	overflow : hidden;
+}
+
+.tdci img {
+
+	height : 120px;
+	margin-bottom : 0.3125em;
+}
+
+.tdc {
+
+	float : left;
+	width : 170px;
+	margin : 15px auto;
+}
+
+.tdbodyc ul {
+
+	list-style-type: none;
+}
+
+.tdbodyc li {
+
+	display : inline-block;
+	text-align : center;
+	margin : 0px 2.5em 2.5em 0px;
+}
+
+.tdbodyc li img {
+
+	display : block;
+	height : 120px;
+	width : 120px;
+	margin : 0px auto;
+}
+
+.tdbodyc {
+
+	margin: 1.875em 0em 1.15em 0em;
+}
+
+.footer {
+
+	clear : both;
+	text-align : center;
+}
+
+.footer p {
+
+	margin-bottom : 0.875em;
+}
+
+.treviews {
+
+	margin-top : 20px;
+}
+
+.treviewsh {
+
+	margin-bottom : 20px;
+}
+
+.treviews .treviewsh h5 a {
+
+	float : right;
+} 
+
+.treviews .treviewsbody p span {
+
+	margin-left : 30px;
+}
+
+.treviews .treviewsbody p span.date {
+
+	float : right;
+}
+
+.treviews .treviewsbody p.head {
+
+	margin-bottom : 0.3125em;
+}
+
+.treviewsbindividual {
+
+	margin-bottom : 1.875em;
+}
+
+.tdmenu , .tpmenu , .amenu , .gmenu , .sdmenu , .samenu , .alistmenu , .stpmenu , .atpmenu , .ypmenu {
+
+	margin-bottom: 1.75em;
+}
+
+.tdmenu ul , .tpmenu ul , .amenu ul , .gformmenu ul , .sdmenu ul , .samenu ul , .alistmenu ul , .atpmenu ul , .stpmenu ul , .ypmenu ul {
+
+	list-style-type: none;
+	text-align : center;
+	margin-bottom : 1.3125em;
+}
+
+.tdmenu li , .tpmenu li , .amenu li , .gmenu li , .sdmenu li , .samenu li , .alistmenu li , .atpmenu li , .stpmenu li , .ypmenu li {
+
+	display : inline-block;
+	margin-right : 4%;
+}
+
+.tpmenu ul {
+
+	text-align : center;
+}
+
+.tdtrailer video {
+
+	margin : 10px auto;
+}
+
+.tdphotos {
+
+	overflow : hidden;
+}
+
+.tdphotos .tdindividuald img {
+
+	width : 250px;
+	height : 330px;
+}
+
+.tdphotos .tdindividuald {
+
+	margin-right : 5%;
+	float : left;
+}
+
+.tdindividuald {
+
+	margin: 1.5em auto;
+}
+
+.tform , .trform , .aform , .signup , .forgot , .signin {
+
+	width : 80%;
+	overflow : hidden;
+	margin : 0px auto;
+}
+
+.tform form p label, .trform form p label , .aform form p label , .gform form p label , .yform form p label , .cform form p label , .taform form p label , .lform form p label ,
+
+.signup form p label , .forgot form p label , .signin form p label {
+
+	width : 130px;
+	display : inline-block;
+	text-align : right;
+}
+
+.tform form p input, .trform form p input, .aform form p input, .gform form p input, .yform form p input, .cform form p input, .taform form p input, .lform form p input, .signup form p input, .forgot form p input ,
+
+.signin form p input , .trform form p select , select {
+
+	border-radius : 8px;
+	padding : 8px;
+	border : 1px dashed gray;
+	width : 70%;
+	margin-left : 1.3125em;
+}
+
+.tform form p , .trform form p , .aform form p , .gform form p , .yform form p , .cform form p , .taform form p , .lform form p , .signup form p , .forgot form p {
+
+	margin-bottom : 1.875em;
+}
+
+.tform form button, .trform form button, .aform form button, .gform form button, .taform form button, .sdelete form button, .yform form button, .cform form button, .lform form button ,
+
+.signup form button , .signup form button , .forgot form button {
+
+	float : right;
+	padding : 0.875em 3.0em;
+	border : 0.5px dashed gray;
+	border-radius : 8px;
+	display : block;
+}
+
+
+.tradd .trform textarea , .aform textarea , .tadd textarea , .signup textarea , .forgot textarea , .signin textarea {
+
+	width : 100%;
+	resize: none;
+	padding : 1em;
+	border : 0.5px dashed gray;
+	border-radius: 8px;
+	height : 230px;
+}
+
+.tdreviewsbindividual {
+
+	margin-bottom : 2.0em;
+}
+
+.asprofiles label {
+
+	width : 000px;
+}
+
+.adimage img , .sdimage img{
+
+	width : 40%;
+	height : 500px;
+	display : block;
+	margin : 0px auto;
+}
+
+.gdelete , .adelete , .cdelete , .ydelete , .ldelete {
+
+	overflow : hidden;
+}
+
+.gdelete button , .adelete button , .cdelete button , .ydelete button , .ldelete button {
+
+	padding : 0.875em 3.0em;
+	border : 0.5px dashed gray;
+	border-radius : 8px;
+	display : block;
+	float : right;
+}
+
+.gdelete h5 , .adelete h5{
+
+	margin-bottom : 1.5em;
+}
+
+input[type='checkbox'] {
+
+	width : 10px;
+}
+
+@media screen and (max-width : 480px) {
+
+	.main .pcontent {
+
+		float : none;
+		width : 100%;
+	}
+
+	.main .psection {
+
+		float : none;
+		width : 100%;
+	}
+
+	.main .pcontent .tsum , .main .pcontent .gsum , .main .pcontent .stsum , .main .pcontent .ysum , .main .pcontent .csum , .main .pcontent .lsum {
+
+	float : none;
+	width : 100%;
+	margin : 0 0 2.0em 0;
+}
+
+	.main .pcontent .tsum .tsumdet, .main .pcontent .gsum .gsumdet, .main .pcontent .stsum .stsumtdet , .main .pcontent .ysumdet , .main .pcotent .csumdet , .main .pcotent .lsumdet {
+
+	width : 100%;
+	height : 100%;
+	float : none;
+	margin-right : 0em;
+}
+
+	.main .pcontent .tsum img , .main .pcontent .gsum img , .main .pcontent .stsum img  , .main .pcontent .ysum img , .main .pcontent .csum img , .main .pcontent .lsum img {
+
+	height : 100%;
+	width : 100%;
+}
+
+.alist , .slist {
+
+	width : 100%;
+	overflow : hidden;
+}
+
+	.alistd , .sindividual {
+
+	width : 45%;
+	float : left;
+	padding : 2%;
+	text-align : center;
+}
+
+	.alistdd {
+
+	width : 80%;
+	display : block;
+	margin : 0px auto;
+	height : 120px;
+	margin-bottom : 0.3125em;
+}
+
+.tdc {
+
+	float : left;
+	width : 50%;
+	margin : 15px auto;
+}
+
+.tdphotos {
+
+	padding : 2.5em;
+}
+
+.tdphotos .tdindividuald img {
+
+	width : 100%;
+	height : 330px;
+}
+
+.tdphotos .tdindividuald {
+
+	margin-right : 0;
+	float : none
+}
+
+.tdindividuald {
+
+	margin: 1.5em auto;
+}
+
+.tform form p label , .trform form p label , .signup form p label , .forgot form p label , .signin form p label {
+
+	width : 130px;
+	display : inline-block;
+	text-align : left;
+}
+
+input[type='checkbox'] {
+
+	width : 10px;
+}
+
+}
+
+.gadderrmsg p , ul {
+
+	margin-bottom : 1em;
+}
+
+
+@media screen and (max-width : 800px) {
+
+	.main .pcontent .tsum .tsumdet  , .main .pcontent .stsum .stsumdet {
+
+		float : none;
+		width : 100%;
+		height : 100%;
+		margin-right : 0em;
+	}
+
+input[type='checkbox'] {
+
+	width : 10px;
+}
+
+}
+
+@media screen and (max-width : 800px) {
+
+
+.tform form p label  , .trform form p label , .aform form p label , .gform form p label , .lform form p label , .signup form p label , .forgot form p label , .signin form p label {
+
+	width : 130px;
+	display : inline-block;
+	text-align : left;
+}
+
+
+.tform form p input , .aform form p input , .taform form p input , .signup form p input , select , .signin form p input {
+	width : 90%;
+	display : block;
+}
+
+input[type='checkbox'] {
+
+	width : 10px;
+}
+
+}
+

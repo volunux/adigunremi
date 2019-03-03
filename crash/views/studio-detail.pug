@@ -1,0 +1,24 @@
+extends layout
+
+include include/smix
+
+block content
+
+	.sdpage
+
+		.sdpagehead
+			h2 
+
+		.sdmenu
+			include ./include/sdmenu
+
+		.sddetails
+
+			for cover in studio.cover_image
+				.sdimage
+					+fixDir(cover.path)
+
+			.sdbody
+				p Name : #{studio.name}
+				p Year Founded :  #{studio.year_founded}
+				p.bio Biography : #{studio.biography}

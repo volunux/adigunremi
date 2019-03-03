@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+
+	.ldelete
+		h4 Delete Year
+		
+		form(action =''	, method ='post' , enctype ='application/x-www-form-urlencoded')
+
+			p.del Do you want to delete and remove this language, #{language.language}? 
+
+			button(type ='submit' , title ='Confirm') Confirm

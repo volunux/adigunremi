@@ -1,0 +1,43 @@
+extends layout
+
+include include/mix
+
+block content
+
+	.tlay
+		.tlist
+			if titles
+				for title in titles
+					.tsum
+						.thead
+							h3
+								a(href ='/title/' + title.url) #{title.title}
+
+						.tsumdet
+							each image , index in title.cover_image
+								+fixDir(image.path)
+
+						.tsumbody
+							p Title: #{title.title}
+							p Ratings : #{title.rating}
+							p Released Date : #{title.released_date.year}
+							p Running Time : #{title.running_time}
+							p Producer : #{title.producer}
+							p Production Companies : 
+								each studio , index in title.production_companies
+									span #{studio.name}
+										if index < title.production_companies.length - 1
+											|, 
+							p Production Countries : 
+								each country , index in title.production_countries
+									span #{country.country}
+										if index < title.production_countries.length - 1
+											|, 
+							p Spoken Languages : 
+								each language , index in title.spoken_languages
+									span #{language.language}
+										if index < title.spoken_languages.length - 1
+											|, 
+
+				else
+					p There are no titles available

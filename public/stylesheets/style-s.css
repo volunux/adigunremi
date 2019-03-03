@@ -1,0 +1,242 @@
+* {
+
+	font-weight : normal !important;
+	text-decoration : none;
+}
+
+img {
+
+	width : 150px;
+}
+
+.title-list .img-fluid {
+
+	height : 150px;
+}
+
+
+h1 {
+
+	font-size : 0.975em;
+	margin-bottom : 2rem !important;
+}
+
+.title-list h3 {
+
+	font-size : 0.975em;
+}
+
+.tadd ul {
+
+	list-style-type: none;
+	text-align : center;
+}
+
+.tadd ul li {
+
+	display : inline-block;
+}
+
+.title-add  h4, h5 , h6{
+
+	font-size : 0.75rem;
+	font-weight : bold;
+}
+
+.title-add .form-group {
+
+	margin-bottom : 1rem;
+}
+
+.title-add input , select {
+
+	width : 100%;
+}
+
+.title-add h4 {
+
+	margin : 1.5rem 0rem;
+}
+
+.title-add {
+
+	margin-bottom : 2.6rem;
+	overflow : auto;
+}
+
+.title-add select , input[type='file'] , .title-add input , .title-actor-add input , .title-actor-add select , .studio-add input , .studio-add select , .actor-add input , .actor-add select , .genre-add input ,
+
+.sign-up input , .sign-up select {
+
+	font-size : 0.75rem;
+}
+
+.title-add textarea , .studio-add textarea , .actor-add textarea {
+
+	height : 150px;
+	resize : none;
+	margin-bottom : 1rem;
+}
+
+.title-add h2 , h3 , h4 , h5 , h6 , .studio-add h2 , h3 , h4 , h5 , h6 , .actor-add h2 , h3 , h4 , h5 , h6 {
+
+	margin-bottom : 1.5rem;
+	font-weight : bold !important;
+}
+
+.btn {
+
+	font-size : 0.75rem;
+}
+
+.footer {
+
+	clear : both;
+}
+
+.title-body-actor ul , .title-body-photo ul {
+
+	list-style-type : none;
+	padding : 0;
+}
+
+.title-body-actor li , .title-body-photo li {
+
+	display : inline-block;
+	text-align : center;
+}
+
+.title-body-review-text .date {
+
+	float : right;
+}
+
+.title-nav ul {
+
+	list-style-type : none;
+	text-align : center;
+}
+
+.title-nav li {
+
+	display : inline-block;
+	padding : 1rem;
+}
+
+.title-review-each p {
+
+	line-height : 0.75rem;
+}
+
+.title-review-each h6 {
+
+	font-weight : bold !important;
+}
+
+.actor-list ul {
+
+	list-style-type : none;
+	padding : 0;
+}
+
+.actor-list-item  {
+
+	float : left;
+}
+
+.actor-list-item p {
+
+	text-align : center;
+}
+
+.actor-nav ul {
+
+	list-style-type: none;
+	text-align : center;
+}
+
+.actor-nav ul li {
+
+	display : inline-block;
+}
+
+.actor-detail-image {
+
+	margin-bottom : 2rem;
+}
+
+.studio-list ul {
+
+	list-style-type : none;
+	padding : 0;
+}
+
+.studio-list-item  {
+
+	float : left;
+}
+
+.studio-list-item p {
+
+	text-align : center;
+}
+
+.studio-nav ul {
+
+	list-style-type: none;
+	text-align : center;
+}
+
+.studio-nav ul li {
+
+	display : inline-block;
+}
+
+.studio-detail-image {
+
+	margin-bottom : 2rem;
+}
+
+.genre-list-item {
+
+	line-height : 2rem;
+}
+
+.genre-menu ul {
+
+	list-style-type : none;
+	text-align : center;
+}
+
+.footer {
+
+	clear : both;
+}
+
+.footer p , .footer ul {
+
+	text-align : center;
+	list-style-type : none;
+}
+
+.footer li {
+
+	display : inline-block;
+	margin-right : 1rem;
+}
+
+
+@media screen and (max-width : 570px) {
+
+.navbar ul {
+
+	list-style-type : none; 
+}
+
+.navbar li {
+
+	display : inline-block;
+	margin-right : 1rem;
+}
+
+}

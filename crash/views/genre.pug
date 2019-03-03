@@ -1,0 +1,14 @@
+extends layout
+
+block content
+
+	.glist
+
+		.gmenu
+			include ./include/gmenu
+
+		.gbody
+			.gindividual
+				ul
+					for genre in genres
+						li #{genre.genre}

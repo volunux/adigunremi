@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+
+	.sign-in
+		form(action =''	method ='post')
+			.form-group
+				label(for ='username') Username :
+					span *
+				input(name ='username'  id ='username' type ='text' , class ='form-control form-control-sm' , placeholder ='Username' required ='true' autofocus ='true' value =(undefined === user ? '' : user.username))
+
+			.form-group
+				label(for ='password') Password :
+					span *
+				input(name ='password'  id ='password' type ='password' , class ='form-control form-control-sm' , placeholder ='Password' required ='true' autofocus ='true' value =(undefined === user ? '' : user.password))
+				
+			button(type ='submit' title ='Submit' , class ='btn btn-primary float-right px-4') Submit
+

@@ -1,0 +1,105 @@
+extends ../layout
+
+block content
+
+	.actor-add
+
+		.aadderrmsg
+			if errors
+				p Errors found trying to process form. These include : -
+				ul
+					for error in errors
+						li!= error.msg
+
+
+		form(action =''	, method ='post' ,	enctype ='multipart/form-data')
+
+			.form-group
+				label(for ='name') Name : 
+					span *
+				input(type ='text'	,	name ='name'	, class ='form-control form-control-sm' ,	id ='title' value =(undefined === actor ? '' : actor.name))
+
+			.form-group
+				label(for ='nickname') Nickname : 
+				input(type ='text'	,	name ='nickname'	, class ='form-control form-control-sm' ,	id ='nickname' value =(undefined === actor ? '' : actor.nickname))
+
+			.form-group
+				label(for ='occupation') Occupation : 
+					span *
+				input(type ='text'	,	name ='occupation'	, class ='form-control form-control-sm' ,	id ='occupation' value =(undefined === actor ? '' : actor.occupation))
+
+			.form-group
+				label(for ='date_of_birth') Date of Birth : 
+					span *
+				input(type ='text'	,	name ='date_of_birth'	, class ='form-control form-control-sm'	,	id ='date_of_birth' , placeholder ='dd/mm/yyyy' value =(undefined === actor ? '' : actor.date_of_birth))
+
+			.form-group
+				label(for ='gender') Gender :
+					span *
+				select(name ='gender' class ='form-control form-control-sm'	)
+					option(value ='male') Male
+					option(value ='female') Female
+
+			.form-group
+				label(for ='nationality') Nationality : 
+					span *
+				input(type ='text'	,	name ='nationality'	,	class ='form-control form-control-sm'	, id ='nationality' value =(undefined === actor ? '' : actor.nationality))
+
+			.form-group
+				label(for ='place_of_birth') Place of Birth : 
+					span *
+				input(type ='text'	,	name ='place_of_birth'	, class ='form-control form-control-sm'	,	id ='place_of_birth' value =(undefined === actor ? '' : actor.place_of_birth))
+
+			.form-group
+				label(for ='country_of_origin') Country of Origin : 
+					span *
+				input(type ='text'	,	name ='country_of_origin'	, class ='form-control form-control-sm' ,	id ='country_of_origin' value =(undefined === actor ? '' : actor.country_of_origin))
+
+			.form-group
+				label(for ='state_of_origin') State of Origin : 
+					span *
+				input(type ='text'	,	name ='state_of_origin'	, class ='form-control form-control-sm' ,	id ='state_of_origin' value =(undefined === actor ? '' : actor.state_of_origin))
+
+			.form-group
+				label(for ='networth') Networth : 
+				input(type ='text'	,	name ='networth'	, class ='form-control form-control-sm' ,	id ='networth' value =(undefined === actor ? '' : actor.networth))
+
+			.form-group
+				label(for ='partner_or_spouse') Partner or Spouse : 
+					span *
+				input(type ='text'	,	name ='spouse_or_partner' , class ='form-control form-control-sm' ,	id ='spouse_or_partner' value =(undefined === actor ? '' : actor.spouse_or_partner))
+
+			.form-group
+				label(for ='cover_image') Photo :
+				input(type ='file' ,	name ='cover_image'	, class ='form-control form-control-sm' ,	accept ='image/*')
+
+
+
+			h5 Social Profiles Address
+
+			.actor-soc-profiles
+				
+				.form-group
+					label(for ='sp_facebook') Facebook : 
+					input(type ='text'	,	name ='sp_facebook'	, class ='form-control form-control-sm' , placeholder ='www.facebook.com/david',	id ='sp_facebook' value =(undefined === actor ? '' : actor.sp_facebook))
+
+				.form-group
+					label(for ='sp_twitter') Twitter : 
+					input(type ='text'	,	name ='sp_twitter'	, class ='form-control form-control-sm' , placeholder ='www.twitter.com/david',	id ='sp_twitter' value =(undefined === actor ? '' : actor.sp_twitter))
+
+				.form-group
+					label(for ='sp_instagram') Instagram : 
+					input(type ='text'	,	name ='sp_instagram' , class ='form-control form-control-sm' , placeholder ='www.instagram.com/david',	id ='sp_instagram' value =(undefined === actor ? '' : actor.sp_instagram))
+
+				.form-group
+					label(for ='sp_others') Others : 
+					input(type ='text'	,	name ='sp_others'	, class ='form-control form-control-sm' , placeholder ='www.linkendin.com/david',	id ='sp_others' value =(undefined === actor ? '' : actor.sp_others))
+
+
+			.form-group
+				label(for ='biography') Biography : 
+					span *
+
+			textarea(id ='biography'	, class ='form-control form-control-sm' , name ='biography' value =(undefined === actor ? '' : actor.biography))
+
+			button(type ='submit'	, title ='Submit') Submit

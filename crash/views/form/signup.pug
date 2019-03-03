@@ -1,0 +1,35 @@
+extends ../layout
+
+block content
+
+	h1 Sign Up
+
+	.signup
+		form(action =''	method ='post')
+			p
+				label(for ='firstName') First Name :
+					span *
+				input(name ='firstName'  id ='firstName' type ='text'  placeholder ='David' required ='true' autofocus ='true' value =(undefined === user ? '' : user.username))
+
+			p
+				label(for ='lastName') Last Name :
+					span *
+				input(name ='lastName'  id ='lastName' type ='text'  placeholder ='John' required ='true' value =(undefined === user ? '' : user.username))
+
+			p
+				label(for ='e-mai') E-mail Address :
+					span *
+				input(name ='email'  id ='e-mail' type ='text'  placeholder ='user@example.com' required ='true' value =(undefined === user ? '' : user.mail_address))
+
+			p
+				label(for ='username') Username :
+					span *
+				input(name ='username'  id ='username' type ='text'  placeholder ='Username' required ='true' value =(undefined === user ? '' : user.username))
+
+			p
+				label(for ='password') Password :
+					span *
+				input(name ='password'  id ='password' type ='password'  placeholder ='Password' required ='true' value =(undefined === user ? '' : user.password))
+
+			button(type ='submit' title ='Submit') Submit
+

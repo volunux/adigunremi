@@ -1,0 +1,13 @@
+extends ../layout
+
+block content
+
+	.forgot
+		form(action =''	method ='post')
+			p
+				label(for ='email') E-mail Address :
+					span *
+				input(name ='email'  id ='email' type ='text'  placeholder ='david@example.com' required ='true' autofocus ='true' value =(undefined === user ? '' : user.email))
+				
+			button(type ='submit' title ='Submit') Submit
+

@@ -1,0 +1,161 @@
+extends ../layout
+
+block content
+
+	.title-add
+
+			h4 All fields marked with * are required to be filled to be able to properly submit the application.
+
+			form(action =''	, method ='post'	,	enctype ='multipart/form-data')
+
+				.form-group
+					label(for ='title') Title :
+						span *
+					input(type ='text'	,	name ='title'	, class ='form-control form-control-sm'	, id ='title' , required ='true' , value =(undefined === tData ? '' : tData.title) , )
+
+				.form-group
+					label(for ='running_time') Running Time :
+						span *
+					input(type ='text'	,	name ='running_time'	, class ='form-control form-control-sm' ,	id ='running_time' , required ='true' , value =(undefined === tData ? '' : tData.running_time))
+
+				.form-group
+					label(for ='released_date') Released Date :
+						span *
+					select(name ='released_date'	, id ='released_date' , class ='form-control form-control-sm' , required ='true' , value =(undefined === tData ? '' : tData.released_date))
+						for date in year
+							option(value= date._id) #{date.year}
+
+				.form-group
+					label(for ='rating') Ratings :
+					select(name ='rating'	, class ='form-control form-control-sm' , id ='rating')
+						option(value ='0') 0
+						option(value ='1') 1
+						option(value ='2') 2
+						option(value ='3') 3
+						option(value ='4') 4
+						option(value ='5') 5
+
+				.form-group
+					label(for ='director') Director :
+						span 
+					input(type ='text'	,	name ='director'	, class ='form-control form-control-sm' ,	id ='director' , value =(undefined === tData ? '' : tData.director))
+
+				.form-group
+					label(for ='producer') Producer :
+						span *
+					input(type ='text'	,	name ='producer'	, class ='form-control form-control-sm' ,	id ='producer' , required ='true' , value =(undefined === tData ? '' : tData.producer))
+
+				h5 Languages Spoken
+
+				.form-group
+					label(for ='lanugage_spoken_one') 1st : *
+					select(name ='spoken_languages'	, class ='form-control form-control-sm' , id ='language_spoken_one' , required ='true')
+						for language in languages
+							option(value= language._id) #{language.language}
+
+				.form-group
+					label(for ='lanugage_spoken_two') 2nd : *
+					select(name ='spoken_languages'	, class ='form-control form-control-sm' , id ='langugage_spoken_two' ,  required ='true')
+						for language in languages
+							option(value= language._id) #{language.language}
+
+				.form-group
+					label(for ='lanugage_spoken_three') 3rd :
+					select(name ='spoken_languages'	, class ='form-control form-control-sm' , id ='language_spoken_three' )
+						for language in languages
+							option(value= language._id) #{language.language}
+
+				h5 Production Countries
+
+				.form-group
+					label(for ='country') 1st : *
+					select(name ='production_countries'	, class ='form-control form-control-sm' , id ='' , required ='true')
+						for country in countries
+							option(value= country._id) #{country.country}
+
+				.form-group
+					label(for ='country') 2nd :
+					select(name ='production_countries'	, class ='form-control form-control-sm' , id ='')
+						for country in countries
+							option(value= country._id) #{country.country}
+
+				h5 Genre
+			
+				.form-group
+					label(for ='') 1st : *
+					select(name ='genre'	, class ='form-control form-control-sm' , id ='' , required ='true')
+						for genre in genres
+							option(value =genre._id) #{genre.genre} 
+
+				.form-group
+					label(for ='') 2nd : *
+					select(name ='genre'	, class ='form-control form-control-sm' , id ='' , required ='true')
+						for genre in genres
+							option(value =genre._id) #{genre.genre} 
+
+				.form-group
+					label(for ='') 3rd : *
+					select(name ='genre'	, class ='form-control form-control-sm' , id ='' , required ='true')
+						for genre in genres
+							option(value =genre._id) #{genre.genre} 
+
+				.form-group
+					label(for ='') 4th :
+					select(name ='genre'	, class ='form-control form-control-sm' , id ='')
+						for genre in genres
+							option(value =genre._id) #{genre.genre} 
+
+				h5 Production Companies and Studio
+
+				.form-group
+					label(for ='production_companies') 1st :
+
+					select(name ='production_companies'	, class ='form-control form-control-sm' , id ='')
+						for studio in studios
+							option(value= studio._id) #{studio.name}
+
+				.form-group
+					label(for ='production_companies') 2nd :
+
+					select(name ='production_companies'	, class ='form-control form-control-sm' , id ='')
+						for studio in studios
+							option(value= studio._id) #{studio.name}
+
+				.form-group
+					label(for ='budget') Budget :
+						span 
+					input(type ='text'	,	name ='budget'	, class ='form-control form-control-sm' ,	id ='budget' , value =(undefined === tData ? '' : tData.budget))
+
+				.form-group
+					label(for ='revenue') Revenue :
+						span 
+					input(type ='text'	,	name ='revenue'	, class ='form-control form-control-sm' ,	id ='revenue' , value =(undefined === tData ? '' : tData.revenue))
+
+				.form-group
+					label(for ='reviewText') Plot :
+						span *
+				textarea(id ='reviewText'	, name ='plot' , class ='form-control form-control-sm' , required ='true' ) #{(undefined === tData ? '' : tData.plot)}
+
+				.form-group
+					label(for ='cover_image') Cover Image : *
+					input(type ='file' ,	name ='cover_image'	, class ='form-control form-control-sm' ,	accept ='image/*' , required ='true')
+
+				h6.photos Photos:
+
+				.form-group
+					label(for ='photoname1') 1st : *
+					input(type ='file' ,	name ='photo'	, class ='form-control form-control-sm' ,	accept ='image/*' , required ='true')
+
+				.form-group
+					label(for ='photoname2') 2nd :
+					input(type ='file' ,	name ='photo'	, class ='form-control form-control-sm' ,	accept ='image/*')
+
+				.form-group
+					label(for ='photoname3') 3rd :
+					input(type ='file' ,	name ='photo'	, class ='form-control form-control-sm' ,	accept ='image/*')
+
+				.form-group
+					label(for ='trailername') Trailer :
+					input(type ='file' , name ='trailer' , class ='form-control form-control-sm' ,	accept ='video/*')
+
+				button(type ='submit'	, title ='Submit' , class ='btn btn-primary float-right px-4') Submit

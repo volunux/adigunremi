@@ -1,0 +1,14 @@
+extends layout
+
+include include/tmix
+
+block content
+	
+	.tdphotoshead
+		h2 #{photos.title} Photos
+		
+	.tdphotos
+		for photo in photos.photo
+			.tdindividuald
+				+fixDir(photo.path)
+

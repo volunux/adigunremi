@@ -1,0 +1,11 @@
+extends layout
+
+include include/tmix
+
+block content
+	.tdtrailerhead
+	
+			.tdtrailer
+				for sample in detail
+					video(width ='500'	,	height ='400'	,	type ='video/mp4'	controls)
+						+fixDirTrailer(sample.path)

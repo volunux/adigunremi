@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+	.gadd
+		h2 #{title} - #{movieTitle}
+		
+		.gform
+			form(action =''	, method =''	,	enctype ='x-www-form-urlencoded')
+				p
+					label(for ='author') Name :
+						span *
+					input(type ='text'	,	name ='author'	,	id ='author' , placeholder ='Drama')
+
+				button(type ='submit'	, title ='Submit') Submit

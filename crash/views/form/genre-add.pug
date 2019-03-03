@@ -1,0 +1,20 @@
+extends ../layout
+
+block content
+	.gadd
+		
+		.gadderrmsg
+			if errors
+				p Errors found trying to process form. These include : -
+				ul
+					for error in errors
+						li!= error.msg
+
+		.gform
+			form(action =''	, method ='POST'	,	enctype ='x-www-form-urlencoded')
+				p
+					label(for ='genre') Name :
+						span *
+					input(type ='text'	,	name ='genre'	,	id ='genre' , placeholder ='Drama' , required ='required' value =(undefined === genre ? '' : genre.genre))
+
+				button(type ='submit'	, title ='Submit') Submit

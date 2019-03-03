@@ -1,0 +1,17 @@
+extends layout
+
+block content
+
+	.clist
+
+		.clisthead
+			h2 List
+
+		.cmenu
+
+
+		.cbody
+			.cindividual
+				ul
+					for country in countries
+						li #{country.country}

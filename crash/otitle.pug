@@ -1,0 +1,44 @@
+extends layout
+
+include include/tmix
+
+block content
+	.tpmenu
+		include ./include/tadd-menu
+
+	.row
+		if titles
+			for title in titles
+				.col-md-6.col-sm-12.col-xs-12
+					.tsbody
+						h3
+							a(href ='/title/' + title.url) #{title.title}
+
+						.float-left
+							each image , index in title.cover_image
+								+fixDir(image.path)
+
+
+						p Title: #{title.title}
+						p Ratings : #{title.rating}
+						p Released Date : #{title.released_date.year}
+						p Running Time : #{title.running_time}
+						p Producer : #{title.producer}
+						p Production Companies : 
+							each studio , index in title.production_companies
+								span #{studio.name}
+									if index < title.production_companies.length - 1
+										|, 
+						p Production Countries : 
+							each country , index in title.production_countries
+								span #{country.country}
+									if index < title.production_countries.length - 1
+										|, 
+						p Spoken Languages : 
+							each language , index in title.spoken_languages
+								span #{language.language}
+									if index < title.spoken_languages.length - 1
+										|, 
+
+		else
+			p There are no titles available

@@ -1,0 +1,40 @@
+extends ../layout
+
+block content
+	.tradd
+		.traddhead
+
+		.radderrmsg
+			if errors
+				p Errors found trying to process form. These include : -
+				ul
+					for error in errors
+						li!= error.msg
+			
+		.trform
+			form(action =''	, method ='post'	,	enctype ='x-www-form-urlencoded')
+				p
+					label(for ='author') Name :
+						span *
+					input(type ='text'	,	name ='author'	,	id ='author' value =(undefined === review ? '' : review.author))
+
+				p
+					label(for ='rating') Rating :
+
+					select(name ='rating'	, id ='rating')
+						option(value ='0') 0
+						option(value ='1') 1
+						option(value ='2') 2
+						option(value ='3') 3
+						option(value ='4') 4
+						option(value ='5') 5
+
+
+				p
+					label(for ='reviewText') Review :
+						span *
+
+				textarea(id ='reviewText'	, name ='review_text')
+					| #{undefined === review ? '' : review.review_text}
+
+				button(type ='submit'	, title ='Submit') Submit

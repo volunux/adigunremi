@@ -1,0 +1,5 @@
+-
+	function fixDir(dir) {
+		var name = dir.slice(0, 6)
+			return name
+	}

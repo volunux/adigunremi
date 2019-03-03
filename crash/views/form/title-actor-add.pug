@@ -1,0 +1,83 @@
+extends ../layout
+
+block content
+	.taadd
+		.taaddhead
+			h2 #{title} - #{movieTitle}
+
+		.taform
+			form(action =''	, method ='post'	,	enctype ='x-www-form-urlencoded')
+				h6 Add Actor
+				
+				p
+					label(for ='cast') Actor 1 :
+
+					select(name ='cast'	, id ='cast')
+						for actor in actors
+							option(value =actor._id) #{actor.name}
+
+				p
+					label(for ='cast') Actor 2 :
+
+					select(name ='cast'	, id ='cast')
+						for actor in actors
+							option(value =actor._id) #{actor.name}
+
+				p
+					label(for ='cast') Actor 3 :
+
+					select(name ='cast'	, id ='cast')
+						for actor in actors
+							option(value =actor._id) #{actor.name}
+
+				p
+					label(for ='cast') Actor 4 :
+
+					select(name ='cast'	, id ='cast')
+						for actor in actors
+							option(value =actor._id) #{actor.name}
+
+				p
+					label(for ='cast') Actor 5 :
+
+					select(name ='cast'	, id ='cast')
+						for actor in actors
+							option(value =actor._id) #{actor.name}
+
+				p
+					label(for ='cast') Actor 6 :
+
+					select(name ='cast'	, id ='cast')
+						for actor in actors
+							option(value =actor._id) #{actor.name}
+
+				p
+					label(for ='cast') Actor 7 :
+
+					select(name ='cast'	, id ='cast')
+						for actor in actors
+							option(value =actor._id) #{actor.name}
+
+				p
+					label(for ='cast') Actor 8 :
+
+					select(name ='cast'	, id ='cast')
+						for actor in actors
+							option(value =actor._id) #{actor.name}
+
+				p
+					label(for ='cast') Actor 9 :
+
+					select(name ='cast'	, id ='cast')
+						for actor in actors
+							option(value =actor._id) #{actor.name}
+
+
+				p
+					label(for ='cast') Actor 10 :
+
+					select(name ='cast'	, id ='cast')
+						for actor in actors
+							option(value =actor._id) #{actor.name}
+
+				button(type ='submit'	, title ='Submit') Submit

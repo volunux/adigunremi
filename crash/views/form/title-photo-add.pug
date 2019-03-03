@@ -1,0 +1,32 @@
+extends ../layout
+
+block content
+	.tradd
+		.traddhead
+			h2  #{title} - #{movieTitle}
+			
+		.trform
+			form(action =''	, method =''	,	enctype ='x-www-form-urlencoded')
+				p
+					label(for ='author') Name :
+						span *
+					input(type ='text'	,	name ='author'	,	id ='author')
+
+				p
+					label(for ='rating') Rating :
+
+					select(name ='rating'	, id ='rating')
+						option(value ='1')
+						option(value ='1')
+						option(value ='1')
+						option(value ='1')
+						option(value ='1')
+
+
+				p
+					label(for ='reviewText') Review :
+						span *
+
+				textarea(id ='reviewText'	, name ='reviewText')
+
+				button(type ='submit'	, title ='Submit') Submit

@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+	.ladd
+		.laddhead
+			h2 #{title}
+			
+		.lform
+			form(action =''	, method =''	,	enctype ='x-www-form-urlencoded')
+				p
+					label(for ='language') Name :
+						span *
+					input(type ='text'	,	name ='language'	,	id ='language' , placeholder ='English' value =(undefined === language ? '' : language.language))
+
+				button(type ='submit'	, title ='Submit') Submit

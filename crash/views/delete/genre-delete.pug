@@ -1,0 +1,11 @@
+extends ../layout
+
+block content
+
+	.gdelete
+		
+		form(action =''	, method ='post' , enctype ='application/x-www-form-urlencoded')
+
+			p.del Do you want to delete and remove this genre, #{genre.genre}? 
+
+			button(type ='submit' , title ='Confirm') Confirm

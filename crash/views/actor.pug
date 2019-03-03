@@ -1,0 +1,26 @@
+extends layout
+
+include include/amix
+
+block content
+	.alist
+
+		.alisthead
+
+		.alistmenu
+			include ./include/aadd-menu
+
+		.alistb
+
+		if actors
+			for actor in actors
+				.alistd
+					a(href ='/actor/' + actor.url)
+						for cover_image in actor.cover_image
+							+fixDir(cover_image.path)
+
+					p
+						a(href ='/actor/' + actor.url) #{actor.name}
+
+			else
+				p There are no actors available

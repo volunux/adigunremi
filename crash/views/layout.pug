@@ -1,0 +1,118 @@
+doctype html
+
+html
+
+	head
+		title 
+			if title
+				| #{title} - 
+			| Aremi Movie Database
+		meta(name ='description' 		,		content ='Aremi Movie Database is a site that offers information about African titles and actors')
+		meta(name ='author'					,		content ='Yusuf Musa Yusuf')
+		meta(name ='http-equiv'			,		content ='charset=utf-8')
+		meta(name ='viewport'				,		content ='width=device-width,initial-scale=1.1')
+
+		link(rel ='stylesheet'			, 	href='/stylesheets/style.css')
+
+	body
+		.container
+		
+			.header
+				.phead
+				
+					.nav
+						ul
+							li
+								a(href ='/actor') Actor
+							li
+								a(href ='/genre') Genre
+							li
+								a(href ='/studio') Studio
+							li
+								a(href ='/title') Title
+				.shead
+					h1 #{title}
+
+
+
+			.main
+				.pcontent
+					if messages.error
+						.alert.alert-danger
+							div= messages.error
+					if messages.info
+						.alert.alert-info
+							div= messages.info
+					if messages.success
+						.alert.alert-success
+							div= messages.success
+					block content
+
+				.psection
+					.pgenre
+						h4 Genre
+						.pgenrelist
+							ul
+								li Action
+								li Comedy
+								li Drama
+								li Horror
+								li Thriller
+								li Action
+								li Comedy
+								li Drama
+								li Horror
+								li Thriller
+								li Action
+								li Comedy
+								li Drama
+								li Horror
+								li Thriller
+								li Action
+								li Comedy
+								li Drama
+								li Horror
+								li Thriller
+								li Action
+								li Comedy
+								li Drama
+								li Horror
+								li Thriller
+					.pyear
+						h4 Year
+						.pyearlist
+							ul
+								li 1999
+								li 2000
+								li 2001
+								li 2002
+								li 2003
+								li 2004
+								li 2005
+								li 2006
+								li 2007
+								li 2008
+								li 2009
+								li 2010
+								li 2011
+								li 2012
+								li 2013
+								li 2014
+								li 2015
+								li 2016
+								li 2017
+								li 2018
+
+
+			.footer
+				p Copyright &copy; 2018 | All Rights Reserved.
+				ul
+					if user
+						li
+							a(href='/signout') Logout
+					else
+						li
+							a(href='/login') Login
+						li
+							a(href='/signup') Signup
+				p Powered by V Enterprise

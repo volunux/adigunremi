@@ -1,0 +1,34 @@
+extends layout
+
+block content
+
+	.glay
+		.glist
+
+			.glayhead
+				h2 Genre - #{title}
+				
+			.gpmenu
+
+
+			for title in titles
+				.gsum
+					.ghead
+						h3
+							a(href ='/title/name') #{title.title}
+
+					.gsumdet
+						img(src ='' + title.tthumbimg)
+
+					.gsumbody
+						p Orignal Title : #{title.original_title}
+						p Title : #{title.title}
+						p Ratings : #{title.rating}
+						p Released Date : #{title.released_date}
+						p Running Time : #{title.running_time}
+						p Producer : #{title.producer}
+						p Production Company : #{title.production_companies}
+						p Production Countries : #{title.production_countries}
+						p Spoken Languages : #{title.spoken_languages}
+						p Budget : #{title.budget}
+						p.syp Sypnosis : #{title.sypnosis}

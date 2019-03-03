@@ -1,0 +1,17 @@
+extends layout
+
+block content
+
+	.ulist
+
+		.ulisthead
+			h2 #{title}
+
+		.umenu
+
+
+		.ubody
+			.uindividual
+				ul
+					for user in users
+						li #{user.username}

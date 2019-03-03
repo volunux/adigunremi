@@ -1,0 +1,11 @@
+extends ../layout
+
+block content
+
+	.actor-delete
+		
+		form(action =''	, method ='post' , enctype ='application/x-www-form-urlencoded')
+
+			p.del Do you want to delete and remove this actor, #{actor.name}? 
+
+			button(type ='submit' , title ='Confirm' class ='btn btn-primary float-right px-4') Confirm

@@ -1,0 +1,33 @@
+extends ../layout
+
+block content
+
+	.sign-up
+		form(action =''	method ='post')
+			.form-group
+				label(for ='firstName') First Name : 
+					span *
+				input(name ='firstName'  id ='firstName' type ='text' , class ='form-control form-control-sm' , placeholder ='David' required ='true' autofocus ='true' value =(undefined === user ? '' : user.username))
+
+			.form-group
+				label(for ='lastName') Last Name : 
+					span *
+				input(name ='lastName'  id ='lastName' type ='text' , class ='form-control form-control-sm' ,  placeholder ='John' required ='true' value =(undefined === user ? '' : user.username))
+
+			.form-group
+				label(for ='e-mai') E-mail Address : 
+					span *
+				input(name ='email'  id ='e-mail' type ='text' , class ='form-control form-control-sm' ,  placeholder ='user@example.com' required ='true' value =(undefined === user ? '' : user.mail_address))
+
+			.form-group
+				label(for ='username') Username : 
+					span *
+				input(name ='username'  id ='username' type ='text' , class ='form-control form-control-sm' ,  placeholder ='Username' required ='true' value =(undefined === user ? '' : user.username))
+
+			.form-group
+				label(for ='password') Password : 
+					span *
+				input(name ='password'  id ='password' type ='password'  , class ='form-control form-control-sm' , placeholder ='Password' required ='true' value =(undefined === user ? '' : user.password))
+
+			button(type ='submit' title ='Submit' class ='btn btn-primary float-right px-4') Submit
+

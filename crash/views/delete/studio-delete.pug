@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+
+	.sdelete
+		h4 #{title}
+		
+		form(action =''	, method ='post' , enctype ='application/x-www-form-urlencoded')
+
+			p.del Do you want to delete and remove this studio, #{studio.name}? 
+
+			button(type ='submit' , title ='Confirm') Confirm

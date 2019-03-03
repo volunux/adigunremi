@@ -1,0 +1,16 @@
+extends layout
+
+include include/tmix
+
+block content
+	.tdci
+		.tdcihead
+
+		.tdcb
+			for actor in cast
+				.tdc
+					for image in actor.cover_image
+						+fixDir(image.path)
+
+					p #{actor.name}
+

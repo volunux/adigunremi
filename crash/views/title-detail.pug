@@ -1,0 +1,77 @@
+extends layout
+
+include include/tmix
+
+block content
+
+	.tdpage
+
+		.tdpagehead
+			h1 #{detail.detail} 
+			
+		.tdmenu
+			include ./include/tmenu
+
+		.tdetails
+			for cover in detail.cover_image
+				.tdimage
+					+fixDir(cover.path)
+
+			.tdbody
+
+				p Title: #{detail.title}
+				p Ratings : #{detail.rating}
+				p Released Date : #{detail.released_date.year}
+				p Running Time : #{detail.running_time}
+				p Producer : #{detail.producer}
+				p Production Company : 
+					each company , index in detail.production_companies
+						span #{company.name}
+							if index < detail.production_companies.length - 1
+								|, 
+				p Production Countries : 
+					each country , index in detail.production_countries
+						span #{country.country}
+							if index < detail.production_countries.length - 1
+								|, 
+				p Spoken Languages : 
+					each language , index in detail.spoken_languages
+						span #{language.language}
+							if index < detail.spoken_languages.length - 1
+								|, 
+				p Budget : #{detail.budget}
+				p Revenue : #{detail.revenue}
+				p Genre : 
+					each genre , index in detail.genre
+						span #{genre.genre}
+							if index < detail.production_companies.length - 1
+								|, 
+				p.syp Sypnosis : #{detail.plot}
+
+
+
+			.tdbodyc
+				.tcbody
+					.tcibody
+						ul
+							for actor in detail.cast
+								li
+									a(href ='/title/name')
+									for cover in actor.cover_image
+										+fixDir(cover.path)
+									p #{actor.name}
+
+
+
+		.treviews
+			.treviewsh
+				h5 Reviews
+					a(href ='/title/' + url + '/reviews/add') Add Review
+
+			.treviewsbody
+				for review in detail.reviews
+					.treviewsbindividual
+						p.head #{review.author}
+							span #{review.ratings}
+							span.date #{review.timestamp}
+						p  #{review.reviewText}

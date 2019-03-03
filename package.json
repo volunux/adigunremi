@@ -1,0 +1,83 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "Node JavaScript Programming",
+  "main": "index.js",
+  "engines": {
+    "node": "10.14.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./bin/www",
+    "devstart": "nodemon ./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/yusuf"
+  },
+  "keywords": [
+    "Node",
+    "JavaScript"
+  ],
+  "author": "Yusuf Musa Yusuf",
+  "license": "ISC",
+  "dependencies": {
+    "@sendgrid/mail": "^6.3.1",
+    "async": "^2.6.0",
+    "axios": "^0.18.0",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.2",
+    "colors": "^1.2.1",
+    "compression": "^1.7.3",
+    "connect": "^3.6.6",
+    "cookie": "^0.3.1",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.5",
+    "debug": "^3.1.0",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "express-error-handler": "^1.1.0",
+    "express-flash": "git://github.com/RGBboy/express-flash.git",
+    "express-handlebars": "^3.0.0",
+    "express-method-override": "0.0.3",
+    "express-session": "^1.15.6",
+    "express-validator": "^5.1.0",
+    "forever": "^0.15.3",
+    "form-data": "^2.3.2",
+    "fs-extra": "^5.0.0",
+    "helmet": "^3.15.1",
+    "http-errors": "~1.6.2",
+    "jasmine-core": "^3.1.0",
+    "jsonwebtoken": "^8.2.2",
+    "knex": "^0.14.4",
+    "method-override": "^2.3.10",
+    "mocha": "^5.2.0",
+    "moment": "^2.23.0",
+    "mongod": "^2.0.0",
+    "mongodb": "^3.0.5",
+    "mongoose": "^5.4.13",
+    "mongoose-autopopulate": "^0.9.1",
+    "mongoskin": "^2.1.0",
+    "morgan": "^1.9.1",
+    "multer": "^1.4.1",
+    "nodemailer": "^5.1.1",
+    "nodemailer-smtp-transport": "^2.7.4",
+    "nodemon": "^1.17.2",
+    "passport": "^0.4.0",
+    "passport-http": "^0.3.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^5.0.1",
+    "permit": "^0.2.4",
+    "pg": "^7.4.1",
+    "pug": "^2.0.3",
+    "request": "^2.88.0",
+    "resolve": "^1.6.0",
+    "sequelize": "^4.37.5",
+    "serve-favicon": "^2.5.0",
+    "sqlite3": "^4.0.0",
+    "uuid": "^3.2.1"
+  },
+  "devDependencies": {
+    "should": "^13.2.1"
+  }
+}

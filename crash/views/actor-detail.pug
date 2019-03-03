@@ -1,0 +1,33 @@
+extends layout
+
+include include/amix
+
+block content
+
+	.apage
+
+		.apagehead
+			h2 Actor - Odunlade Adekola
+			
+		.amenu
+			include ./include/amenu
+
+		.adetails
+			.adimage
+				for cover in actor.cover_image
+					+fixDir(cover.path)
+
+
+			.adbody
+				if actor.nickname
+					p Name : #{actor.nickname}
+				p Full Name : #{actor.name}
+				p Date of Birth : #{actor.date_of_birth}
+				p Place of Birth : #{actor.place_of_birth}
+				p Nationality : #{actor.nationality}
+				p Gender : #{actor.gender}
+				p Spouse or Partner : #{actor.spouse_or_partner}
+				p Networth : #{actor.networth}
+				p Social Media Profiles:
+
+				p.bio Biography : #{actor.biography}

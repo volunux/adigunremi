@@ -1,0 +1,4 @@
+mixin fixDir(dir)
+	- var name = dir.slice(7)
+	-	var fName = name.replace(/\\/g , '/')
+		img(class ='', src = '/' + fName)

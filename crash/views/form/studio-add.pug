@@ -1,0 +1,43 @@
+extends ../layout
+
+block content
+	.aadd
+		.aaddhead
+			h2 #{title}
+
+		.sadderrmsg
+			if errors
+				p Errors found trying to process form. These include : -
+				ul
+					for error in errors
+						li!= error.msg
+
+			
+		.aform
+			form(action =''	, method ='post'	,	enctype ='multipart/form-data')
+				p
+					label(for ='name') Name :
+						span *
+					input(type ='text'	,	name ='name'	,	id ='name' value =(undefined === studio ? '' : studio.name))
+
+				p
+					label(for ='year_founded') Year Founded :
+						span *
+					input(type ='text'	,	name ='year_founded'	,	id ='year_founded' , placeholder ='yyyy' value =(undefined === studio ? '' : studio.year_founded))
+
+				p
+					label(for ='country_of_origin') Country of Origin :
+						span *
+					input(type ='text'	,	name ='country_of_origin'	,	id ='country_of_origin' value =(undefined === studio ? '' : studio.country_of_origin))
+
+				p 
+					label(for ='cover_image') Photo :
+					input(type ='file' ,	name ='cover_image'	,	accept ='image/*')
+
+				p
+					label(for ='about') About :
+						span *
+
+				textarea(id ='about'	, name ='about' value =(undefined === studio ? '' : studio.about))
+
+				button(type ='submit'	, title ='Submit') Submit

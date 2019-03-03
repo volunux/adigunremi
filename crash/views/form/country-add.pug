@@ -1,0 +1,20 @@
+extends ../layout
+
+block content
+	.cadd
+
+		.cadderrmsg
+			if errors
+				p Errors found trying to process form. These include : -
+				ul
+					for error in errors
+						li!= error.msg
+			
+		.cform
+			form(action =''	, method ='POST'	,	enctype ='x-www-form-urlencoded')
+				p
+					label(for ='country') Name :
+						span *
+					input(type ='text'	,	name ='country'	,	id ='country' , placeholder ='South Africa' value =(undefined === country ? '' : country.country))
+
+				button(type ='submit'	, title ='Submit') Submit

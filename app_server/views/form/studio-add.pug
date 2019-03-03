@@ -1,0 +1,42 @@
+extends ../layout
+
+block content
+	
+	.studio-add
+
+		.sadderrmsg
+			if errors
+				p Errors found trying to process form. These include : -
+				ul
+					for error in errors
+						li!= error.msg
+
+			
+		form(action =''	, method ='post'	,	enctype ='multipart/form-data')
+			
+			.form-group
+				label(for ='name') Name :
+					span *
+				input(type ='text'	,	name ='name'	, class ='form-control form-control-sm'	,	id ='name' value =(undefined === studio ? '' : studio.name))
+
+			.form-group
+				label(for ='year_founded') Year Founded :
+					span *
+				input(type ='text'	,	name ='year_founded'	, class ='form-control form-control-sm'	,	id ='year_founded' , placeholder ='yyyy' value =(undefined === studio ? '' : studio.year_founded))
+
+			.form-group
+				label(for ='country_of_origin') Country of Origin :
+					span *
+				input(type ='text'	,	name ='country_of_origin'	, class ='form-control form-control-sm'	,	id ='country_of_origin' value =(undefined === studio ? '' : studio.country_of_origin))
+
+			.form-group
+				label(for ='cover_image') Photo :
+				input(type ='file' ,	name ='cover_image'	, class ='form-control form-control-sm'	,	accept ='image/*')
+
+			.form-group
+				label(for ='about') About :
+					span *
+
+				textarea(id ='about'	, name ='about' , class ='form-control form-control-sm'	, value =(undefined === studio ? '' : studio.about))
+
+			button(type ='submit'	, title ='Submit' , class ='btn btn-primary float-right px-4') Submit

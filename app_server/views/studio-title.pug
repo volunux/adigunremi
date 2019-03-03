@@ -1,0 +1,33 @@
+extends layout
+
+block content
+
+	.stlay
+		.stlist
+			.stlayhead
+				h2 #{title} - #{name}
+
+			.stpmenu
+			
+			for title in titles	
+				.stsum
+					.sthead
+						h3
+							a(href ='/title/name') #{title.title}
+
+					.stsumdet
+						img(src ='' + title.tthumbimg)
+
+					.stsumbody
+						p Orignal Title : #{title.original_title}
+						p Title: #{title.title}
+						p Ratings : #{title.ratings}
+						p Released Date : #{title.released_date}
+						p Running Time : #{title.running_time}
+						p Producer : #{title.producer}
+						p Production Company : #{title.production_companies}
+						p Production Countries : #{title.production_countries}
+						p Spoken Languages : #{title.spoken_languages}
+						p Revenue : #{title.revenue}
+						p.syp Sypnosis : #{title.sypnosis}
+

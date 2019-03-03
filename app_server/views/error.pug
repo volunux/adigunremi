@@ -1,0 +1,10 @@
+extends layout
+
+block content
+	h1= message
+	h2= error.message
+		if (error.status == 404) 
+			p #{error.status} - The page you are looking for does not exist.
+			
+		else
+			p #{error.status} - Internal Server Error Occured.

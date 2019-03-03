@@ -1,0 +1,26 @@
+extends layout
+
+include include/smix
+
+block content
+
+	.slist
+
+		.slisthead
+			h2 #{title}
+			
+		.samenu
+			include ./include/sadd-menu
+
+		if studios	
+			for studio in studios
+				.sbody
+					a(href ='/studio/' + studio.url)
+						for cover_image in studio.cover_image
+							+fixDir(cover_image.path)
+
+					p
+						a(href ='/studio/' + studio.url) #{studio.name}
+
+			else
+				p There are no studios available
