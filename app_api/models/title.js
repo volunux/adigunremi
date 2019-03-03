@@ -43,7 +43,7 @@ var titleSchema = new Schema({
 'production_countries' : [{	'type' : Schema.Types.ObjectId ,	'ref' : 'Country' , 'autopopulate' : true	}] ,	'budget' : String ,	'revenue' : String ,	'plot' : String ,
 	/******************************************************************************************************************************************************************************************/
 	/******************************************************************************************************************************************************************************************/
-'cover_image' : [photoSchema] , 'photo' : [photosSchema] ,	'trailer' : [trailerSchema] ,	'cast' : [{	'type' : Schema.Types.ObjectId ,	'ref' : 'Actor' ,  'autopopulate' : true }] ,
+/**'cover_image' : [photoSchema] , 'photo' : [photosSchema] , 	'trailer' : [trailerSchema] , **/	'cast' : [{	'type' : Schema.Types.ObjectId ,	'ref' : 'Actor' ,  'autopopulate' : true }] ,
 
 'reviews' : [reviewSchema] } ,	{	'toObject' : {	'virtuals' : true } ,	'toJSON' : {	'virtuals' : true } ,	'getters' : true 	});
 
