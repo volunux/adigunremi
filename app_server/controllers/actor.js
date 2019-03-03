@@ -152,7 +152,7 @@ module.exports = {
 																					res.render('form/actor-add' , {'title' : 'Update Actor',	'actor' : actor , 'errors' : errors.array()			});
         																																																																									}
         							else {
-															axios({	'url' : 'http://localhost:3000/api/actor/' + aParam,
+															axios({	'url' : 'http://limitless-stream-60828.herokuapp.com/api/actor/' + aParam,
 																																														'method' : 'PUT' ,
 																																																								'data' : req.body})
 																	.then((response) => { 	data = response.data.status;
