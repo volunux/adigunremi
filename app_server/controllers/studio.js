@@ -64,7 +64,7 @@ module.exports = {
 																					res.render('form/studio-add' , {'title' : 'Add Studio',	'studio' : studio , 'errors' : errors.array()			});
         																																																																								}
         							else {
-															sSet.reqOptions = {		'url' : 'http://localhost:3000/api/studio' ,
+															sSet.reqOptions = {		'url' : 'http://limitless-stream-60828.herokuapp.com/api/studio' ,
 																																																'method' : 'POST' ,
 																																																										'json' : req.body}
 																				request(sSet.reqOptions, (err , resBody , body) => {
