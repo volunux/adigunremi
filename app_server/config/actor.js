@@ -99,7 +99,7 @@ module.exports = {
 																																																																				}),
 	'uploadWare' : [{'name' : 'photo' , 'maxCount' : 5} , {'name' : 'trailer' , 'maxCount' : 3}],
 
-	'reqOptions' : {		'url' : 'http://localhost:3000/api/actor/' ,
+	'reqOptions' : {		'url' : 'http://limitless-stream-60828.herokuapp.com/api/actor/' ,
 																																		'method' : 'GET' ,
 																																												'json' : {},
 																																																			'qs' : {}			},
