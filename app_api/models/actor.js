@@ -62,7 +62,7 @@ var actorSchema = new Schema({
 				'sp_others' : String,
 																'biography' : {	'type' : String,
 																																	'maxlength' : 5000 ,
-																																												'required' : true	},
+																																												'required' : true	}
 										//'cover_image' : [photoSchema]	
 },	{
 				'toObject' : {
