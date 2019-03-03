@@ -15,8 +15,7 @@ block content
 					.studio-list-item.mr-4
 						li
 							a(href ='/studio/' + studio.url)
-							for cover_image in studio.cover_image
-								+fixDir(cover_image.path)
+							
 
 							p
 								a(href ='/studio/' + studio.url) #{studio.name}
