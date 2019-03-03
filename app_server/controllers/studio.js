@@ -15,6 +15,8 @@ module.exports = {
 	'studioList' : (req , res) => { url = String(sSet.reqOptions.url);
 			
 			axios.get(url).then((response) => { 	data = response.data.status;
+							   
+							   console.log(data);
 																																						res.render('studio' , {'title' : 'Studios' , 'studios' : data});
 																																			})
 										.catch((err) => {				status = err.response;
