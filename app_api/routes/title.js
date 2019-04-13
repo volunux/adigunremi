@@ -21,7 +21,7 @@ router.delete('/title/:title'												,				title.titleDelete);
 
 
 
-router.get('/title/:title/trailers'									,				title.titleTrailer);
+router.get('/title/:title/trailer'									,				title.titleTrailer);
 
 router.get('/title/:title/photos'										,				title.titlePhoto);
 
@@ -38,6 +38,8 @@ router.post('/title/:title/reviews'									,				title.titleAddReview);
 
 
 router.get('/title/:title/update'										,				title.titleUpdate);
+
+router.get('/title/:title/actor/update'							,				title.titleUpdateActor);
 
 router.post('/title/:title/reviews'									,				title.titleAddReview);	
 

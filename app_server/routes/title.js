@@ -1,42 +1,43 @@
 var express = require('express') ,	router = express.Router() ,		title = require('../controllers/title') , user = require('../controllers/users');
 
-router.get('/'																			,				title.title);
+router.get('/'																																													,												title.title);
 		
-router.get('/title'																	,				title.titleList);
+router.get('/title'																																											,												title.titleList);
 
 router.get('/title/add'															,								user.ensureAuthenticated 						,												title.titleAdd);
 
-router.get('/title/:title'													,				title.titleDetail);	
+router.get('/title/:title'													,																																						title.titleDetail);	
 
 router.post('/title/add'														,								user.ensureAuthenticated 						,												title.titleAddP);
 
-router.get('/title/:title/trailers'									,				title.titleTrailer);
+router.get('/title/:title/trailer'																																			,												title.titleTrailer);
 
-router.get('/title/:title/photos'										,				title.titlePhoto);
+router.get('/title/:title/photos'																																				,												title.titlePhoto);
 
-router.get('/title/name/credits'										,				title.titleCredits);
+router.get('/title/name/credits'																																				,												title.titleCredits);
 
-router.get('/title/:title/cast'											,				title.titleCast);
+router.get('/title/:title/cast'																																					,												title.titleCast);
 	
-router.get('/title/:title/reviews'									,				title.titleReviews);
+router.get('/title/:title/reviews'																																			,												title.titleReviews);
 
 
 router.get('/title/:title/reviews/add'							,								user.ensureAuthenticated 						,												title.titleAddReview);
 	
 router.post('/title/:title/reviews/add'							,								user.ensureAuthenticated 						,												title.titleAddReviewP);
 
-router.get('/title/:title/update'											,							user.ensureAuthenticated 						,												title.titleUpdate);
+
+router.get('/title/:title/update'										,								user.ensureAuthenticated 							,												title.titleUpdate);
 	
-router.post('/title/:title/update'										,							user.ensureAuthenticated 						,												title.titleUpdateP);
+router.post('/title/:title/update'									,								user.ensureAuthenticated 							,												title.titleUpdateP);
 
 
-router.get('/title/name/actor/add/'									,								user.ensureAuthenticated 						,												title.titleAddActor);
+router.get('/title/actor/add/'											,								user.ensureAuthenticated 						,												title.titleAddActor);
 	
-router.post('/title/name/actor/add/'								,								user.ensureAuthenticated 						,												title.titleAddActorP);
+router.post('/title/actor/add/'											,								user.ensureAuthenticated 						,												title.titleAddActorP);
 
-router.get('/title/name/actor/update/'							,								user.ensureAuthenticated 						,												title.titleUpdateActor);
+router.get('/title/:title/actor/update/'						,								user.ensureAuthenticated 						,												title.titleUpdateActor);
 	
-router.post('/title/name/actor/update/'							,								user.ensureAuthenticated 						,												title.titleUpdateActorP);
+router.post('/title/:title/actor/update/'						,								user.ensureAuthenticated 						,												title.titleUpdateActorP);
 
 
 /*

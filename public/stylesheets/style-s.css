@@ -1,12 +1,17 @@
 * {
 
 	font-weight : normal !important;
-	text-decoration : none;
+	text-decoration : none !important;
 }
 
 img {
 
 	width : 150px;
+}
+
+p {
+
+	line-height : 2.0em;
 }
 
 .title-list .img-fluid {
@@ -71,7 +76,7 @@ h1 {
 	font-size : 0.75rem;
 }
 
-.title-add textarea , .studio-add textarea , .actor-add textarea {
+.title-add textarea , .studio-add textarea , .actor-add textarea , .title-review-add textarea {
 
 	height : 150px;
 	resize : none;
@@ -223,6 +228,11 @@ h1 {
 
 	display : inline-block;
 	margin-right : 1rem;
+}
+
+.title-add * , .title-review-add * , .actor-add * {
+
+	font-size : 0.75rem;
 }
 
 

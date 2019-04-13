@@ -1,4 +1,4 @@
-var config = require('../../app_server/config/config') , async = require('async'), Title = require('../models/title') , title = ''; 
+var config = require('../../app_server/config/config') , async = require('async'), Title = require('../models/title') , title = '' , Actor = require('../models/actor') ,
 
 Studio = require('../models/studio'), Genre = require('../models/genre'), Country = require('../models/country') , Year = require('../models/year') , Language = require('../models/language');
 
@@ -13,42 +13,42 @@ module.exports = {
 																																												}
 																																																config.response(res , 200 , titleName);
 																																		})
-	},
+	} ,
 
 	'title' : (req , res) => {
 		
 		Title.find({})
-										.exec(function(err , titlesResult) {
-																													if (err) {
-																																								config.response(res , 404 , err);
-																																																									return;	}
-																													if (!titleResult) {
-																																								config.response(res , 404 , {'message' : 'Titles cannot be found'});
-																																																																											return;		}
-																															config.response(res , 200 , titlesResult);
+									.exec((err , titlesResult) => {
+																										if (err) {
+																																					config.response(res , 404 , err);
+																																																						return;	}
+																										if (!titleResult) {
+																																					config.response(res , 404 , {'message' : 'Titles cannot be found'});
+																																																																								return;		}
+																																					config.response(res , 200 , titlesResult);
 																						});
 	},
 
 	'titleList' : (req , res) => {
 		
 		Title.find({})
-										.exec(function(err , titlesResult) {
-																													if (err) {
-																																								config.response(res , 404 , err);
-																																																									return;	}
-																													if (!titlesResult) {
-																																								config.response(res , 404 , {'message' : 'Titles cannot be found'});
-																																																																											return;		}
-																															config.response(res , 200 , titlesResult);
+										.exec((err , titlesResult) => {
+																										if (err) {
+																																					config.response(res , 404 , err);
+																																																						return;	}
+																										if (!titlesResult) {
+																																					config.response(res , 404 , {'message' : 'Titles cannot be found'});
+																																																																								return;		}
+																																					config.response(res , 200 , titlesResult);
 																								})
 	},
 
-	'titleDetail' : (req , res) => {	title = req.params.title.split('-').join(' ');
+	'titleDetail' : (req , res) => {	title = req.params.title;
 
 		if (req.params && req.params.title) {
 			
-			Title.findOne({'title' : new RegExp(title, 'i')})
-																												.exec(function(err , titleResult) {
+			Title.findOne({'url' : new RegExp(title, 'i')})
+																												.exec((err , titleResult) => {
 																																														if (err) {
 																																																									config.response(res , 404 , err);
 																																																																										return;	}
@@ -67,7 +67,7 @@ module.exports = {
 																if (err) {
 																						config.response(res , 400 , err);
 																}	else {
-																					config.response(res , 200 , {'message' : 'success'});
+																						config.response(res , 200 , {'message' : 'success'});
 																}
 																																															})
 	},
@@ -94,7 +94,7 @@ module.exports = {
 																									'Studio' : (callback) => {
 																																											Studio.find({}).exec(callback);
 																									}
-			}, function(err , result) {	
+			} , (err , result) => {	
 																		if (err) {
 																											config.response(res , 404 , err);
 																																												return;		}
@@ -105,13 +105,13 @@ module.exports = {
 																})
 	},
 
-	'titleTrailer' : (req , res) => {		title = req.params.title.split('-').join(' ');	
+	'titleTrailer' : (req , res) => {		title = req.params.title;	
 
 		if (req.params && req.params.title) {
 		
 				async.parallel({
 													'Title' : (callback) => {
-																											Title.findOne({'title' : new RegExp(title, 'i')})
+																											Title.findOne({'url' : new RegExp(title, 'i')})
 																																																				.select('trailer title')
 																																																																.exec(callback)		}
 			}, (err , result) => {
@@ -132,13 +132,13 @@ module.exports = {
 				}
 	},
 
-	'titlePhoto' : (req , res) => {		title = req.params.title.split('-').join(' ');
+	'titlePhoto' : (req , res) => {		title = req.params.title;
 
 		if (req.params && req.params.title) {
  
 			async.parallel({
 												'Title' : (callback) => {
-																										Title.findOne({'title' : new RegExp(title, 'i')})
+																										Title.findOne({'url' : new RegExp(title, 'i')})
 																																																				.select('photo title')
 																																																															.exec(callback)		}
 			}, (err , result) => {
@@ -163,13 +163,13 @@ module.exports = {
 																				config.response(req , res);
 	},
 
-	'titleCast' : (req , res) => {	title = req.params.title.split('-').join(' ')
+	'titleCast' : (req , res) => {	title = req.params.title;
 
 		if (req.params && req.params.title) {
 
 			async.parallel({
 												'Title' : (callback) => {
-																										Title.findOne({'title' : new RegExp(title, 'i')}).populate('cast')
+																										Title.findOne({'url' : new RegExp(title, 'i')}).populate('cast')
 																																																													.select('cast title')
 																																																																									.exec(callback)		}
 			}, (err , result) => {
@@ -225,9 +225,9 @@ module.exports = {
 																									})
 	},
 
-	'titleDelete' : (req , res) => {	var title = req.params.title.split('-').join(' ');
+	'titleDelete' : (req , res) => {	var title = req.params.title;
 		
-		Title.findOneAndRemove({'title' : new RegExp(title , 'i')} , function(err) {
+		Title.findOneAndRemove({'url' : new RegExp(title , 'i')} , function(err) {
 																																									if (err) {
 																																															config.response(res , 404 , err);
 																																																																return;		}
@@ -236,7 +236,7 @@ module.exports = {
 																																		})
 	},
 
-	'titleUpdate' : (req , res) => {	title = req.params.title.split('-').join(' ');
+	'titleUpdate' : (req , res) => {	title = req.params.title;
 
 																async.parallel({
 																									'Genre' : (callback) => {
@@ -260,7 +260,7 @@ module.exports = {
 																									},
 
 																									'Title' : (callback) => {
-																																							Title.findOne({'title' : new RegExp(title, 'i')})
+																																							Title.findOne({'url' : new RegExp(title, 'i')})
 																																																																.exec(callback) }	
 			}, function(err , result) {	
 																		if (err) {
@@ -274,15 +274,15 @@ module.exports = {
 	},
 
 	'titleUpdateP' : (req , res) => {		
-																			console.log('Yes Yes Yes');
 
-		var tvalue = req.body , tparam = req.params.title.split('-').join(' ');
+		var tvalue = req.body , tparam = req.params.title;
 
-			Title.findOneAndUpdate({'title' : new RegExp(tparam, 'i')} , tvalue , (err) => {
+			Title.findOneAndUpdate({'url' : new RegExp(tparam, 'i')} , tvalue , (err) => {
 																																												if (err)  {
 																																																			config.response(res , 404 , err);
 																																																																					return;	}
-																																																		
+																																																		console.log('success');
+
 																																																			config.response(res , 200 , {result : 'good'});
 																																							});
 	},
@@ -291,8 +291,26 @@ module.exports = {
 																				config.response(req , res);
 	},
 
-	'titleUpdateActor' : (req , res) => {
-																				config.response(req , res);
+	'titleUpdateActor' : (req , res) => {	title = req.params.title;
+
+																async.parallel({
+																									'Actor' : (callback) => {
+																																											Actor.find({}).exec(callback);
+																									} ,
+
+																									'Title' : (callback) => {
+																																							Title.findOne({'url' : new RegExp(title, 'i')})
+																																																																.exec(callback) }	
+			}, function(err , result) {	
+																		if (err) {
+																											config.response(res , 404 , err);
+																																												return;		}
+																		if (!result) {
+																											config.response(res , 404 , {'message' : 'Data cannot be retrieved'});
+																																																															return;		} 
+																											config.response(res , 200 , result);
+																})
+
 	},
 
 	'titleDeleteActor' : (req , res) => {
@@ -308,10 +326,7 @@ module.exports = {
 
 	'titleDeleteGenre' : (req , res) => {
 																				config.response(req , res);
-	},
+	}
 
-	'titleDelete' : (req , res) => {
-																				config.response(req , res);
-	},
 
 }

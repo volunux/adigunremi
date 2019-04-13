@@ -2,23 +2,19 @@ const { body,validationResult } = require('express-validator/check');
 
 const { sanitizeBody } = require('express-validator/filter');
 
-var language = require('../../app_api/models/language') , lSet = require('../config/language') , request = require('request');
+var language = require('../../app_api/models/language') , lSet = require('../config/language') , request = require('request') , url = '';
 
 module.exports = {
 
-	'languageList' : (req , res) => {
-		
-		lSet.reqOptions.url = 'http://localhost:3000/api/language/';
-																																	request(lSet.reqOptions, (err , resBody , body) => {
+	'languageList' : (req , res) => {		url = lSet.reqOptions.url;
+																																	request(url , (err , resBody , body) => {
 																																																												res.render('language' , {'languages' : body.status});
 																																																		})
 	},
 
-	'languageDetail' : (req , res) => {
-																	
-		var lDetail = req.params.language;
-																			lSet.reqOptions.url = 'http://localhost:3000/api/language/' + lDetail;
-																																																						request(lSet.reqOptions, (err , resBody , body) => {
+	'languageDetail' : (req , res) => {	var lDetail = req.params.language , url = String(lSet.reqOptions.url + lDetail)
+
+																																																						request(url , (err , resBody , body) => {
 																res.render('title' , {'titles' : body.status , 'url' : lDetail});	 	
 													})
 	},

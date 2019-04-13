@@ -1,123 +1,62 @@
-var multer = require('multer') , fs = require('fs') , path = require('path');
+var multer = require('multer') , fs = require('fs') , path = require('path') , request = require('request') , imageMagic = require('./photoMagic.js') , extra = require('fs-extra');
+
+const multerS3 = require('multer-s3');
+
+const aws = require('aws-sdk');
+
+aws.config.update({
+																																		    // Your SECRET ACCESS KEY from AWS should go here,
+																																		    // Never share it!
+																																		    // Setup Env Variable, e.g: process.env.SECRET_ACCESS_KEY
+    secretAccessKey: "uw0OKjDQp8f+pcYJ1YZrnuEgROLjVII9DCDgjG/e" ,
+																																		    // Not working key, Your ACCESS KEY ID from AWS should go here,
+																																		    // Never share it!
+																																		    // Setup Env Variable, e.g: process.env.ACCESS_KEY_ID
+    accessKeyId: "AKIAI4TIKRE6CRCIYQ7Q" ,
+    region: 'us-east-1'																								 // region of your bucket
+});
+
+const s3 = new aws.S3();
+
 
 module.exports = {
 
-'uploadImage' : (fs , req , path , fields , file) => {
-																																																						var tempPath = path.resolve(file.path),
-																									 ext = path.extname(file.name).toLowerCase(),
-																									 																												tPath = fields.actor.toLowerCase().split(' ').join('_'),
-		targetPath = './public/actors/' + tPath + '/' + tPath + Date.now() + ext;																
-																																																		if (ext) {
-																																																								fs.rename(tempPath , targetPath , function(err) {					
-																																							console.log('finally');
-																																																									})
-																																																					}
-	
-
-																	},
- 
-'checkActorPath' : (fs , req , path , fields , files) => {
-																														var actorPath = './public/actors/' + fields.actor.toLowerCase().split(' ').join('_');
-																																																																									if (fs.exists(actorPath)) {
-																		module.exports.uploadImage(fs , req , path , fields , files);
-																																																			console.log('No');
-																																															}
-																																																									else {
-																			fs.mkdir(actorPath , function(err) {
-																																							console.log('Yes it works.');
-																																																								module.exports.uploadImages(fs , req , path , fields , files)
-																																				})
-																		}
-},
-
-'arrangeFiles' : (fs , req , path , pData , tData) => {
-																																																							
-																												for (var i = 0; i < req.files.photo.length; i++) {
-																																																							req.files.photo.forEach(function(file) {
-						pData[i] = {
-													'name' : file.originalname,
-																												'path' : path.resolve(file.path),
-																																													'type' : file.mimetype,
-																																																										'encoding' : file.encoding
-																																																																								}
-																																																																										})
-																																																																													};
-							if (req.files.trailer) {
-																				for (var j = 0; j < req.files.trailer.length; j++) {
-																																															req.files.trailer.forEach(function(file) {
-							tData[j] = {
-														'name' : file.originalname,
-																												'path' : path.resolve(file.path),
-																																													'type' : file.mimetype,
-																																																										'encoding' : file.encoding
-							}
-																																																			})
-																							} }
-																									req.body.photo = pData , req.body.trailer = tData;
-},
-
-	'createActor' : (actor , file = undefined, addActor , cFile = undefined ) => {
-																																									addActor.name = actor.name;
-																																																							addActor.nickname = actor.nickname;
-																																																																									addActor.occupation = actor.occupation;
-				addActor.date_of_birth = actor.date_of_birth;	
-																											addActor.gender = actor.gender;
-																																											addActor.nationality = actor.nationality;
-																																																																	addActor.place_of_birth = actor.place_of_birth;
-				addActor.country_of_origin = actor.country_of_origin;
-																															addActor.state_of_origin = actor.state_of_origin;
-																																																									addActor.networth = actor.networth;	
-			addActor.partner_vs_spouse = actor.partner_vs_spouse;
-																														addActor.sp_facebook = actor.sp_facebook;
-																																																			addActor.sp_twitter = actor.sp_twitter;
-			addActor.sp_instagram = actor.sp_instagram;
-																									addActor.sp_others = actor.sp_others;
-																																													addActor.biography = actor.biography;
-			addActor.fileName = file.originalname;
-																							addActor.path = file.path;
-																																					addActor.type = file.mimetype;
-																																																					addActor.encoding = file.encoding;
-																	
-	},
-
 	'multer' :  multer.diskStorage({
  																		'destination' : function (req, file, cb) {
-																																								var actorPath = String('./public/actors/' + req.body.name.toLowerCase().split(' ').join('_'));
-				if (fs.existsSync(actorPath)) {
-  																		cb(null, actorPath);
-																														} else {
-																																				fs.mkdir(actorPath , function(err) {
-																																																								cb(null , actorPath);
-																																																				})																																														
-																																													}
+																																								var actorPath = './public/actors/';
+																																																											cb(null , actorPath);
 																											  },
 							'filename' : function (req, file, cb) {
-																												var ext = path.extname(file.originalname),							
-																																																		fileName = req.body.name.toLowerCase().split(' ').join('_') + Date.now() + ext;
-    																															cb(null, fileName)
-  						}
-																																																																				}),
-	'uploadWare' : [{'name' : 'photo' , 'maxCount' : 5} , {'name' : 'trailer' , 'maxCount' : 3}],
+																													var ext =  path.extname(file.originalname) , possible = 'abcdefghijklmnopqrstuvwxyz0123456789' , imgUrl = '' ;
+
+																													for(var i = 0 ; i < 6 ; i += 1) {	imgUrl += possible.charAt(Math.floor(Math.random() * possible.length));		}
+
+																													fileName = imgUrl + ext;
+	    																																								cb(null, fileName)			}
+					})	,
 
 	'reqOptions' : {		'url' : 'http://limitless-stream-60828.herokuapp.com/api/actor/' ,
 																																		'method' : 'GET' ,
 																																												'json' : {},
 																																																			'qs' : {}			},
-	'fileLoop' : (file , uFile) => {
-																		if (uFile) {
+		'validate' : (req , res , next) => {	if (req.file) {
 
-				for (var i in uFile) {																																														
-																file.name = uFile.originalname;
-																																file.path = uFile.path;
-																																												file.type = uFile.mimetype;
-																																																										file.encoding = uFile.encoding;		}	
-																										}
-	},
+			var bitmap = fs.readFileSync('./public/actors/' + req.file.filename).toString('hex' , 0 , 4);
 
-	'fileAttach' : (req , uFile) => {
-																			req.body.cover_image = [];
-																																	req.body.cover_image.push(uFile)
-							
-	}
+				if (!imageMagic.checkMagic(bitmap)) {
+																					
+							fs.unlinkSync('./public/actors/' + req.file.filename);
+																																			req.body.error = {
+																																													'location' : 'body' ,
+																																																								'param' : 'photo' ,
+																																																																		'value' : '' ,
+																																																																										'msg' : 'Only Image files Allowed'		}	}  }
 
+					if (!req.file) {
+														req.body.error2 = {
+																								'location' : 'body' ,
+																																			'param' : 'photo' ,
+																																													'value' : '' ,
+																																																					'msg' : 'Image Must be provided'		}	}
+																next(); 		} 
 }

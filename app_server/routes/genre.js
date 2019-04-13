@@ -2,14 +2,14 @@ var express = require('express'),	router = express.Router(),		genre = require('.
 
 
 
-router.get('/genre'												,		genre.genreList);
+router.get('/genre'																																						,									genre.genreList);
 
-router.get('/genre/add'										,		genre.genreAdd);
+router.get('/genre/add'																																				,									genre.genreAdd);
 
 router.post('/genre/add'									,								user.ensureAuthenticated 						,									genre.genreAddP);
 
 
-router.get('/genre/:genre'								,		genre.genreDetail);
+router.get('/genre/:genre'																																		,									genre.genreDetail);
 	
 
 

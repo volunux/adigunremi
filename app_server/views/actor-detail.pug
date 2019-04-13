@@ -20,10 +20,15 @@ block content
 			p Full Name : #{actor.name}
 			p Date of Birth : #{actor.dOb_ftd}
 			p Place of Birth : #{actor.place_of_birth}
-			p Nationality : #{actor.nationality}
-			p Gender : #{actor.gender}
+			p Nationality : #{actor.nationality.nationality}
+			p Country of Origin : #{actor.country_of_origin.country_of_origin}
+			p State of Origin : #{actor.state_of_origin}
+			p Gender : 
+				+capitalize(actor.gender)
 			p Spouse or Partner : #{actor.spouse_or_partner}
 			p Networth : #{actor.networth}
+			p Contact Email Address : #{actor.contact_email}
+			p Contact Number : #{actor.contact_number}
 			p Social Media Profiles:
 				if actor.sp_facebook
 						a(href=actor.sp_facebook , class='btn btn-primary btn-sm mr-2') Facebook

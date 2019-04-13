@@ -6,9 +6,8 @@ block content
 	.tdtrailerhead
 	
 			.tdtrailer
-				unless detail !== []
-					for sample in detail
+				unless detail === []
 						video(width ='500'	,	height ='400'	,	type ='video/mp4'	controls)
-							+fixDirTrailer(sample.path)
+							+fixDirTrailer(detail.path)
 				else
 					p There is no trailer available for this title

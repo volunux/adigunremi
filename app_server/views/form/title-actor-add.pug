@@ -1,77 +1,31 @@
-extends ../layout
+extends ./layout
 
 block content
 	.title-actor-add
 		form(action =''	, method ='post'	,	enctype ='x-www-form-urlencoded')
-			
-			.form-group
-				label(for ='cast') Actor 1 :
-				select(name ='cast'	, class ='form-control form-control-sm'	, id ='cast')
-					option(value ='') 
-					for actor in actors
-						option(value =actor._id) #{actor.name}
 
-			.form-group
-				label(for ='cast') Actor 2 :
-				select(name ='cast'	, class ='form-control form-control-sm'	, id ='cast')
-					option(value ='') 
-					for actor in actors
-						option(value =actor._id) #{actor.name}
+			.actor-add-list
+				p
+					label(for ='cast') Actor  :
+				if ttitle
+					for cas in ttitle.cast
+						.form-group
+							select(name ='cast'	, class ='form-control form-control-sm'	, id ='cast' , required ='true')
+								option(value ='') 
+								if ttitle
+									for actor in actors
+										option(value =actor.id selected =(cas._id.toString() == actor._id || cas._id.toString() == actor.name) ? 'selected' : false) #{actor.name}
+								else
+									option(value =actor._id) #{actor.name}
+				else
+					.form-group
+						select(name ='cast'	, class ='form-control form-control-sm'	, id ='cast' , required ='true')
+							option(value ='') 
+								for actor in actors
+									option(value =actor._id) #{actor.name}
 
-			.form-group
-				label(for ='cast') Actor 3 :
-				select(name ='cast'	, class ='form-control form-control-sm'	, id ='cast')
-					option(value ='') 
-					for actor in actors
-						option(value =actor._id) #{actor.name}
 
-			.form-group
-				label(for ='cast') Actor 4 :
-				select(name ='cast'	, class ='form-control form-control-sm'	, id ='cast')
-					option(value ='') 					
-					for actor in actors
-						option(value =actor._id) #{actor.name}
+			button(type ='submit'	, title ='Submit' class ='btn btn-secondary float-left px-4' id = 'insertactor') Insert Actor
 
-			.form-group
-				label(for ='cast') Actor 5 :
-				select(name ='cast'	, class ='form-control form-control-sm'	, id ='cast')
-					option(value ='') 
-					for actor in actors
-						option(value =actor._id) #{actor.name}
+			button(type ='submit'	, title ='Submit' class ='btn btn-primary float-right px-4' ) Submit
 
-			.form-group
-				label(for ='cast') Actor 6 :
-				select(name ='cast'	, class ='form-control form-control-sm'	, id ='cast')
-					option(value ='') 
-					for actor in actors
-						option(value =actor._id) #{actor.name}
-
-			.form-group
-				label(for ='cast') Actor 7 :
-				select(name ='cast'	, class ='form-control form-control-sm'	, id ='cast')
-					option(value ='') 
-					for actor in actors
-						option(value =actor._id) #{actor.name}
-
-			.form-group
-				label(for ='cast') Actor 8 :
-				select(name ='cast'	, class ='form-control form-control-sm'	, id ='cast')
-					option(value ='') 
-					for actor in actors
-						option(value =actor._id) #{actor.name}
-
-			.form-group
-				label(for ='cast') Actor 9 :
-				select(name ='cast'	, class ='form-control form-control-sm'	, id ='cast')
-					option(value ='') 
-					for actor in actors
-						option(value =actor._id) #{actor.name}
-
-			.form-group
-				label(for ='cast') Actor 10 :
-				select(name ='cast'	, class ='form-control form-control-sm'	, id ='cast')
-					option(value ='') 
-					for actor in actors
-						option(value =actor._id) #{actor.name}
-
-			button(type ='submit'	, title ='Submit' class ='btn btn-primary float-right px-4') Submit

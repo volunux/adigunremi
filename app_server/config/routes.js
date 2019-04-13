@@ -34,5 +34,7 @@ module.exports = {
 
 		'apiYearRouter' : require('../../app_api/routes/year'),
 
+		'apiNationalityRouter' : require('../../app_api/routes/nationality'),
+
 		'apiUserRouter' : require('../../app_api/routes/users')
 }

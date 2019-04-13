@@ -2,3 +2,7 @@ mixin fixDir(dir)
 	- var name = dir.slice(7)
 	-	var fName = name.replace(/\\/g , '/')
 		img(class ='mx-auto d-block' , src = '/' + fName)
+
+mixin capitalize (string)
+	- var gender = string[0].toUpperCase() + string.slice(1).toLowerCase()
+			| #{gender}

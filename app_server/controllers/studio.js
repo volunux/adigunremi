@@ -15,10 +15,7 @@ module.exports = {
 	'studioList' : (req , res) => { url = String(sSet.reqOptions.url);
 			
 			axios.get(url).then((response) => { 	data = response.data.status;
-							   
-							   console.log(data);
-																																						res.render('studio' , {'title' : 'Studios' , 'studios' : data});
-																																			})
+																																						res.render('studio' , {'title' : 'Studios' , 'studios' : data});			})
 										.catch((err) => {				status = err.response;
 																																						res.render('error' , {'title' : 'Error' , 'error' : status})																										});
 	},
@@ -47,30 +44,33 @@ module.exports = {
 
 	'studioAddP' : [
 
-	upload.any() ,
+				upload.single('cover_image') ,
 
 				body('name'											,		'Name must not be empty.')											.isLength({ min: 3 }).trim(),
 				body('year_founded'							, 	'Year Founded must be provided.')								.isLength({ min: 1 }).trim(),
 				body('country_of_origin'				, 	'Country of Origin must be provided.')					.isLength({ min: 1 }).trim(),
 				body('about'										, 	'About must be provided.')											.isLength({ min: 1 }).trim(),
 
-				(req , res) => {		var addStudio = {} , uFile = req.files[0] , file = {};
-																																										if (uFile) {
-																																																	req.body.cover_image = [];
-																																																															req.body.cover_image.push(uFile)	}
-																			sSet.createStudio(req.body , uFile , addStudio , file);
-																																																var studio = new Studio(req.body);
+				(req , res) => {	if (req.file) {	req.body.cover_image = req.file; }
+
+					var studio = new Studio(req.body);
+
 				const errors = validationResult(req);
 
-								if (!errors.isEmpty()) {																												
-																					res.render('form/studio-add' , {'title' : 'Add Studio',	'studio' : studio , 'errors' : errors.array()			});
+				var errArr = errors.array();
+																			if (req.body.error) {		errArr.push(req.body.error);		}
+
+																			if (req.body.error2) {	errArr.push(req.body.error2);		}
+
+								if (errArr.length !== 0) {
+																						res.render('form/studio-add' , {'title' : 'Add Studio',	'studio' : studio , 'errors' : errArr			});
         																																																																								}
         							else {
-															sSet.reqOptions = {		'url' : 'http://limitless-stream-60828.herokuapp.com/api/studio' ,
-																																																'method' : 'POST' ,
-																																																										'json' : req.body}
+															sSet.reqOptions = {		'url' : sSet.reqOptions.url ,
+																																									'method' : 'POST' ,
+																																																			'json' : req.body }
 																				request(sSet.reqOptions, (err , resBody , body) => {
-																																															console.log(body);
+																																															res.redirect('/studio')
 													})
         														}																																																	
 	}],
@@ -86,7 +86,7 @@ module.exports = {
 
 	'studioUpdateP' : [
 
-				upload.any(),
+				upload.single('cover_image'),
 
 				body('name'											,		'Name must not be empty.')											.isLength({ min: 3 }).trim(),
 				body('year_founded'							, 	'Year of Foundation must not be empty.')				.isLength({ min: 1 }).trim(),	
@@ -94,20 +94,23 @@ module.exports = {
 				body('about'										, 	'About must be provided.')											.isLength({ min: 1 }).trim(),
 
 				sanitizeBody('*').trim().escape(),
-				
-				(req , res , next) => {
 
-				var addstudio = {} , uFile = req.files[0] , sParam = req.params.studio;
-																																								if (uFile) {
-																																															req.body.cover_image = [];
-																																																													req.body.cover_image.push(uFile)
-																																}
-																																					var studio = new Studio(req.body);
+				sSet.validate ,
+				
+				(req , res , next) => {	if (req.file) {	req.body.cover_image = req.file; }
+
+					var studio = new Studio(req.body);
+
 				const errors = validationResult(req);
 
-								if (!errors.isEmpty()) {																												
-																					res.render('form/studio-add' , {'title' : 'Update Studio',	'studio' : studio , 'errors' : errors.array()			});
-        																																																																								}
+				var errArr = errors.array();
+																			if (req.body.error) {		errArr.push(req.body.error);		}
+
+																			if (req.body.error2) {	errArr.push(req.body.error2);		}
+
+								if (errArr.length !== 0) {																												
+																						res.render('form/studio-add' , {'title' : 'Update Studio',	'studio' : studio , 'errors' : errArr			});
+        																																																																												}
         							else {
 															axios({  	'method': 'put' ,
 																												  'url' : sSet.reqOptions.url + sParam,

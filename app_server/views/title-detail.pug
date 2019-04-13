@@ -44,7 +44,7 @@ block content
 					span #{genre.genre}
 						if index < detail.genre.length - 1
 							|, 
-			p.syp Sypnosis : #{detail.plot}
+			p.syp Sypnosis : #{detail.sypnosis}
 
 
 
@@ -52,10 +52,11 @@ block content
 					ul
 						for actor in detail.cast
 							li.mr-4
-								a(href ='/title/name')
-								for cover in actor.cover_image
-									+fixDir(cover.path)
-								p #{actor.name}
+								a(href ='/actor/' + actor.url)
+									for cover in actor.cover_image
+										+fixDir(cover.path)
+								p
+									a(href ='/actor/' + actor.url) #{actor.name}
 
 
 

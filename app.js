@@ -51,6 +51,7 @@ app.use('/api' , rConfig.apiYearRouter);
 																					app.use('/api' , rConfig.apiCountryRouter);
 																																												app.use('/api' , rConfig.apiLanguageRouter);
 																																																																			app.use('/api' , rConfig.apiUserRouter);
+app.use('/api' , rConfig.apiNationalityRouter);
 
 app.use(function(req, res, next) {
 																		next(createError(404));

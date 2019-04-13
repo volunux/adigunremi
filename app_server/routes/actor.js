@@ -3,17 +3,15 @@ var express = require('express'),	router = express.Router(),		actor = require('.
 
 
 
-router.get('/actor'												,		actor.actorList);
+router.get('/actor'																																						,									actor.actorList);
 
-router.get('/actor/m'											,		actor.actorListM);
-
-router.get('/actor/f'											,		actor.actorListF);
+router.get('/actor/gender/:gender'																															,									actor.actorListGender);
 
 router.get('/actor/add'										,								user.ensureAuthenticated 						,									actor.actorAdd);
 
-router.get('/actor/:actor'								,		actor.actorDetail);
+router.get('/actor/:actor'																																		,									actor.actorDetail);
 	
-router.get('/actor/:actor/titles'					,		actor.actorTitle);
+router.get('/actor/:actor/titles'																															,									actor.actorTitle);
 
 
 

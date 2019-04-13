@@ -8,7 +8,7 @@ Language = require('../../app_api/models/language') , Title = require('../../app
 
 Country = require('../../app_api/models/country') , Year = require('../../app_api/models/year') , Actor = require('../../app_api/models/actor') ,
 
-request = require('request') , axios = require('axios') , data = '' , url = '' , aDetail = '' , aParam = '' , status = '' , actor = '';
+request = require('request') , axios = require('axios') , data = '' , url = '' , actorDetail = '' , aParam = '' , status = '' , actor = '';
 
 
 module.exports = {
@@ -21,33 +21,24 @@ module.exports = {
 																																					res.render('error' , {'title' : 'Error' , 'error' : status})																												});
 	},
 
-	'actorListM' : (req , res) => {		url = String(aSet.reqOptions.url + 'm');
+	'actorListGender' : (req , res) => {		var gender = req.params.gender , url = String(`${aSet.reqOptions.url}gender/${gender}`);
 			
 			axios.get(url).then((response) => { 	data = response.data.status;
-																																						res.render('actor' , {'actors' : data});				})
+																																						res.render('actor' , {'title' : 'Actors' , 'actors' : data});																											})
 										.catch((err) => {				status = err.response;
 																																						res.render('error' , {'title' : 'Error' , 'error' : status})																											});
 	},
 
-	'actorListF' : (req , res) => {		url = String(aSet.reqOptions.url + 'f');
-			
-			axios.get(url).then((response) => { 	data = response.data.status;
-																																						res.render('actor' , {'actors' : data});				})
-										.catch((err) => {				status = err.response;
-																																						res.render('error' , {'title' : 'Error' , 'error' : status})																											});
-	},
-
-	'actorDetail' : (req , res) => {	aDetail = req.params.actor , url = String(aSet.reqOptions.url + aDetail);
+	'actorDetail' : (req , res) => {	actorDetail = req.params.actor , url = String(aSet.reqOptions.url + actorDetail);
 
 			axios.get(url).then((response) => { 	data = response.data.status;
 																																						res.render('actor-detail' , {'title' : 'Actor Profile' , 'actor' : data} );	 		})
 										.catch((err) => {
-
-										console.log(err);				status = err.response;
+																						status = err.response;
 																																						res.render('error' , {'title' : 'Error' , 'error' : status})																											});
 	},
 
-	'actorTitle' : (req , res) => {		aDetail = req.params.actor , url = String(aSet.reqOptions.url + aDetail + '/titles');
+	'actorTitle' : (req , res) => {		actorDetail = req.params.actor , url = String(aSet.reqOptions.url + actorDetail + '/titles');
 
 			axios.get(url).then((response) => { 	data = response.data.status;
 																																					res.render('title' , {'title' : 'Actor Titles' , 'titles' : data});	 		})
@@ -55,13 +46,19 @@ module.exports = {
 																																					res.render('error' , {'title' : 'Error' , 'error' : status})																											});
 	},
 
-	'actorAdd' : (req , res) => {
-																			res.render('form/actor-add' , {'title' : 'Add Actor'});
+	'actorAdd' : (req , res) => {		url = String(aSet.reqOptions.url + 'add');
+
+			axios.get(url).then((response) => { 	data = response.data.status ,	nationality = data.Nationality;
+
+					res.render('form/actor-add' , {'title' : 'Add Actor' , 'nationalities' : nationality });	})
+
+										.catch((err) => {				status = err.response;
+																																						res.render('error' , {'title' : 'Error' , 'error' : status})																										});
 	},
 
 	'actorAddP' : [
 
-				upload.any(),
+				upload.single('cover_image'),
 
 				body('name'											,		'Name must not be empty.')											.isLength({ min: 3 }).trim(),
 				body('nickname'									, 	'Nickname time must be provided.')							.isLength({ min: 1 }).trim(),
@@ -76,28 +73,36 @@ module.exports = {
 				body('spouse_or_partner'				, 	'This field must be provided.')									.isLength({ min: 1 }).trim(),
 				body('biography'								, 	'Biography must be provided.')									.isLength({ min: 1 }).trim(),
 
-				sanitizeBody('*').trim().escape(),
+				sanitizeBody('*').trim(),
 				
-				(req , res , next) => {
+					aSet.validate ,
 
-					var addActor = {} , uFile = req.files[0];
-																										if (uFile) {
-																																	req.body.cover_image = [];
-																																															req.body.cover_image.push(uFile)
-																																	}
-																																						actor = new Actor(req.body);
-																		const errors = validationResult(req);
-				if (!errors.isEmpty()) {
-																	res.render('form/actor-add' , {'title' : 'Add Actor' , 'actor' : actor , 'errors' : errors.array() });
+				(req , res , next) => {	if (req.file) {	req.body.cover_image = req.file; }
+
+					var actor = new Actor(req.body);
+
+				const errors = validationResult(req);
+
+				var errArr = errors.array();
+																			if (req.body.error) {		errArr.push(req.body.error);		}
+
+																			if (req.body.error2) {	errArr.push(req.body.error2);		}
+
+				if (errArr.length !== 0) {	url = String(aSet.reqOptions.url + 'add');
+
+			axios.get(url).then((response) => { 	data = response.data.status ,	nationality = data.Nationality;
+
+					res.render('form/actor-add' , {'title' : 'Add Actor' , 'nationalities' : nationality , 'actor' : actor , 'errors' : errArr});	
 																																																																					return;
-				}
-						else {	url = String(aSet.reqOptions.url + 'name/' + req);
+							});
+																																																																					}
+						else {	url = String(aSet.reqOptions.url + 'name/' + req.body.name.split(' ').join('-') );
 
 			axios.get(url)
 										.then((response) => { actor = response.data.status;
-																																					if (actor) {
-																																												res.redirect('/actor/');
-																																																									return;	}
+																																					if (actor !== null) {
+																																																					res.redirect('/actor/');
+																																																																		return;	}
 																																					else {
 																																									axios({  	'method': 'post' ,
 																																  															 								'url' : aSet.reqOptions.url,
@@ -111,17 +116,19 @@ module.exports = {
 
 	}],
 
-	'actorUpdate' : (req , res) => {	aDetail = req.params.actor , url = String(aSet.reqOptions.url + 'name/' + aDetail);
+	'actorUpdate' : (req , res) => {	actorDetail = req.params.actor , url = String(aSet.reqOptions.url + actorDetail + '/update' );
 															
-			axios.get(url).then((response) => { 	data = response.data.status;
-																																								res.render('form/actor-add' , {'title' : 'Update Actor' , 'actor' : data});			})
+			axios.get(url).then((response) => { 	data = response.data.status , nationality = data.Nationality , actor = data.Actor;
+
+																						res.render('form/actor-add' , {'title' : 'Update Actor' , 'nationalities' : nationality , 'actor' : actor});			})
+										
 										.catch((err) => {				status = err.response;
 																																								res.render('error' , {'title' : 'Error' , 'error' : status})																									});
-	},
+	} ,
 
 	'actorUpdateP' : [
 
-				upload.any(),
+				upload.single('cover_image') ,
 
 				body('name'											,		'Name must not be empty.')											.isLength({ min: 3 }).trim(),
 				body('nickname'									, 	'Nickname time must be provided.')							.isLength({ min: 1 }).trim(),
@@ -136,25 +143,31 @@ module.exports = {
 				body('spouse_or_partner'				, 	'This field must be provided.')									.isLength({ min: 1 }).trim(),
 				body('biography'								, 	'Biography must be provided.')									.isLength({ min: 1 }).trim(),
 
-				sanitizeBody('*').trim().escape(),
-				
-				(req , res , next) => { var url = '';
+				sanitizeBody('*').trim() ,
 
-				var addActor = {} , uFile = req.files[0] , aParam = req.params.actor;
-																																								if (uFile) {
-																																															req.body.cover_image = [];
-																																																													req.body.cover_image.push(uFile)
-																																}
-																																				actor = new Actor(req.body);
+				aSet.validate ,
+				
+				(req , res , next) => { aParam = req.params.actor;
+																														if (req.file) {	req.body.cover_image = req.file; }
+				var actor = new Actor(req.body);
+
 				const errors = validationResult(req);
 
-								if (!errors.isEmpty()) {																												
-																					res.render('form/actor-add' , {'title' : 'Update Actor',	'actor' : actor , 'errors' : errors.array()			});
-        																																																																									}
+				var errArr = errors.array();
+																			if (req.body.error) {		errArr.push(req.body.error);		}
+
+																			if (req.body.error2) {	errArr.push(req.body.error2);		}
+
+				if (errArr.length !== 0) {	url = String(aSet.reqOptions.url + 'add');
+
+			axios.get(url).then((response) => { 	data = response.data.status ,	nationality = data.Nationality;
+
+					res.render('form/actor-add' , {'title' : 'Update Actor' , 'nationalities' : nationality , 'actor' : actor , 'errors' : errArr});		 }) }
+
         							else {
-															axios({	'url' : 'http://limitless-stream-60828.herokuapp.com/api/actor/' + aParam,
-																																														'method' : 'PUT' ,
-																																																								'data' : req.body})
+															axios({	'url' : aSet.reqOptions.url + aParam ,
+																																							'method' : 'PUT' ,
+																																																	'data' : req.body})
 																	.then((response) => { 	data = response.data.status;
 																																												res.redirect('/actor/')
 													})
@@ -163,7 +176,7 @@ module.exports = {
 						}																																																		
 	}],
 
-	'actorDelete' : (req , res) => {	aDetail = req.params.actor , url = String(aSet.reqOptions.url + 'name/' + aDetail);
+	'actorDelete' : (req , res) => {	actorDetail = req.params.actor , url = String(aSet.reqOptions.url + 'name/' + actorDetail);
 
 			axios.get(url).then((response) => { 	data = response.data.status;
 																																					res.render('delete/actor-delete' , {'title' : 'Remove actor' , 'actor' : data});
@@ -173,10 +186,10 @@ module.exports = {
 																												});	
 	},
 
-	'actorDeleteP' : (req , res) => {		aDetail = req.params.actor;
+	'actorDeleteP' : (req , res) => {		actorDetail = req.params.actor;
 		
 											axios({  	'method': 'delete' ,
-																										  'url' : aSet.reqOptions.url + aDetail	})
+																										  'url' : aSet.reqOptions.url + actorDetail	})
 											.then((response) => {		
 																																						res.redirect('/actor/');		})
 											.catch((err) => {			status = err.response;

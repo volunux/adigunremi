@@ -17,9 +17,8 @@ block content
 									a(href ='/title/' + title.url) #{title.title}
 
 								.img-thumb
-										each image , index in title.cover_image
-											+fixDir(image.path)
-
+									each image , index in title.cover_image
+										+fixDir(image.path)
 
 								p Title: #{title.title}
 								p Ratings : #{title.rating}
@@ -41,5 +40,5 @@ block content
 										span #{language.language}
 											if index < title.spoken_languages.length - 1
 												|, 
-				else
-					p There are no titles available
+					else
+						p There are no titles available

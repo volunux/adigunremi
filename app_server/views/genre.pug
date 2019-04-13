@@ -10,4 +10,5 @@ block content
 		ul
 			for genre in genres
 				.genre-list-item
-					li #{genre.genre}
+					li 
+						a(href ='/genre/' + genre.genre.toLowerCase()) #{genre.genre}

@@ -3,9 +3,9 @@ var config = require('../../app_server/config/config') , Studio = require('../mo
 
 module.exports = {
 
-	'studioName' : (req , res) => {		sValue = req.params.studio.split('-').join(' ');
+	'studioName' : (req , res) => {		sValue = req.params.studio;
 	
-		Studio.findOne({'name' : new RegExp(sValue, 'i')})
+		Studio.findOne({'url' : new RegExp(sValue, 'i')})
 																											.exec((err , studioName) => {
 																																												if (err) {
 																																																						config.response(res , 404 , err);
@@ -18,33 +18,34 @@ module.exports = {
 
 	'studioList' : (req , res) => {
 		
-		Studio.find({}).exec(function(err , studioResult) {
-																																											if (err) {
-																																																						config.response(res , 404 , err);
-																																																																							return;	}
-																																											if (!studioResult) {
-																																																						config.response(res , 404 , {'message' : 'Studios cannot be found'});
-																																																																																									return;	}
-																																																						config.response(res , 200 , studioResult);																				});				
+		Studio.find({}).exec((err , studioResult) => {
+																										if (err) {
+																																					config.response(res , 404 , err);
+																																																						return;	}
+																										if (!studioResult) {
+																																					config.response(res , 404 , {'message' : 'Studios cannot be found'});
+																																																																								return;	}
+																																					config.response(res , 200 , studioResult);																				});				
 	},
 
-	'studioDetail' : (req , res) => {	sValue = req.params.studio.split('-').join(' ');
+	'studioDetail' : (req , res) => {	sValue = req.params.studio;
 		
 				if (req.params && req.params.studio) {
 
-		Studio.findOne({'name' : new RegExp(sValue, 'i')}).exec((err , studioResult) => {
+		Studio.findOne({'url' : new RegExp(sValue, 'i')})
+																											.exec((err , studioResult) => {
 																																												if (err) {
-																																																						config.response(res , 404 , err);
-																																																																							return;	}
+																																																							config.response(res , 404 , err);
+																																																																								return;	}
 																																												if (!studioResult) {
 																																																							config.response(res , 404 , {'message' : 'Studio Info cannot be found'});
 																																																																																												return;	}
-																																																						config.response(res , 200 , studioResult);													});
+																																																							config.response(res , 200 , studioResult);													});
 									} else {
 														config.response(res , 404 , {'message' : 'No Studio id found'});		}
 	},
 
-	'studioTitle' : (req , res) => {
+	'studioTitle' : (req , res) => { 	sValue = req.params.studio;
 
 						if (req.params && req.params.studio) {
 		
@@ -59,8 +60,6 @@ module.exports = {
 																																																																						callback(null , titleResult);						});
 																																															}],
 											(err , studioResult) => {
-
-												console.log(studioResult)
 																									if (err) {
 																																	config.response(res , 404 , err);
 																																																				return;	}
@@ -82,11 +81,11 @@ module.exports = {
 																														config.response(res , 200 , studioResult);																																				});
 	},
 
-	'studioUpdate' : (req , res) => {		sValue = req.body , sParam = req.params.studio.split('-').join(' ');
+	'studioUpdate' : (req , res) => {		sValue = req.body , sParam = req.params.studio;
 
 				if (req.params && req.params.studio) {
 
-		Studio.findOneAndUpdate({'name' : new RegExp(sParam, 'i')} , sValue , (err) => {
+		Studio.findOneAndUpdate({'url' : new RegExp(sParam, 'i')} , sValue , (err) => {
 																																											if (err) {
 																																																		config.response(res , 404 , err);
 																																																																				return;	}
@@ -96,16 +95,16 @@ module.exports = {
 													config.response(res , 404 , {'message' : 'No Studio id found'});		}
 	},
 
-	'studioDelete' : (req , res) => {	 sParam = req.params.studio.split('-').join(' ');
+	'studioDelete' : (req , res) => {	 sParam = req.params.studio;
 
 				if (req.params && req.params.studio) {
 		
-		Studio.findOneAndRemove({'name' : new RegExp(sParam, 'i')} , (err) => {
-																																												if (err) {
-																																																	config.response(res , 404 , err);
-																																																																		return;	}
+		Studio.findOneAndRemove({'url' : new RegExp(sParam, 'i')} , (err) => {
+																																						if (err) {
+																																											config.response(res , 404 , err);
+																																																												return;	}
 
-																																																	config.response(res , 204 , {'message' : 'Successful request.'});														});
+																																											config.response(res , 204 , {'message' : 'Successful request.'});														});
 							} else {
 												config.response(res , 404 , {'message' : 'No Studio id found'});		}
 	}

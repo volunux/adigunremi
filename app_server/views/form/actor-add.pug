@@ -17,48 +17,60 @@ block content
 			.form-group
 				label(for ='name') Name : 
 					span *
-				input(type ='text'	,	name ='name'	, class ='form-control form-control-sm' ,	id ='title' value =(undefined === actor ? '' : actor.name))
+				input(type ='text'	,	name ='name'	, class ='form-control form-control-sm' ,  placeholder = 'Daniel Ward'	, id ='title' , value =(undefined === actor ? '' : actor.name))
 
 			.form-group
 				label(for ='nickname') Nickname : 
-				input(type ='text'	,	name ='nickname'	, class ='form-control form-control-sm' ,	id ='nickname' value =(undefined === actor ? '' : actor.nickname))
+				input(type ='text'	,	name ='nickname'	, class ='form-control form-control-sm' ,	id ='nickname' , required = 'true' , placeholder = 'Dan' , value =(undefined === actor ? '' : actor.nickname))
 
 			.form-group
 				label(for ='occupation') Occupation : 
 					span *
-				input(type ='text'	,	name ='occupation'	, class ='form-control form-control-sm' ,	id ='occupation' value =(undefined === actor ? '' : actor.occupation))
+				input(type ='text' ,	name ='occupation'	, class ='form-control form-control-sm' ,	id ='occupation' , placeholder ='Philantropist , Director , Film Producer' required = 'true' , value =(undefined === actor ? '' : actor.occupation))
 
 			.form-group
 				label(for ='date_of_birth') Date of Birth : 
 					span *
-				input(type ='text'	,	name ='date_of_birth'	, class ='form-control form-control-sm'	,	id ='date_of_birth' , placeholder ='dd/mm/yyyy' value =(undefined === actor ? '' : actor.date_of_birth))
+				input(type ='text'	,	name ='date_of_birth'	, class ='form-control form-control-sm'	,	id ='date_of_birth' , placeholder ='dd/mm/yyyy' , required = 'true' , value =(undefined === actor ? '' : actor.date_of_birth))
 
 			.form-group
 				label(for ='gender') Gender :
 					span *
-				select(name ='gender' class ='form-control form-control-sm'	)
+				select(name ='gender' class ='form-control form-control-sm' , required = 'true')
 					option(value ='male') Male
 					option(value ='female') Female
 
 			.form-group
 				label(for ='nationality') Nationality : 
 					span *
-				input(type ='text'	,	name ='nationality'	,	class ='form-control form-control-sm'	, id ='nationality' value =(undefined === actor ? '' : actor.nationality))
+				select(name ='nationality'	, id ='nationality' , class ='form-control form-control-sm' , required ='true')
+					option(value ='')
+						for nationality in nationalities
+							if actor
+								option(value =nationality._id selected =(nationality._id.toString() == actor.nationality._id || nationality._id.toString() == actor.nationality) ? 'selected' : false) #{nationality.nationality}
+							else
+								option(value= nationality._id) #{nationality.nationality}
 
 			.form-group
 				label(for ='place_of_birth') Place of Birth : 
 					span *
-				input(type ='text'	,	name ='place_of_birth'	, class ='form-control form-control-sm'	,	id ='place_of_birth' value =(undefined === actor ? '' : actor.place_of_birth))
+				input(type ='text'	,	name ='place_of_birth'	, class ='form-control form-control-sm'	,	id ='place_of_birth' , required = 'true' , value =(undefined === actor ? '' : actor.place_of_birth))
 
 			.form-group
 				label(for ='country_of_origin') Country of Origin : 
 					span *
-				input(type ='text'	,	name ='country_of_origin'	, class ='form-control form-control-sm' ,	id ='country_of_origin' value =(undefined === actor ? '' : actor.country_of_origin))
+				select(name ='country_of_origin'	, id ='country_of_origin' , class ='form-control form-control-sm' , required ='true')
+					option(value ='')
+						for country in nationalities
+							if actor
+								option(value =country._id selected =(country._id.toString() == actor.country_of_origin._id || country._id.toString() == actor.country_of_origin) ? 'selected' : false) #{country.country_of_origin}
+							else
+								option(value= country._id) #{country.country_of_origin}
 
 			.form-group
 				label(for ='state_of_origin') State of Origin : 
 					span *
-				input(type ='text'	,	name ='state_of_origin'	, class ='form-control form-control-sm' ,	id ='state_of_origin' value =(undefined === actor ? '' : actor.state_of_origin))
+				input(type ='text'	,	name ='state_of_origin'	, class ='form-control form-control-sm' ,	id ='state_of_origin' , required = 'true' , value =(undefined === actor ? '' : actor.state_of_origin))
 
 			.form-group
 				label(for ='networth') Networth : 
@@ -67,13 +79,23 @@ block content
 			.form-group
 				label(for ='partner_or_spouse') Partner or Spouse : 
 					span *
-				input(type ='text'	,	name ='spouse_or_partner' , class ='form-control form-control-sm' ,	id ='spouse_or_partner' value =(undefined === actor ? '' : actor.spouse_or_partner))
+				input(type ='text'	,	name ='spouse_or_partner' , class ='form-control form-control-sm' , placeholder ='"None" if not available'	id ='spouse_or_partner' value =(undefined === actor ? '' : actor.spouse_or_partner))
+
+			.form-group
+				label(for ='contact_email') Contact E-mail Address :
+				input(type ='email' ,	name ='contact_email'	, class ='form-control form-control-sm' ,	required = 'true' , value =(undefined === actor ? '' : actor.contact_email))
+
+			.form-group
+				label(for ='contact_number') Contact Number :
+				input(type ='text' ,	name ='contact_number'	, class ='form-control form-control-sm' ,	required = 'true' , value =(undefined === actor ? '' : actor.contact_number))
+
+			.form-group
+				label(for ='business') Enterprise or Business if any available :
+				input(type ='text' ,	name ='business'	, class ='form-control form-control-sm' ,	required = 'true' , value =(undefined === actor ? '' : actor.contact_number))
 
 			.form-group
 				label(for ='cover_image') Photo :
-				input(type ='file' ,	name ='cover_image'	, class ='form-control form-control-sm' ,	accept ='image/*')
-
-
+				input(type ='file' ,	name ='cover_image'	, class ='form-control form-control-sm' ,	accept ='image/*' , required = 'true')
 
 			h5 Social Profiles Address
 
@@ -102,4 +124,4 @@ block content
 
 			textarea(id ='biography'	, class ='form-control form-control-sm' , name ='biography' value =(undefined === actor ? '' : actor.biography))
 
-			button(type ='submit'	, title ='Submit') Submit
+			button(type ='submit'	, title ='Submit' , class ='btn btn-primary float-right px-4') Submit

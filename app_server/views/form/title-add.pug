@@ -6,28 +6,40 @@ block content
 
 			h4 All fields marked with * are required to be filled to be able to properly submit the application.
 
+			.tadderrmsg
+				if errors
+					p Errors found trying to process form. These include : -
+					ul
+						for error in errors
+							li!= error.msg
+
 			form(action =''	, method ='post'	,	enctype ='multipart/form-data')
 
 				.form-group
 					label(for ='title') Title :
-						span *
-					input(type ='text'	,	name ='title'	, class ='form-control form-control-sm'	, id ='title' , required ='true' , value =(undefined === tData ? '' : tData.title) , )
+						span  *
+					input(type ='text'	,	name ='title'	, class ='form-control form-control-sm'	, id ='title' , required ='true' , value =(undefined === titleData ? '' : titleData.title))
 
 				.form-group
 					label(for ='running_time') Running Time :
-						span *
-					input(type ='text'	,	name ='running_time'	, class ='form-control form-control-sm' ,	id ='running_time' , required ='true' , value =(undefined === tData ? '' : tData.running_time))
+						span  *
+					input(type ='text'	,	name ='running_time'	, class ='form-control form-control-sm' ,	id ='running_time' , required ='true' , value =(undefined === titleData ? '' : titleData.running_time))
 
 				.form-group
 					label(for ='released_date') Released Date :
-						span *
-					select(name ='released_date'	, id ='released_date' , class ='form-control form-control-sm' , required ='true' , value =(undefined === tData ? '' : tData.released_date))
-						for date in year
-							option(value= date._id) #{date.year}
+						span  *
+					select(name ='released_date'	, id ='released_date' , class ='form-control form-control-sm' , required ='true')
+						option(value ='')
+							for date in year
+								if titleData
+									option(value =date._id selected =(date._id.toString() == titleData.released_date._id || date._id.toString() == titleData.released_date) ? 'selected' : false) #{date.year}
+								else
+									option(value= date._id) #{date.year}
 
 				.form-group
 					label(for ='rating') Ratings :
 					select(name ='rating'	, class ='form-control form-control-sm' , id ='rating')
+						option(value ='')
 						option(value ='0') 0
 						option(value ='1') 1
 						option(value ='2') 2
@@ -38,103 +50,136 @@ block content
 				.form-group
 					label(for ='director') Director :
 						span 
-					input(type ='text'	,	name ='director'	, class ='form-control form-control-sm' ,	id ='director' , value =(undefined === tData ? '' : tData.director))
+					input(type ='text'	,	name ='director'	, class ='form-control form-control-sm' ,	id ='director' , value =(undefined === titleData ? '' : titleData.director))
 
 				.form-group
 					label(for ='producer') Producer :
-						span *
-					input(type ='text'	,	name ='producer'	, class ='form-control form-control-sm' ,	id ='producer' , required ='true' , value =(undefined === tData ? '' : tData.producer))
+						span  *
+					input(type ='text'	,	name ='producer'	, class ='form-control form-control-sm' ,	id ='producer' , required ='true' , value =(undefined === titleData ? '' : titleData.producer))
 
 				h5 Languages Spoken
 
 				.form-group
 					label(for ='lanugage_spoken_one') 1st : *
 					select(name ='spoken_languages'	, class ='form-control form-control-sm' , id ='language_spoken_one' , required ='true')
-						for language in languages
-							option(value= language._id) #{language.language}
+						option(value ='')
+							for language in languages
+								if titleData
+									option(value =language._id selected =(language._id.toString() == titleData.spoken_languages[0]._id || language._id.toString() == titleData.spoken_languages) ? 'selected' : false) #{language.language}
+								else
+									option(value= language._id) #{language.language}
 
 				.form-group
 					label(for ='lanugage_spoken_two') 2nd : *
 					select(name ='spoken_languages'	, class ='form-control form-control-sm' , id ='langugage_spoken_two' ,  required ='true')
-						for language in languages
-							option(value= language._id) #{language.language}
+						option(value ='')
+							for language in languages
+								if titleData
+									option(value =language._id selected =(language._id.toString() == titleData.spoken_languages[1]._id || language._id.toString() == titleData.spoken_languages) ? 'selected' : false) #{language.language}
+								else
+									option(value= language._id) #{language.language}
 
 				.form-group
 					label(for ='lanugage_spoken_three') 3rd :
 					select(name ='spoken_languages'	, class ='form-control form-control-sm' , id ='language_spoken_three' )
-						for language in languages
-							option(value= language._id) #{language.language}
+						option(value ='')
+							for language in languages
+								if titleData
+									option(value =language._id selected =(language._id.toString() == titleData.spoken_languages[2]._id || language._id.toString() == titleData.spoken_languages) ? 'selected' : false) #{language.language}
+								else
+									option(value= language._id) #{language.language}
 
 				h5 Production Countries
 
 				.form-group
 					label(for ='country') 1st : *
 					select(name ='production_countries'	, class ='form-control form-control-sm' , id ='' , required ='true')
-						for country in countries
-							option(value= country._id) #{country.country}
+						option(value ='')
+							for country in countries
+								if titleData
+									option(value =country._id selected =(country._id.toString() == titleData.production_countries[0]._id || country._id.toString() == titleData.production_countries) ? 'selected' : false) #{country.country}
+								else
+									option(value= country._id) #{country.country}
 
 				.form-group
 					label(for ='country') 2nd :
 					select(name ='production_countries'	, class ='form-control form-control-sm' , id ='')
+						option(value ='')
 						for country in countries
-							option(value= country._id) #{country.country}
+								if titleData
+									option(value =country._id selected =(country._id.toString() == titleData.production_countries[1]._id || country._id.toString() == titleData.production_countries) ? 'selected' : false) #{country.country}
+								else
+									option(value= country._id) #{country.country}
 
 				h5 Genre
 			
 				.form-group
 					label(for ='') 1st : *
 					select(name ='genre'	, class ='form-control form-control-sm' , id ='' , required ='true')
-						for genre in genres
-							option(value =genre._id) #{genre.genre} 
+						option(value ='')
+							for genre in genres
+								if titleData
+									option(value =genre._id selected =(genre._id.toString() == titleData.genre[0]._id || genre._id.toString() == titleData.genres) ? 'selected' : false) #{genre.genre}
+								else
+									option(value =genre._id) #{genre.genre} 
 
 				.form-group
 					label(for ='') 2nd : *
 					select(name ='genre'	, class ='form-control form-control-sm' , id ='' , required ='true')
-						for genre in genres
-							option(value =genre._id) #{genre.genre} 
+						option(value ='')
+							for genre in genres
+								if titleData
+									option(value =genre._id selected =(genre._id.toString() == titleData.genre[1]._id || genre._id.toString() == titleData.genres) ? 'selected' : false) #{genre.genre}
+								else
+									option(value =genre._id) #{genre.genre} 
 
 				.form-group
 					label(for ='') 3rd : *
 					select(name ='genre'	, class ='form-control form-control-sm' , id ='' , required ='true')
-						for genre in genres
-							option(value =genre._id) #{genre.genre} 
+						option(value ='')
+							for genre in genres
+								if titleData
+									option(value =genre._id selected =(genre._id.toString() == titleData.genre[2]._id || genre._id.toString() == titleData.genres) ? 'selected' : false) #{genre.genre}
+								else
+									option(value =genre._id) #{genre.genre} 
 
-				.form-group
-					label(for ='') 4th :
-					select(name ='genre'	, class ='form-control form-control-sm' , id ='')
-						for genre in genres
-							option(value =genre._id) #{genre.genre} 
 
 				h5 Production Companies and Studio
 
 				.form-group
 					label(for ='production_companies') 1st :
-
 					select(name ='production_companies'	, class ='form-control form-control-sm' , id ='')
-						for studio in studios
-							option(value= studio._id) #{studio.name}
+						option(value ='')
+							for studio in studios
+								if titleData
+									option(value =studio._id selected =(studio._id.toString() == titleData.production_companies[0]._id || studio._id.toString() == titleData.production_companies) ? 'selected' : false) #{studio.name}
+								else
+									option(value= studio._id) #{studio.name}
 
 				.form-group
 					label(for ='production_companies') 2nd :
-
 					select(name ='production_companies'	, class ='form-control form-control-sm' , id ='')
-						for studio in studios
-							option(value= studio._id) #{studio.name}
+						option(value ='')
+							for studio in studios
+								if titleData
+									option(value =studio._id selected =(studio._id.toString() == titleData.production_companies[1]._id || studio._id.toString() == titleData.production_companies) ? 'selected' : false) #{studio.name}
+								else
+									option(value= studio._id) #{studio.name}
 
 				.form-group
 					label(for ='budget') Budget :
 						span 
-					input(type ='text'	,	name ='budget'	, class ='form-control form-control-sm' ,	id ='budget' , value =(undefined === tData ? '' : tData.budget))
+					input(type ='text'	,	name ='budget'	, class ='form-control form-control-sm' ,	id ='budget' , value =(undefined === titleData ? '' : titleData.budget))
 
 				.form-group
 					label(for ='revenue') Revenue :
 						span 
-					input(type ='text'	,	name ='revenue'	, class ='form-control form-control-sm' ,	id ='revenue' , value =(undefined === tData ? '' : tData.revenue))
+					input(type ='text'	,	name ='revenue'	, class ='form-control form-control-sm' ,	id ='revenue' , value =(undefined === titleData ? '' : titleData.revenue))
 
 				.form-group
-					label(for ='reviewText') Plot :
+					label(for ='sypnosis') Sypnosis :
 						span *
-				textarea(id ='reviewText'	, name ='plot' , class ='form-control form-control-sm' , required ='true' ) #{(undefined === tData ? '' : tData.plot)}
+				textarea(id ='sypnosis'	, name ='sypnosis' , class ='form-control form-control-sm' , required ='true' ) #{(undefined === titleData ? '' : titleData.sypnosis)}
 
 				.form-group
 					label(for ='cover_image') Cover Image : *

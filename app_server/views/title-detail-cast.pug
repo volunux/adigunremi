@@ -8,7 +8,8 @@ block content
 		ul
 			for actor in cast
 				li.mr-4
-					a(href ='/title/name')
+					a(href ='/actor/' + actor.url)
 						for cover in actor.cover_image
 							+fixDir(cover.path)
-					p #{actor.name}
+					p
+						a(href ='/actor/' + actor.url) #{actor.name}
