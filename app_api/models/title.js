@@ -11,7 +11,7 @@ var reviewSchema = new Schema({
 
 var trailerSchema = new Schema({
 			
-'filename' : {	'type' : String ,		'maxlength' : 30 } ,		'path' : {			'type' : String ,		'default' : 'c:/'	} ,  			'size' : { 'type' : String , 'default' : 0 } ,
+'filename' : {	'type' : String ,		'maxlength' : 30 } ,		'location' : {			'type' : String ,		'default' : 'c:/'	} ,  			'size' : { 'type' : String , 'default' : 0 } ,
 			
 'mimetype' : {	'type' : String } ,													'encoding' : {	'type' : String 	}																});
 
@@ -20,7 +20,7 @@ var trailerSchema = new Schema({
 
 var photosSchema = new Schema({
 			
-'filename' : {	'type' : String ,		'maxlength' : 30	} ,		'path' : {				'type' : String ,		'default' : 'c:/'		} ,	 'size' : { 'type' : String , 'default' : 0 } ,
+'filename' : {	'type' : String ,		'maxlength' : 30	} ,		'location' : {				'type' : String ,		'default' : 'c:/'		} ,	 'size' : { 'type' : String , 'default' : 0 } ,
 			
 'mimetype' : {	'type' : String 	} ,												'encoding' : {		'type' : String }																});
 
@@ -57,7 +57,7 @@ var titleSchema = new Schema({
 	/******************************************************************************************************************************************************************************************/
 	/******************************************************************************************************************************************************************************************/
 
-'cover_image' : [photoSchema] , 'photo' : [photosSchema] , 	'trailer' : [trailerSchema] , 'cast' : [{	'type' : Schema.Types.ObjectId ,	'ref' : 'Actor' ,  'autopopulate' : true }] ,
+'cover_image' : [photoSchema] , 'photo' : [photosSchema] , 	'trailer' : trailerSchema , 'cast' : [{	'type' : Schema.Types.ObjectId ,	'ref' : 'Actor' ,  'autopopulate' : true }] ,
 
 'reviews' : [reviewSchema]  , 'url' : {
 																				'type' : String ,

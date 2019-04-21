@@ -88,7 +88,7 @@ module.exports = {
 		
 																async.parallel({
 																									'Nationality' : (callback) => {
-																																											Nationalityo.find({}).exec(callback);
+																																											Nationality.find({}).exec(callback);
 																									}
 			} , (err , result) => {	
 																		if (err) {

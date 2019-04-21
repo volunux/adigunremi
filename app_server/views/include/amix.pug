@@ -3,6 +3,9 @@ mixin fixDir(dir)
 	-	var fName = name.replace(/\\/g , '/')
 		img(class ='mx-auto d-block' , src = '/' + fName)
 
+mixin fixDirA(dir)
+		img(class ='mx-auto d-block' , src =dir)
+
 mixin capitalize (string)
 	- var gender = string[0].toUpperCase() + string.slice(1).toLowerCase()
 			| #{gender}

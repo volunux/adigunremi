@@ -4,32 +4,32 @@ mongoose.promise = global.promise;
 
 mongoose.connect(config.url , { 'useNewUrlParser' : true , 'useCreateIndex' : true});
 
-mongoose.connection.on('connected' , function() {
+mongoose.connection.on('connected' , () => {
 																														console.log('App establish connection to the database');
 });
 
-mongoose.connection.on('error' , function() {
+mongoose.connection.on('error' , () => {
 																														console.log('App encounter error connecting to database');
 });
 
-mongoose.connection.on('disconnected' , function() {
+mongoose.connection.on('disconnected' , () => {
 																														console.log('App successfully disconnected from database');
 });
 
-process.once('SIGUSR2' , function() {
-																					config.gracefulShutdown('nodemon restart' , function() {
+process.once('SIGUSR2' , () => {
+																					config.gracefulShutdown('nodemon restart' , () => {
 																																																		process.kill(process.pid , 'process kill');
 																					});
 });
 
-process.on('SIGINT' , function() {
-																					config.gracefulShutdown('node restarts' , function() {
+process.on('SIGINT' , () => {
+																					config.gracefulShutdown('node restarts' , () => {
 																																																		process.exit(0);
 																					});
 });
 
-process.on('SIGTERM' , function() {
-																					config.gracefulShutdown('heroku node restarts' , function() {
+process.on('SIGTERM' , () => {
+																					config.gracefulShutdown('heroku node restarts' , () => {
 																																																					process.exit(0);
 																					});
 });

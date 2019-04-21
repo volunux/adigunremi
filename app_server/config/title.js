@@ -1,121 +1,86 @@
-var multer = require('multer') , fs = require('fs') , path = require('path') , request = require('request') , imageMagic = require('./photoMagic.js') , extra = require('fs-extra');
+var multer = require('multer') , fs = require('fs') , path = require('path') , imageMagic = require('./photoMagic.js') , extra = require('fs-extra') , errors = require('./errors') , key = '' , params = '' ,
+ 
+titleS3 = require('./aws/titleAws') , titleAWS = require('./aws/titleS3') , $filename = require('./filename') , bitmap = '' , aws = require('aws-sdk') , multerS3 = require('multer-s3') , s3Conf = titleS3() ,
+
+param1 = '' , deleteFiles = require('./delete') , titlePath = '' , deleteItems = [] , bitmapper = '';
+
+aws.config.update(titleAWS);
+
+var s3 = new aws.S3();
 
 module.exports = {
 
-'uploadImages' : (fs , req , path , fields , files) => {
-																									var arr = new Array(files)[0];
-																																									for (var file in arr) {
-																																																							var tempPath = path.resolve(arr[file]['path']),
-																									 ext = path.extname(arr[file]['name']).toLowerCase(),
-																									 																												tPath = fields.title.toLowerCase().split(' ').join('_'),
-		targetPath = './public/titles/' + tPath + '/' + tPath + Date.now() + ext;																
-																																																		if (ext) {
-																																																								fs.rename(tempPath , targetPath , function(err) {					
-																																							console.log('finally');
-																																																									})
-																																																					}
-	
+	'uploadWare' : [{'name' : 'photo' , 'maxCount' : 5}] ,
 
-																														}
+	'checkFileUpload' : (req , res , next) => {
 
-},
- 
-
-	'multer' :  multer.diskStorage({
- 																		'destination' : function (req, file, cb) {
-																																							var titlePath = './public/titles/' + req.body.title.replace(/[^a-zA-Z 0-9]+/g , '').toLowerCase().split(' ').join('_');
-				if (fs.existsSync(titlePath)) {
-	  																		cb(null, titlePath);
-																															} else {
-																																				fs.mkdir(titlePath , function(err) {
-																																																							cb(null , titlePath);
-																																																			})																																														
-																																													}
-																											  },
-							'filename' : function (req, file, cb) {
-																													var ext =  path.extname(file.originalname) , possible = 'abcdefghijklmnopqrstuvwxyz0123456789' , imgUrl = '' ;
-
-																													for(var i = 0 ; i < 6 ; i += 1) {	imgUrl += possible.charAt(Math.floor(Math.random() * possible.length));		}
-
-																													fileName = imgUrl + ext;
-	    																																								cb(null, fileName)			}
-																																																																				}),
-
-	'uploadWare' : [{'name' : 'photo' , 'maxCount' : 5} , {'name' : 'trailer' , 'maxCount' : 1}, {'name' : 'cover_image' , 'maxCount' : 1}] ,
-
-	'checkFileUpload' : (req , res , next) => { var titlePath = './public/titles/' + req.body.title.replace(/[^a-zA-Z 0-9]+/g , '').toLowerCase().split(' ').join('_');
-
-		if (!(req.files.cover_image.length !== 0)) {
-																									req.body.error1 = {
-																																			'location' : 'body' ,
-																																														'param' : 'cover_image' ,
-																																																											'value' : '' ,
-																																																																			'msg' : 'Cover Image Must be provided'		}	
-																									extra.emptyDirSync(titlePath);			}
-
-																					
-		if (!(req.files.photo.length !== 0)) {
-																									req.body.error2 = {
-																																			'location' : 'body' ,
-																																														'param' : 'photo' ,
-																																																								'value' : '' ,
-																																																																'msg' : 'At least 1 photo must be provided'		}	
-																									extra.emptyDirSync(titlePath);				}
-
-																						next();
+		if (!(req.files.photo.length !== 0)) {		req.body.error2 = errors.error4;		}
+																																											next();
 	} ,
 	
 	'validateFileUpload' : (req , res , next) => {
-		
-		if (req.files.cover_image) {
-																		req.files.cover_image.forEach((x) => {	var bitmap = fs.readFileSync(x.path).toString('hex' , 0 , 4);
 
-				if (!imageMagic.checkMagic(bitmap)) {
-																					
-		extra.emptyDirSync(x.destination);
-		
-																			req.body.error3 = {
-																													'location' : 'body' ,
-																																								'param' : 'cover_image' ,
-																																																					'value' : '' ,
-																																																												'msg' : 'Cover Image invalid and only image is allowed'		}	} 
-																		})	}
+																								req.files.photo.forEach((x) => {
+																										
+																										key = x.key ;
 
-		if (req.files.photo) {
-																		req.files.photo.forEach((x) => {	
+																										params = {'Bucket' : 'actor-aremi' , 'Key' : key };
+																										
+																										s3.getObject(params , (err , data) => { 
+																																																if (data) { console.log('Yes'); }
+																											
+																					if (data) {		bitmapper = data.Body;	}
 
-																			try {		var bitmap = fs.readFileSync(x.path).toString('hex' , 0 , 4);		}  catch (err) { console.log(err); }
+																						if (bitmapper)	bitmap = bitmapper.toString('hex' , 0 , 4);	});
 
+																										deleteItems.push({'Key' : x.key});
 
-				if (!imageMagic.checkMagic(bitmap)) {
-																					
-		extra.emptyDirSync(x.destination);
+																					if (!imageMagic.checkMagic(bitmap)) {		bitmap = '';
+																																																req.body.error4 = errors.error	} 	});	
 
-																			req.body.error4 = {
-																													'location' : 'body' ,
-																																								'param' : 'photo' ,
-																																																		'value' : '' ,
-																																																										'msg' : 'Only Image files Allowed'		}	} 
-																		})	}
-									next();
+																					params = {
+																											'Bucket' : 'actor-aremi' , 
+																																									'Delete' : {
+																																																'Objects': deleteItems , 
+																																																													'Quiet' : false		}		};
+																				if(req.body.error4) {
+																																s3.deleteObjects(params , (err , data) => {
+																																																								if (err) console.log(err)     
+																																																																					else console.log("Successfully deleted myBucket/myKey");   
+																																																					});		}
+																									next();
 	} ,
 
 	'addFileUpload' : (req , res , next) => {
-																							if (req.files.cover_image) {
-																																						req.body.cover_image = req.files.cover_image;
-																							}
-
 																							if (req.files.photo) {
 																																						req.body.photo = req.files.photo;
-																							}
-
-																							if (req.files.trailer) {
-																																						req.body.trailer = req.files.trailer;
 																							}
 			next();
 	} ,
 
-	'reqOptions' : {		'url' : 'http://limitless-stream-60828.herokuapp.com/api/title/' ,
+	'mConfig' : multerS3({
+													's3' : s3Conf ,
+																			    'bucket': 'actor-aremi' ,
+																			        												'acl': 'public-read-write' , 
+
+			    																																'key' : (req , file , cb) => {
+			    																																																	if (req.body.title) {
+
+														    																																		titlePath = req.body.title.replace(/[^a-zA-Z 0-9]+/g , '').toLowerCase().split(' ').join('_');								
+			    																																										}
+			    																																																if (!req.body.title) {
+
+																																																		titlePath = req.session.compiledTitle.title.replace(/[^a-zA-Z 0-9]+/g , '').toLowerCase().split(' ').join('_');
+			    																																										}
+																																																		fileName = `titles/${titlePath}/${$filename(file)}`;
+			     																																																				
+			     																																																				cb(null, fileName)															} ,
+
+			    																																	'metadata' : (req , file , cb) => {
+			    																																																				cb(null , {'fieldName' : file.fieldname})				}
+															}) ,
+
+	'reqOptions' : {		'url' : 'http://localhost:3000/api/title/' ,
 																																		'method' : 'GET' ,
 																																												'json' : {},
 																																																				'qs' : {}	

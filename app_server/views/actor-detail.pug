@@ -10,8 +10,7 @@ block content
 			include ./include/amenu
 
 		.actor-detail-image
-			for cover in actor.cover_image
-				+fixDir(cover.path)
+				+fixDir(actor.cover_image.location)
 
 
 		.adbody

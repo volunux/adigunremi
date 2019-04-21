@@ -8,6 +8,6 @@ block content
 			.tdtrailer
 				unless detail === []
 						video(width ='500'	,	height ='400'	,	type ='video/mp4'	controls)
-							+fixDirTrailer(detail.path)
+							source(class ='', src =detail.location)
 				else
 					p There is no trailer available for this title

@@ -25,6 +25,11 @@ img {
 	border-radius : 6px !important;
 }
 
+.main {
+
+	height : 600px;
+}
+
 .float-left img {
 
 	width : 140px;

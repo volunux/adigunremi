@@ -8,6 +8,9 @@ mixin fixDirT(dir)
 	-	var fName = name.replace(/\\/g , '/')
 		img(class ='', src = fName)
 
+mixin fixDirTt(dir)
+		img(src =dir , class ='slistdd')
+
 
 mixin fixDirTrailer(dir)
 	- var name = dir.slice(7)

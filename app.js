@@ -43,6 +43,7 @@ app.use('/', rConfig.usersRouter);
 																				app.use('/' , rConfig.yearRouter);
 																																						app.use('/' , rConfig.countryRouter);
 																																																									app.use('/' , rConfig.languageRouter);
+																																																																														app.use('/' , rConfig.trailerRouter);
 app.use('/api' , rConfig.apiTitleRouter);
 																					app.use('/api' , rConfig.apiGenreRouter);
 																																										app.use('/api' , rConfig.apiStudioRouter);

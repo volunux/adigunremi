@@ -1,62 +1,49 @@
-var multer = require('multer') , fs = require('fs') , path = require('path') , request = require('request') , imageMagic = require('./photoMagic.js') , extra = require('fs-extra');
+var multer = require('multer') , fs = require('fs') , path = require('path') , imageMagic = require('./photoMagic.js') , extra = require('fs-extra') , errors = require('./errors') , key = '' , params = '' ,
+ 
+actorS3 = require('./aws/actorAWS') , actorAWS = require('./aws/actorS3') , $filename = require('./filename') , bitmap = '' , aws = require('aws-sdk') , multerS3 = require('multer-s3') , s3Conf = actorS3() , param1 = '';
 
-const multerS3 = require('multer-s3');
+aws.config.update(actorAWS);
 
-const aws = require('aws-sdk');
-
-aws.config.update({
-																																		    // Your SECRET ACCESS KEY from AWS should go here,
-																																		    // Never share it!
-																																		    // Setup Env Variable, e.g: process.env.SECRET_ACCESS_KEY
-    secretAccessKey: "uw0OKjDQp8f+pcYJ1YZrnuEgROLjVII9DCDgjG/e" ,
-																																		    // Not working key, Your ACCESS KEY ID from AWS should go here,
-																																		    // Never share it!
-																																		    // Setup Env Variable, e.g: process.env.ACCESS_KEY_ID
-    accessKeyId: "AKIAI4TIKRE6CRCIYQ7Q" ,
-    region: 'us-east-1'																								 // region of your bucket
-});
-
-const s3 = new aws.S3();
-
+var s3 = new aws.S3();
 
 module.exports = {
 
-	'multer' :  multer.diskStorage({
- 																		'destination' : function (req, file, cb) {
-																																								var actorPath = './public/actors/';
-																																																											cb(null , actorPath);
-																											  },
-							'filename' : function (req, file, cb) {
-																													var ext =  path.extname(file.originalname) , possible = 'abcdefghijklmnopqrstuvwxyz0123456789' , imgUrl = '' ;
-
-																													for(var i = 0 ; i < 6 ; i += 1) {	imgUrl += possible.charAt(Math.floor(Math.random() * possible.length));		}
-
-																													fileName = imgUrl + ext;
-	    																																								cb(null, fileName)			}
-					})	,
-
-	'reqOptions' : {		'url' : 'http://limitless-stream-60828.herokuapp.com/api/actor/' ,
+	'reqOptions' : {		'url' : 'http://localhost:3000/api/actor/' ,
 																																		'method' : 'GET' ,
 																																												'json' : {},
 																																																			'qs' : {}			},
-		'validate' : (req , res , next) => {	if (req.file) {
+	'validate' : (req , res , next) => {	if (req.file) {
 
-			var bitmap = fs.readFileSync('./public/actors/' + req.file.filename).toString('hex' , 0 , 4);
+		console.log(req.file);
 
-				if (!imageMagic.checkMagic(bitmap)) {
-																					
-							fs.unlinkSync('./public/actors/' + req.file.filename);
-																																			req.body.error = {
-																																													'location' : 'body' ,
-																																																								'param' : 'photo' ,
-																																																																		'value' : '' ,
-																																																																										'msg' : 'Only Image files Allowed'		}	}  }
+		key = req.file.key , params = {'Bucket' : 'actor-aremi' , 'Key' : key };
+																																								s3.getObject(params , (err , data) => {		bitmap = data.Body.toString('hex' , 0 , 4);		});
 
-					if (!req.file) {
-														req.body.error2 = {
-																								'location' : 'body' ,
-																																			'param' : 'photo' ,
-																																													'value' : '' ,
-																																																					'msg' : 'Image Must be provided'		}	}
-																next(); 		} 
+			if (!imageMagic.checkMagic(bitmap)) {		
+																							bitmap = '' ;	param1 = {'Bucket' : 'actor-aremi' , 'Delete' : {
+																																																							'Objects' : [
+																																																														{'Key' : key }	
+																																																																						] ,
+																																																																								'Quiet' : false } };
+
+
+																				s3.deleteObjects(param1 , (err, data) => {
+																																										if (err) console.log(err)   });
+																																																												req.body.error = errors.error 		}  }
+				if (!req.file) {	req.body.error2 = errors.error2			}
+
+																																		next(); 		
+																	} ,
+	'mConfig' : multerS3({
+    												's3' : s3Conf ,
+																				    'bucket': 'actor-aremi' ,
+																				        												'acl': 'public-read-write' , 
+
+			    																																'key' : (req, file, cb) => {
+																																																				fileName = $filename(file);
+			     																																																													 cb(null, fileName)						} ,
+
+			    																																	'metadata' : (req , file , cb) => {
+			    																																																				cb(null , {'fieldName' : file.fieldname})				}
+															})
 }

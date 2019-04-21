@@ -13,9 +13,9 @@ block content
 			include ./include/tmenu
 
 		.title-body
-			for cover in detail.cover_image
+			for photo in detail.photo 
 				.title-image
-					+fixDir(cover.path)
+					+fixDirTt(photo.location)
 
 			p Title: #{detail.title}
 			p Ratings : #{detail.rating}
@@ -54,7 +54,7 @@ block content
 							li.mr-4
 								a(href ='/actor/' + actor.url)
 									for cover in actor.cover_image
-										+fixDir(cover.path)
+										+fixDirTt(cover.location)
 								p
 									a(href ='/actor/' + actor.url) #{actor.name}
 

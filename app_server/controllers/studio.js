@@ -8,7 +8,7 @@ Language = require('../../app_api/models/language') , Title = require('../../app
 
 Country = require('../../app_api/models/country') , Year = require('../../app_api/models/year') , Actor = require('../../app_api/models/actor') ,
 
-Studio = require('../../app_api/models/studio'), upload = multer({ storage: sSet.multer }) , data = '', url = '' , status = '' , sDetail = '', sParam = '';
+Studio = require('../../app_api/models/studio'), upload = multer({ storage: sSet.mConfig }) , data = '', url = '' , status = '' , sDetail = '', sParam = '';
 
 module.exports = {
 
@@ -50,6 +50,8 @@ module.exports = {
 				body('year_founded'							, 	'Year Founded must be provided.')								.isLength({ min: 1 }).trim(),
 				body('country_of_origin'				, 	'Country of Origin must be provided.')					.isLength({ min: 1 }).trim(),
 				body('about'										, 	'About must be provided.')											.isLength({ min: 1 }).trim(),
+
+				sSet.validate ,
 
 				(req , res) => {	if (req.file) {	req.body.cover_image = req.file; }
 

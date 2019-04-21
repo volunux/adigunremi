@@ -3,6 +3,9 @@ mixin fixDir(dir)
 	-	var fName = name.replace(/\\/g , '/')
 		img(class ='img-fluid rounded mx-auto d-block', src = '/' + fName )
 
+mixin fixDirTt(dir)
+		img(src =dir , class ='slistdd')
+
 mixin fixDirR(dir)
 	- var name = dir.slice(7)
 	-	var fName = name.replace(/\\/g , '/')
@@ -24,6 +27,9 @@ mixin fixDirTrailer(dir)
 	- var name = dir.slice(7)
 	-	var fName = name.replace(/\\/g , '/')
 		source(class ='', src ='/' + fName)
+
+mixin fixDirTrailert(dir)
+		source(class ='', src =dir)
 
 mixin formatDate(dateString)
 	- var date = new Date(dateString);

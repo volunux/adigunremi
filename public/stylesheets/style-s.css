@@ -14,16 +14,21 @@ p {
 	line-height : 2.0em;
 }
 
+h1 {
+
+	font-size : 0.975em;
+	margin-bottom : 2rem !important;
+}
+
 .title-list .img-fluid {
 
 	height : 150px;
 }
 
+.main {
 
-h1 {
-
-	font-size : 0.975em;
-	margin-bottom : 2rem !important;
+	height : auto;
+	overflow : hidden;
 }
 
 .title-list h3 {

@@ -6,7 +6,7 @@ var Genre = require('../../app_api/models/genre'), Country = require('../../app_
 
 Language = require('../../app_api/models/language') ,	Title = require('../../app_api/models/title') , Actor = require('../../app_api/models/actor') ,	fs = require('fs') , addTitle = {},
 
-multer = require('multer') , path = require('path') , tSet = require('../config/title') ,	upload = multer({ storage: tSet.multer }) ,  async = require('async') ,	axios = require('axios') , 
+multer = require('multer') , path = require('path') , tSet = require('../config/title') ,	upload = multer({ storage: tSet.mConfig }) ,  async = require('async') ,	axios = require('axios') , 
 
 data = '' , url = '' , titleDetail = '' , tParam = '' , status = '' , title = '';
 
@@ -68,6 +68,7 @@ module.exports = {
 				const errors = validationResult(req);
 
 				var errArr = errors.array();
+
 																			if (req.body.error1) {		errArr.push(req.body.error1);		}
 
 																			if (req.body.error2) {		errArr.push(req.body.error2);		}
@@ -75,6 +76,7 @@ module.exports = {
 																			if (req.body.error3) {		errArr.push(req.body.error3);		}
 
 																			if (req.body.error4) {		errArr.push(req.body.error4);		}
+
 
 																																																		req.session.titleData = req.body;
 																																																																				var title = new Title(req.body);
@@ -94,7 +96,9 @@ module.exports = {
 
 	'titleTrailer' : (req , res) => {		titleDetail = req.params.title , url = String(tSet.reqOptions.url + titleDetail + '/trailer');
 
-			axios.get(url).then((response) => { 	data = response.data.status.Title.trailer[0] ,  title = response.data.status.Title;
+			axios.get(url).then((response) => { 	data = response.data.status.Title.trailer ,  title = response.data.status.Title;
+
+				console.log(data);
 
 								res.render('title-detail-trailer' , {'title' : title.title + ' Trailer' , 'titleD' : title , 'detail' : data});																																						});
 	},
@@ -161,18 +165,41 @@ module.exports = {
 
 	'titleAddActorP' : (req , res) => {		addTitle = req.session.titleData;
 																																						addTitle.cast = req.body.cast;
-																																																						var body = addTitle;
+																																																						req.session.compiledTitle = addTitle;
+																		       	res.redirect('/title/trailer/add/');	
+	},
+
+	'titleAddTrailer' : (req , res) => {	addTitle = req.session.compiledTitle;
+
+		console.log(addTitle);
+																																							if (!addTitle) {			res.redirect('/title/add')		
+																																																																return;		}
+				
+																				res.render('form/title-trailer-add' , {'title' : 'Add Trailer'});		
+	},
+
+	'titleAddTrailerP' : [	upload.single('trailer') ,
+
+		(req , res , next) => { 
+
+			addTitle = req.session.compiledTitle;
+																																								addTitle.trailer = req.file;
+																																																							var body = addTitle;
+																															console.log(body);
 		axios({
   					'method': 'post' ,
   															'url' : tSet.reqOptions.url ,
 							 																								'data' : body
   										
   										}).then((response) => { 	delete req.session.titleData;
-  																																							res.redirect('/title');																																			})
+
+  																							delete req.session.compiledTitle;
+		  																																							res.redirect('/title');																																	})
 
 												.catch((err) => {				status = err.response;
 																																				res.render('error' , {'title' : 'Error' , 'error' : status})																				});
-	},
+											}
+	],
 
 	
 	'titleUpdateActor' : (req , res) => {		titleDetail = req.params.title , url = tSet.reqOptions.url + titleDetail + '/actor/update' , addTitle = req.session.titleData , $url = `/title/${titleDetail}/update`; 
@@ -279,40 +306,5 @@ module.exports = {
 		
 												.catch((err) => {				status = err.response;
 																																					res.render('error' , {'title' : 'Error' , 'error' : status})			});
-			},
+			}
 }
-
-/*
-	'titleDeleteActor' : (req , res) => {
-																						res.render('delete/title-actor-delete' , {'title' : 'Remove Actor' , 'movieTitle' : 'Odunlade Adekola'});
-	},
-
-	'titleDeleteActorP' : (req , res) => {
-																						res.render('title');
-	},
-
-	'titleAddGenre' : (req , res) => {
-																						res.render('form/title-genre-add' , {'title' : 'Add Genre' , 'movieTitle' : 'Odunlade Adekola'});
-	},
-
-	'titleAddGenreP' : (req , res) => {
-																						res.render('title');
-	},
-
-	'titleUpdateGenre' : (req , res) => {
-																						res.render('form/title-genre-add' , {'title' : 'Update Genre' , 'movieTitle' : 'Odunlade Adekola'});
-	},
-
-	'titleUpdateGenreP' : (req , res) => {
-																						res.render('title');
-	},
-
-	'titleDeleteGenre' : (req , res) => {
-																						res.render('delete/title-genre-delete' , {'title' : 'Remove Genre' , 'movieTitle' : 'Odunlade Adekola'});
-	},
-
-	'titleDeleteGenreP' : (req , res) => {
-																						res.render('title');
-	},
-
-	*/

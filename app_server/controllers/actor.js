@@ -2,7 +2,7 @@ const { body,validationResult } = require('express-validator/check');
 
 const { sanitizeBody } = require('express-validator/filter');
 
-var async = require('async'), path = require('path'), fs = require('fs'), multer = require('multer'), aSet = require('../config/actor'), upload = multer({storage : aSet.multer});
+var async = require('async'), path = require('path'), fs = require('fs'), multer = require('multer'), aSet = require('../config/actor'), upload = multer({storage : aSet.mConfig});
 
 Language = require('../../app_api/models/language') , Title = require('../../app_api/models/title') ,	actor = require('../../app_api/models/actor') ,
 

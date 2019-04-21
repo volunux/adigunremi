@@ -35,6 +35,10 @@ router.get('/title/actor/add/'											,								user.ensureAuthenticated 					
 	
 router.post('/title/actor/add/'											,								user.ensureAuthenticated 						,												title.titleAddActorP);
 
+router.get('/title/trailer/add/'										,								user.ensureAuthenticated 						,												title.titleAddTrailer);
+	
+router.post('/title/trailer/add/'										,								user.ensureAuthenticated 						,												title.titleAddTrailerP);
+
 router.get('/title/:title/actor/update/'						,								user.ensureAuthenticated 						,												title.titleUpdateActor);
 	
 router.post('/title/:title/actor/update/'						,								user.ensureAuthenticated 						,												title.titleUpdateActorP);

@@ -5,6 +5,8 @@ module.exports = {
 		'usersRouter' : require('../routes/users'),
 		
 		'titleRouter' : require('../routes/title'),
+
+		'trailerRouter' : require('../routes/trailer'),
 		
 		'genreRouter' : require('../routes/genre'),
 

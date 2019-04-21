@@ -181,14 +181,10 @@ block content
 						span *
 				textarea(id ='sypnosis'	, name ='sypnosis' , class ='form-control form-control-sm' , required ='true' ) #{(undefined === titleData ? '' : titleData.sypnosis)}
 
-				.form-group
-					label(for ='cover_image') Cover Image : *
-					input(type ='file' ,	name ='cover_image'	, class ='form-control form-control-sm' ,	accept ='image/*' , required ='true')
-
 				h6.photos Photos:
 
 				.form-group
-					label(for ='photoname1') 1st : *
+					label(for ='photoname1') Poster : *
 					input(type ='file' ,	name ='photo'	, class ='form-control form-control-sm' ,	accept ='image/*' , required ='true')
 
 				.form-group
@@ -198,9 +194,5 @@ block content
 				.form-group
 					label(for ='photoname3') 3rd :
 					input(type ='file' ,	name ='photo'	, class ='form-control form-control-sm' ,	accept ='image/*')
-
-				.form-group
-					label(for ='trailername') Trailer :
-					input(type ='file' , name ='trailer' , class ='form-control form-control-sm' ,	accept ='video/*')
 
 				button(type ='submit'	, title ='Submit' , class ='btn btn-primary float-right px-4') Submit
