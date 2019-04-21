@@ -1,6 +1,6 @@
 var multer = require('multer') , fs = require('fs') , path = require('path') , imageMagic = require('./photoMagic.js') , extra = require('fs-extra') , errors = require('./errors') , key = '' , params = '' ,
  
-actorS3 = require('./aws/actorAWS') , actorAWS = require('./aws/actorS3') , $filename = require('./filename') , bitmap = '' , aws = require('aws-sdk') , multerS3 = require('multer-s3') , s3Conf = actorS3() , param1 = '';
+actorS3 = require('./aws/actorAws') , actorAWS = require('./aws/actorS3') , $filename = require('./filename') , bitmap = '' , aws = require('aws-sdk') , multerS3 = require('multer-s3') , s3Conf = actorS3() , param1 = '';
 
 aws.config.update(actorAWS);
 
