@@ -17,7 +17,7 @@ module.exports = {
 																																																						config.response(res , 200 , yearResult);																					});				
 	},
 
-	'yearAdd' : (req , res) => {	yValue = req.body , year = new Year(yvalue);
+	'yearAdd' : (req , res) => {	yValue = req.body , year = new Year(yValue);
 		
 			year.save((err , yearResult) => {
 																								if (err) {
