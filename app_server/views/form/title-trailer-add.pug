@@ -1,0 +1,20 @@
+extends ../layout
+
+block content
+
+	.title-add
+
+			.tadderrmsg
+				if errors
+					p Errors found trying to process form. These include : -
+					ul
+						for error in errors
+							li!= error.msg
+
+			form(action =''	, method ='post'	,	enctype ='multipart/form-data')
+			
+				.form-group
+					label(for ='trailername') Trailer :
+					input(type ='file' , name ='trailer' , class ='form-control form-control-sm' ,	accept ='video/*')
+
+				button(type ='submit'	, title ='Submit' , class ='btn btn-primary float-right px-4') Submit
