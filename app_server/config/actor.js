@@ -8,7 +8,7 @@ var s3 = new aws.S3();
 
 module.exports = {
 
-	'reqOptions' : {		'url' : 'http://localhost:3000/api/actor/' ,
+	'reqOptions' : {		'url' : 'http://limitless-stream-60828.herokuapp.com/api/actor/' ,
 																																		'method' : 'GET' ,
 																																												'json' : {},
 																																																			'qs' : {}			},

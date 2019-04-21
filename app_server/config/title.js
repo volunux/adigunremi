@@ -80,7 +80,7 @@ module.exports = {
 			    																																																				cb(null , {'fieldName' : file.fieldname})				}
 															}) ,
 
-	'reqOptions' : {		'url' : 'http://localhost:3000/api/title/' ,
+	'reqOptions' : {		'url' : 'http://limitless-stream-60828.herokuapp.com/api/title/' ,
 																																		'method' : 'GET' ,
 																																												'json' : {},
 																																																				'qs' : {}	
