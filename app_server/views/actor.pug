@@ -12,7 +12,7 @@ block content
 					.actor-list-item
 						li
 							a(href ='/actor/' + actor.url)
-								img(src ='/images/fam.jpg')
+								+fixDir(actor.cover_image.path)
 
 							p
 								a(href ='/actor/' + actor.url) #{actor.name}

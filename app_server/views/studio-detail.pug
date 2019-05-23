@@ -10,7 +10,7 @@ block content
 			include ./include/sdmenu
 
 		.studio-detail-image
-			img(src ='/images/fam.jpg')
+				+fixDir(studio.cover_image.path)
 
 		p Name : #{studio.name}
 		p Year Founded :  #{studio.year_founded}

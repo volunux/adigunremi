@@ -44,7 +44,10 @@ module.exports = {
 																																																									callback(null , genreResult);	});
 																																																	},
 				(arg1 , callback) => {
-																Title.find({'genre' : config.id(arg1._id)})
+																if(arg1 === null) {		arg1 = {};
+																																	arg1['_id'] = 2233232		}
+																																															genre = arg1['_id'];					
+																Title.find({'genre' : genre})
 																																						.exec((err , genreResult) => {
 																																																									callback(null , genreResult);		})
 																																														}],

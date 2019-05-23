@@ -14,7 +14,7 @@ block content
 					.studio-list-item
 						li
 							a(href ='/studio/' + studio.url)
-								img(src ='/images/fam.jpg')
+								+fixDir(studio.cover_image.path)
 
 							p
 								a(href ='/studio/' + studio.url) #{studio.name}

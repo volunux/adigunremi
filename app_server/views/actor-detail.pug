@@ -10,7 +10,7 @@ block content
 			include ./include/amenu
 
 		.actor-detail-image
-			img(src ='/images/fam.jpg')
+				+fixDir(actor.cover_image.path)
 
 		if actor.nickname
 			p Name : #{actor.nickname}

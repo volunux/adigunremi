@@ -10,6 +10,6 @@ block content
 				li.mr-4
 					a(href ='/actor/' + actor.url)
 						actor.cover_image
-							img(src ='/images/fam.jpg')
+							+fixDir(actor.cover_image.path)
 					p
 						a(href ='/actor/' + actor.url) #{actor.name}
