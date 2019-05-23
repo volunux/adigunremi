@@ -45,13 +45,14 @@ module.exports = {
 		if (req.params && req.params.actor) {
 
 			Actor.findOne({'url' : new RegExp(aValue, 'i')}).exec((err , actorResult) => {
-																																														if (err) {
-																																																						config.response(res , 404 , err);
-																																																																							return;	}
-																																												if (!actorResult) {
-																																																						config.response(res , 404 , {'message' : 'Actor Info cannot be found'});
-																																																																																											return;	}
-																																																						config.response(res , 200 , actorResult);																																	});
+																																											if (err) {
+																																																					config.response(res , 404 , err);
+																																																																						return;	}
+																																											if (!actorResult) {
+																																																					config.response(res , 404 , {'message' : 'Actor does not exist or information cannot be found'});
+																																																																																									
+																																																																																								return;	}
+																																																					config.response(res , 200 , actorResult);																													});
 												} else {
 																	config.response(res , 404 , {'message' : 'No Actor id found'});		}
 			},
@@ -67,18 +68,21 @@ module.exports = {
 																																																									callback(null , actorResult);				});
 																																												},
 				(arg1 , callback) => {
-																Title.find({'cast' : config.id(arg1._id)})
-																																					.exec((err , titleResult) => {
-																																																									callback(null , titleResult);		});
-																																													}],
+																if(arg1 === null) {		arg1 = {};
+																																	arg1['_id'] = 2233232		}
+																																															actor = arg1['_id'];					
+																Title.find({'cast' : actor})
+																														.exec((err , titleResult) => {
+																																																		callback(null , titleResult);		});
+																																						}],
 				(err , finalResult) => {
 																	if (err) {
 																												config.response(res , 404 , err);
 																																													return;	}
 																	if (!finalResult) {
-																												config.response(res , 404 , {'message' : 'Titles not available for this actor'});
-																																																																						return;		}
-																				
+																												config.response(res , 404 , {'message' : 'Titles not available for this actor or actor does not exist in the database'});
+																																																																																										return;		}
+																						
 																												config.response(res , 200 , finalResult);																																															});
 												} else {
 																												config.response(res , 404 , {'message' : 'No Actor id found'});		}

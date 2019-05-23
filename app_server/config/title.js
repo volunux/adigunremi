@@ -58,6 +58,26 @@ module.exports = {
 			next();
 	} ,
 
+	'multer' :  multer.diskStorage({
+ 																		'destination' : function (req, file, cb) {
+																																							var titlePath = './public/titles/' + req.body.title.replace(/[^a-zA-Z 0-9]+/g , '').toLowerCase().split(' ').join('_');
+				if (fs.existsSync(titlePath)) {
+	  																		cb(null, titlePath);
+																															} else {
+																																				fs.mkdir(titlePath , function(err) {
+																																																							cb(null , titlePath);
+																																																			})																																														
+																																													}
+																											  },
+							'filename' : function (req, file, cb) {
+																													var ext =  path.extname(file.originalname) , possible = 'abcdefghijklmnopqrstuvwxyz0123456789' , imgUrl = '' ;
+
+																													for(var i = 0 ; i < 6 ; i += 1) {	imgUrl += possible.charAt(Math.floor(Math.random() * possible.length));		}
+
+																													fileName = imgUrl + ext;
+	    																																								cb(null, fileName)			}
+																																																																				}),
+
 	'mConfig' : multerS3({
 													's3' : s3Conf ,
 																			    'bucket': 'actor-aremi' ,

@@ -12,10 +12,9 @@ block content
 		.title-nav
 			include ./include/tmenu
 
-		.title-body
-			for photo in detail.photo 
-				.title-image
-					+fixDirTt(photo.location)
+		.title-body 
+			.title-image
+				img(src ='/images/fam.jpg')
 
 			p Title: #{detail.title}
 			p Ratings : #{detail.rating}
@@ -51,9 +50,9 @@ block content
 			.title-body-actor
 					ul
 						for actor in detail.cast
-							li.mr-4
+							li
 								a(href ='/actor/' + actor.url)
-										+fixDirTt(actor.cover_image.location)
+										+fixDir(actor.cover_image.path)
 								p
 									a(href ='/actor/' + actor.url) #{actor.name}
 
@@ -61,9 +60,9 @@ block content
 
 		.title-body-review
 			h5 Reviews
-				a(href ='/title/' + detail.url + '/reviews/add' , class ='float-right') Add Review
+				a(href ='/title/' + detail.url + '/reviews/add' , class ='float-right btn btn-primary') Add Review
 
-			.title-body-review-text
+			.title-revs
 				for review in detail.reviews
 					.treviewsbindividual
 						p.head #{review.author}

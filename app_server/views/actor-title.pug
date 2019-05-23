@@ -11,6 +11,7 @@ block content
 			.atpmenu
 				include ./include/tadd-menu
 
+		if titles
 			for title in titles
 
 				.atsum
@@ -33,3 +34,5 @@ block content
 						p Spoken Languages : #{title.spoken_languages}
 						p Revenue : #{title.revenue}
 						p.syp Sypnosis : #{title.sypnosis}
+		else
+			p This actor have no available titles.

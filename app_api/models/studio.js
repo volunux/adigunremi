@@ -5,7 +5,7 @@ moment = require('moment-timezone');
 var photoSchema = new Schema({
 																'originalname' : {	'type' : String,	
 																																		'required' : true 	},
-																																														'location' : String ,
+																																														'path' : String ,
 																																																									'type' : String, 
 																																																																		'encoding' :  String																																								
 													});

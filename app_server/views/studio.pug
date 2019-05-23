@@ -6,16 +6,15 @@ block content
 
 	.studio-list
 
-		.studio-nav
-			include ./include/sadd-menu
+
 
 		if studios	
 			ul
 				for studio in studios
-					.studio-list-item.mr-4
+					.studio-list-item
 						li
 							a(href ='/studio/' + studio.url)
-								+fixDirA(studio.cover_image.location)
+								img(src ='/images/fam.jpg')
 
 							p
 								a(href ='/studio/' + studio.url) #{studio.name}

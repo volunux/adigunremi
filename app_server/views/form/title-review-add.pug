@@ -1,4 +1,4 @@
-extends ../layout
+extends ../form-layout
 
 block content
 	.title-review-add
@@ -11,14 +11,14 @@ block content
 						li!= error.msg
 			
 			form(action =''	, method ='post'	,	enctype ='x-www-form-urlencoded')
-				.form-group
+				.form-input
 					label(for ='author') Name : 
 						span *
-					input(type ='text'	,	name ='author' , class ='form-control form-control-sm' ,	id ='author' value =(undefined === user ? '' : user.username))
+					input(type ='text'	,	name ='author' ,	id ='author' value =(undefined === user ? '' : user.username))
 
-				.form-group
+				.form-input
 					label(for ='rating') Rating :
-					select(name ='rating'	, id ='rating' , class ='form-control form-control-sm')
+					select(name ='rating'	, id ='rating' )
 						option(value ='0') 0
 						option(value ='1') 1
 						option(value ='2') 2
@@ -26,11 +26,10 @@ block content
 						option(value ='4') 4
 						option(value ='5') 5
 
-
-				.form-group
+				.form-input
 					label(for ='reviewText') Review :
 						span  *
-				textarea(id ='reviewText'	, name ='review_text' class ='form-control form-control-sm')
+				textarea(id ='reviewText'	, name ='review_text')
 					| #{undefined === review ? '' : review.review_text}
 
 				button(type ='submit'	, title ='Submit' class ='btn btn-primary float-right px-4') Submit

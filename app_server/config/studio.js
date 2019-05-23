@@ -7,6 +7,20 @@ aws.config.update(studioAWS);
 var s3 = new aws.S3();
 
 module.exports = {
+
+	'multer' :  multer.diskStorage({
+ 																		'destination' : function (req, file, cb) {
+																																								var actorPath = './public/studios/';
+																																																											cb(null , actorPath);
+																											  },
+							'filename' : function (req, file, cb) {
+																													var ext =  path.extname(file.originalname) , possible = 'abcdefghijklmnopqrstuvwxyz0123456789' , imgUrl = '' ;
+
+																													for(var i = 0 ; i < 6 ; i += 1) {	imgUrl += possible.charAt(Math.floor(Math.random() * possible.length));		}
+
+																													fileName = imgUrl + ext;
+	    																																								cb(null, fileName)			}
+																																																																				}) ,
 	
 	'reqOptions' : {		'url' : 'http://limitless-stream-60828.herokuapp.com/api/studio/' ,
 																																		'method' : 'GET' ,

@@ -6,7 +6,7 @@ block content
 	.tdtrailerhead
 	
 			.tdtrailer
-				unless detail === []
+				if detail !== undefined
 						video(width ='500'	,	height ='400'	,	type ='video/mp4'	controls)
 							source(class ='', src =detail.location)
 				else

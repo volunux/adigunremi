@@ -1,100 +1,154 @@
 * {
 
-		text-decoration: none !important;
+	font-family : Arial;
+	font-size : 13px;
+	font-weight : normal;
+	font-style : normal;
+	padding : 0;
+	margin : 0;
+	border : 0;
+	box-sizing : border-box;
+	text-decoration : none !important;
+	line-height : 2.5;
+	color : #464444;
 }
 
-* input , select {
+h1 , h4 , h5 {
 
-	padding : 6px !important;
-	margin-bottom : 1.5em !important;
+	font-size : 18px;
 }
 
-h1 , h2 , p , * {
+p , p span {
 
-	font-size : 0.875rem !important;
+	font-size : 13px;
 }
 
-h3 , h4 , h5 , h6 {
+h2 span, h3 span, h4 span, h5 span, h6 span {
 
-	font-size : 0.875rem !important;
+		font-weight : bold !important;
 }
 
-img {
+ h2 a , h3 a , h4 a , h5 a , h6 a , h2 i , h3 i , h4 i , h5 i , h6 i {
 
-	max-width : 100%;
-	border-radius : 6px !important;
+ 	font-weight : bold;
+}
+
+a {
+
+	color : #007bff;
+}
+
+h2 , h2 span , h2 a {
+
+	font-size : 14px !important;
+}
+
+.container {
+
+	width : 95%;
+	margin : 0px auto;
+	padding : 10px;
+}
+
+.header .nav ul , .title-nav ul , .studio-nav ul , .actor-nav ul {
+
+	list-style : none;
+	text-align : center;
+}
+
+.header .nav ul li , .title-nav ul li , .studio-nav ul li , .actor-nav ul li {
+
+	display : inline-block;
+	margin : 0px 3em;
 }
 
 .main {
 
-	height : 600px;
-}
-
-.float-left img {
-
-	width : 140px;
-	height : 140px;
+	width : 85%;
 	float : left;
-	margin : 0 1.375em 1.375em 0;
 }
 
-.header .nav ul {
+.aside {
 
-	list-style-type: none;
-	text-align : center;
+	float : left;
+	width : 15%;
 }
-
-.header .nav ul li {
-
-	display : inline-block;
-	margin-right : 2.1875em;
-	padding : 1.125em;
-}
-
-.tdmenu , .tpmenu , .amenu , .gmenu , .sdmenu , .samenu , .alistmenu , .stpmenu , .atpmenu , .ypmenu {
-
-	margin-bottom: 1.75em;
-}
-
-.tdmenu ul , .tpmenu ul , .amenu ul , .gformmenu ul , .sdmenu ul , .samenu ul , .alistmenu ul , .atpmenu ul , .stpmenu ul , .ypmenu ul {
-
-	list-style-type: none;
-	text-align : center;
-	margin-bottom : 1.3125em;
-}
-
-.tdmenu li , .tpmenu li , .amenu li , .gmenu li , .sdmenu li , .samenu li , .alistmenu li , .atpmenu li , .stpmenu li , .ypmenu li {
-
-	display : inline-block;
-	margin-right : 4%;
-}
-
-.tpmenu ul {
-
-	text-align : center;
-}
-
-.tsbody {
-
-		margin-bottom : 2.0em;
-}
-
-.psection {
-
-	line-height : 2.0em;
-}
-
 
 .footer {
 
 	clear : both;
+}
+
+.title-item {
+
+	float : left;
+	width : 47%;
+	margin : 0 2em 2em 0;
+	padding : 10px;
+	height : 380px;
+	overflow : hidden;
+}
+
+.title-item * {
+
+	line-height: 3.0 !important;
+}
+
+.tadd ul {
+
+	list-style-type : none;
 	text-align : center;
 }
 
-.footer p {
+.studio-list ul , .title-body-actor , .aside ul {
 
-	margin-bottom : 0.875em;
+	list-style-type : none;
+	padding : 15px;
 }
+
+.studio-list .studio-list-item , .actor-list .actor-list-item , .title-body-actor li {
+
+	width : 170px;
+	height : 170px;
+	overflow : hidden;
+	display : inline-block;
+	text-align : center;
+	padding : 10px;
+}
+
+.studio-list-item img , .actor-list-item img , .title-body-actor li img {
+
+	width : 120px;
+	height : 120px;
+	margin : 0px auto;
+}
+
+.title-detail , .actor-detail , .studio-detail , .genre-detail , .add-item {
+
+	width : 95%;
+}
+
+.studio-detail-image , .title-image , .actor-detail-image {
+
+	text-align : center;
+	margin-top : 1em;
+}
+
+.studio-detail-image img , .actor-detail-image img , .title-image img {
+
+	width : 300px;
+	height : 300px;
+}
+
+.title-body-review , .footer {
+
+	clear : both;
+}
+
+.footer {
+	text-align : center;
+}
+
 
 .footer ul {
 
@@ -107,263 +161,206 @@ img {
 	margin-right : 1em;
 }
 
-.tform , .trform , .aform , .signup , .forgot , .signin {
+.title-body-photo img {
 
-	width : 80%;
-	overflow : hidden;
-	margin : 0px auto;
+	height : 300px;
+	width : 300px;
 }
 
-.tform form p label, .trform form p label , .aform form p label , .gform form p label , .yform form p label , .cform form p label , .taform form p label , .lform form p label ,
+.title-body-review h5 a {
 
-.signup form p label , .forgot form p label , .signin form p label {
-
-	width : 170px;
-	display : inline-block;
-	text-align : right;
+	font-weight : normal;
 }
 
-.tform form p input, .trform form p input, .aform form p input, .gform form p input, .yform form p input, .cform form p input, .taform form p input, .lform form p input, .signup form p input, .forgot form p input ,
+input , label {
 
-.tform form select , .taform form select , .signin form select , .signin form p input , .trform form select , .aform form select {
-
-	border-radius : 8px;
-	padding : 4px;
-	border : 1px dashed gray;
-	width : 80%;
-	margin-left : 2.0em;
+	display : block;
 }
 
-.tform form input[type='file'] {
-
-	padding : 1px !important;
-}
-
-.tradd .trform textarea , .aform textarea , .tadd textarea , .signup textarea , .forgot textarea , .signin textarea{
+textarea , select , input {
 
 	width : 100%;
-	resize: none;
-	padding : 1em;
-	border : 0.5px dashed gray;
-	border-radius: 8px;
-	height : 230px;
-	margin-bottom : 1.5em;
+	line-height : 2.0;
+	padding : 6px 20px;
+	border : 0.5px double lightgray;
+	border-radius : 8px;
+	margin-bottom : .5em;
 }
 
-.tform form button, .trform form button, .aform form button, .gform form button, .taform form button, .sdelete form button, .yform form button, .cform form button, .lform form button ,
+input {
 
-.signup form button , .forgot form button , .signin form button {
+	line-height : 1.8;
+}
+
+button {
+
+	line-height : 2.5;
+}
+
+select {
+
+	height : 35px;
+}
+
+textarea {
+
+	height : 200px;
+	resize : none;
+}
+
+.btn {
+
+	margin-top : 1em;
+	border-radius : 8px;
+	padding : 0px 25px;
+	color : white;
+}
+
+.float-right {
 
 	float : right;
-	padding : 0.875em 3.0em;
-	border : 0.5px dashed gray;
-	border-radius : 8px;
-	display : block;
 }
 
-.alistd , .sbody {
+.btn-primary {
 
-	width : 170px;
-	/*float : left; */
-	padding : 2%;
-	text-align : center;
+	background-color : #007bff;
 }
 
-.glist , .slist , .ylist , .clist , .llist {
+.btn-secondary {
 
-	padding : 1.3125em;
+	background-color : #dc8f30;
 }
 
-.glist li , .slist li , .ylist li , .clist li , .llist li {
+.btn-info {
 
-	margin-bottom : 0.5em;
+	background-color : #888582;
 }
 
-.alist , .slist {
+.btn-info , .btn-primary , .btn-secondary {
 
-	width : 100%;
-	overflow : hidden;
+	padding : 2px 20px;
+	border : 2px solid inherit;
+	margin-right : 1em;
 }
 
-.alistdd , .slistdd {
+.add-item ul {
 
-	width : 80%;
-	display : block;
-	margin : 0px auto;
-	height : 120px;
-	margin-bottom : 0.3125em;
+	list-style: none;
 }
 
-.sdimage {
+.add-item ul li {
 
-	margin-bottom : 1.5em;
-}
-
-.tdpage .tdimage img , .sdpage .sdimage img {
-
-	height : 400px;
-	width : 300px;
-	display : block;
-	margin : 0px auto 1.5em;
-	border-radius : 8px;
-}
-
-.tdmenu , .tpmenu , .amenu , .gmenu , .sdmenu , .samenu , .alistmenu , .stpmenu , .atpmenu , .ypmenu {
-
-	margin-bottom: 1.75em;
-}
-
-.tdmenu ul , .tpmenu ul , .amenu ul , .gformmenu ul , .sdmenu ul , .samenu ul , .alistmenu ul , .atpmenu ul , .stpmenu ul , .ypmenu ul {
-
-	list-style-type: none;
-	text-align : center;
-	margin-bottom : 1.3125em;
-}
-
-.tdmenu li , .tpmenu li , .amenu li , .gmenu li , .sdmenu li , .samenu li , .alistmenu li , .atpmenu li , .stpmenu li , .ypmenu li {
-
-	display : inline-block;
-	margin-right : 4%;
-}
-
-.tdbodyc ul {
-
-	list-style-type: none;
-}
-
-.tdbodyc li {
-
-	display : inline-block;
-	text-align : center;
-	margin : 0px 2.5em 2.5em 0px;
-}
-
-.tdbodyc li img {
-
-	display : block;
-	height : 120px;
-	width : 120px;
-	margin : 0px auto;
-}
-
-.tdbodyc {
-
-	margin: 1.875em 0em 1.15em 0em;
-}
-
-.tdci {
-
-	width : 100%;
-	padding : 2%;
-	text-align: center;
-	overflow : hidden;
-}
-
-.tdci img {
-
-	height : 120px;
-	margin-bottom : 0.3125em;
-	width : 100%;
+	border : 2px solid lightgray;
+	margin-bottom : 2em;
+	padding : 5px 10px;
 	border-radius : 6px;
 }
 
-.tdc {
-
-	width : 170px;
-	margin : 15px 15px;
-}
-
-.tdphotos {
-
-	padding : 2.5em;
-}
-
-.tdphotos .tdindividuald img {
-
-	width : 250px;
-	height : 250px;
-}
-
-.tdphotos .tdindividuald {
-
-	margin: 1.5em auto;
-}
-
-.adimage img , .sdimage img{
-
-	width : 40%;
-	height : 500px;
-	display : block;
-	margin : 0px auto;
-}
-
-.treviews {
-
-	margin-top : 20px;
-}
-
-.treviewsh {
-
-	margin-bottom : 20px;
-}
-
-.treviews .treviewsh h5 a {
-
-	float : right;
-} 
-
-.treviews .treviewsbody p span {
-
-	margin-left : 30px;
-}
-
-.treviews .treviewsbody p span.date {
-
-	float : right;
-}
-
-.treviews .treviewsbody p.head {
-
-	margin-bottom : 0.3125em;
-}
-
-.treviewsbindividual {
+.t-r-i {
 
 	margin-bottom : 1.875em;
 }
 
-.gdelete , .adelete , .cdelete , .ydelete , .ldelete {
+.title-revs {
 
-	overflow : hidden;
+	margin-top : 2em;
 }
 
-.gdelete button , .adelete button , .cdelete button , .ydelete button , .ldelete button {
+span.date {
 
-	padding : 0.875em 3.0em;
-	border : 0.5px dashed gray;
-	border-radius : 8px;
-	display : block;
 	float : right;
 }
 
-.gdelete h5 , .adelete h5{
+hr {
 
-	margin-bottom : 1.5em;
+	border : 0.5px solid lightgray;
 }
 
-@media screen and (max-width : 480px) {
+form {
 
-	.sbody {
-						width : 100%;
+	width : 95%;
+}
+
+
+@media all and (max-width : 1113px) {
+
+	.main {
+
+		float : none;
+		width : 100%;
 	}
 
-	 .sdpage .sdimage img {
+	.title-item {
 
-	height : 400px;
-	width : 100%;
+		width : 45%;
+		height : 100%;
+	}
+
+	.aside {
+
+		clear : both;
+		float : none;
+		width : 100%;
+	}
+
+	form {
+
+		width : 100%;
+	}
+
+}
+
+@media all and (max-width : 680px) {
+
+	.main {
+
+		float : none;
+		width : 100%;
+	}
+
+	.title-item {
+
+		width : 48%;
+		height : 360px;
+		margin-right : .5em;
+	}
+
+	.aside {
+
+		float : none;
+		width : 100%;
+	}
+
+}
+
+@media all and (max-width : 480px) {
+
+	.main {
+
+		float : none;
+		width : 100%;
+	}
+
+	.title-item {
+
+		width : 100%;
+		height : 100%;
+	}
+
+	.aside {
+
+		float : none;
+		width : 100%;
+	}
+
+}
+
+@media all and (max-width : 240px) {
+
+	span.date {
+
+	float : none;
 	display : block;
-	margin : 0px auto 1.5em;
-	border-radius : 8px;
 }
 
 }

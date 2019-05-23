@@ -9,7 +9,6 @@ block content
 			for actor in cast
 				li.mr-4
 					a(href ='/actor/' + actor.url)
-						actor.cover_image
-							+fixDirTt(actor.cover_image.location)
+						img(src ='/images/fam.jpg')
 					p
 						a(href ='/actor/' + actor.url) #{actor.name}

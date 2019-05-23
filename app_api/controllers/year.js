@@ -36,8 +36,6 @@ module.exports = {
 				(callback) => {
 																Year.findOne({'year' : yValue})
 																																									.exec((err , yearResult) => {
-
-																																										console.log(yearResult);
 																																																									callback(null , yearResult);	});
 																																																	},
 				(arg1 , callback) => {

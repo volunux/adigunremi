@@ -2,27 +2,27 @@ var express = require('express'),	router = express.Router(),		genre = require('.
 
 
 
-router.get('/genre'																																						,									genre.genreList);
+router.get('/'																																						,									genre.genreList);
 
-router.get('/genre/add'																																				,									genre.genreAdd);
+router.get('/add'																																				,									genre.genreAdd);
 
-router.post('/genre/add'									,								user.ensureAuthenticated 						,									genre.genreAddP);
+router.post('/add'									,								user.ensureAuthenticated 						,									genre.genreAddP);
 
 
-router.get('/genre/:genre'																																		,									genre.genreDetail);
+router.get('/:genre'																																		,									genre.genreDetail);
 	
 
 
 
-router.get('/genre/:genre/update'					,								user.ensureAuthenticated 						,									genre.genreUpdate);
+router.get('/:genre/update'					,								user.ensureAuthenticated 						,									genre.genreUpdate);
 
-router.post('/genre/:genre/update'				,								user.ensureAuthenticated 						,									genre.genreUpdateP);
+router.post('/:genre/update'				,								user.ensureAuthenticated 						,									genre.genreUpdateP);
 
 
 
-router.get('/genre/:genre/delete'					,								user.ensureAuthenticated 						,									genre.genreDelete);
+router.get('/:genre/delete'					,								user.ensureAuthenticated 						,									genre.genreDelete);
 
-router.post('/genre/:genre/delete'				,								user.ensureAuthenticated 						,									genre.genreDeleteP);
+router.post('/:genre/delete'				,								user.ensureAuthenticated 						,									genre.genreDeleteP);
 
 
 

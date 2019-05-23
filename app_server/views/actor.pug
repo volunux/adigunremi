@@ -9,10 +9,10 @@ block content
 		if actors.length !== 0
 			ul
 				for actor in actors
-					.actor-list-item.mr-4
+					.actor-list-item
 						li
 							a(href ='/actor/' + actor.url)
-								+fixDir(actor.cover_image.location)
+								img(src ='/images/fam.jpg')
 
 							p
 								a(href ='/actor/' + actor.url) #{actor.name}

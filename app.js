@@ -2,11 +2,13 @@ require('dotenv').load();
 
 var createError = require('http-errors') ,	express = require('express') ,	path = require('path') ,		cookieParser = require('cookie-parser') ,	logger = require('morgan') , flash = require('express-flash') ,
 
-session = require('express-session') ,	config = require('./app_server/config/config') , rConfig = require('./app_server/config/routes') , mOverride = require('method-override') , 
+session = require('express-session') , passport = require('passport'), bodyParser = require('body-parser'), favicon = require('serve-favicon') , compression = require('compression'), helmet = require('helmet') ,
 
-passport = require('passport'), bodyParser = require('body-parser'), favicon = require('serve-favicon') ,	app = express() , pConfig = require('./app_server/config/passport') , compression = require('compression'),
+cors = require('cors') , app = express();
 
-helmet = require('helmet') , cors = require('cors'); const isProd = process.env.NODE_ENV === 'production';
+const isProd = process.env.NODE_ENV === 'production';
+
+var routes = require('./app_server/routes/route') , apiRoutes = require('./app_api/routes/routes') , config = require('./app_server/config/config') , pConfig = require('./app_server/config/passport');
 
 require('./app_server/config/db');
 
@@ -31,35 +33,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 																													app.use((req , res , next) => {	if (req.user) {	res.locals.user = req.user;	}
 res.locals.moment = require('moment-timezone');
 																																																																				next();		});
-																																																																												if (isProd) {
-																																																																																			app.use(compression());
-																																																																																																app.use(helmet());	}
-app.use('/' , rConfig.indexRouter);
-																		app.use('/' , rConfig.titleRouter);
-																																				app.use('/' , rConfig.genreRouter);
-																																																						app.use('/' , rConfig.studioRouter);
-																																																																									app.use('/' , rConfig.actorRouter);
-app.use('/', rConfig.usersRouter);
-																				app.use('/' , rConfig.yearRouter);
-																																						app.use('/' , rConfig.countryRouter);
-																																																									app.use('/' , rConfig.languageRouter);
-																																																																														app.use('/' , rConfig.trailerRouter);
-app.use('/api' , rConfig.apiTitleRouter);
-																					app.use('/api' , rConfig.apiGenreRouter);
-																																										app.use('/api' , rConfig.apiStudioRouter);
-																																																																app.use('/api' , rConfig.apiActorRouter);
-app.use('/api' , rConfig.apiYearRouter);
-																					app.use('/api' , rConfig.apiCountryRouter);
-																																												app.use('/api' , rConfig.apiLanguageRouter);
-																																																																			app.use('/api' , rConfig.apiUserRouter);
-app.use('/api' , rConfig.apiNationalityRouter);
-
+if (isProd) {
+								app.use(compression());
+																				app.use(helmet());	}
+																																routes(app);
+																																							apiRoutes(app);
 app.use(function(req, res, next) {
 																		next(createError(404));
 });
 
 
 app.use(function(err, req, res, next) {
+
+	console.log(err);
   																			res.locals.message = err.message;
   																																				res.locals.error = req.app.get('env') === 'development' ? err : {};
   																																																																						res.status(err.status || 500);

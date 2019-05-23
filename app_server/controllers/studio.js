@@ -8,7 +8,7 @@ Language = require('../../app_api/models/language') , Title = require('../../app
 
 Country = require('../../app_api/models/country') , Year = require('../../app_api/models/year') , Actor = require('../../app_api/models/actor') ,
 
-Studio = require('../../app_api/models/studio'), upload = multer({ storage: sSet.mConfig }) , data = '', url = '' , status = '' , sDetail = '', sParam = '';
+Studio = require('../../app_api/models/studio'), upload = multer({ storage: sSet.multer }) , data = '', url = '' , status = '' , sDetail = '', sParam = '';
 
 module.exports = {
 

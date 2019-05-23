@@ -11,7 +11,7 @@ var reviewSchema = new Schema({
 
 var trailerSchema = new Schema({
 			
-'filename' : {	'type' : String ,		'maxlength' : 30 } ,		'location' : {			'type' : String ,		'default' : 'c:/'	} ,  			'size' : { 'type' : String , 'default' : 0 } ,
+'filename' : {	'type' : String ,		'maxlength' : 30 } ,		'path' : {			'type' : String ,		'default' : 'c:/'	} ,  			'size' : { 'type' : String , 'default' : 0 } ,
 			
 'mimetype' : {	'type' : String } ,													'encoding' : {	'type' : String 	}																});
 
@@ -20,7 +20,7 @@ var trailerSchema = new Schema({
 
 var photosSchema = new Schema({
 			
-'filename' : {	'type' : String ,		'maxlength' : 30	} ,		'location' : {				'type' : String ,		'default' : 'c:/'		} ,	 'size' : { 'type' : String , 'default' : 0 } ,
+'filename' : {	'type' : String ,		'maxlength' : 30	} ,		'path' : {				'type' : String ,		'default' : 'c:/'		} ,	 'size' : { 'type' : String , 'default' : 0 } ,
 			
 'mimetype' : {	'type' : String 	} ,												'encoding' : {		'type' : String }																});
 

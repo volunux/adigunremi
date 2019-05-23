@@ -2,14 +2,14 @@ var express = require('express'),	router = express.Router(),		year = require('..
 
 
 
-router.get('/year'												,		year.yearList);
+router.get('/'											,		year.yearList);
 
-router.get('/year/add'										,		year.yearAdd);
+router.get('/add'										,		year.yearAdd);
 
-router.post('/year/add'									,								user.ensureAuthenticated 						,									year.yearAddP);
+router.post('/add'									,								user.ensureAuthenticated 						,									year.yearAddP);
 
 
-router.get('/year/:year'								,		year.yearDetail);
+router.get('/:year'									,		year.yearDetail);
 	
 
 /*

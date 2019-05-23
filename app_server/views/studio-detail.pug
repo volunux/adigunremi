@@ -10,8 +10,8 @@ block content
 			include ./include/sdmenu
 
 		.studio-detail-image
-				+fixDirA(studio.cover_image.location)
+			img(src ='/images/fam.jpg')
 
 		p Name : #{studio.name}
 		p Year Founded :  #{studio.year_founded}
-		p.bio Biography : #{studio.biography}
+		p.bio Biography : #{studio.about}

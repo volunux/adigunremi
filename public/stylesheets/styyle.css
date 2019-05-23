@@ -1,0 +1,365 @@
+* {
+
+		text-decoration: none !important;
+		font-family : Arial !important;
+}
+
+* input , select {
+
+	padding : 6px !important;
+	margin-bottom : 1.5em !important;
+}
+
+h1 , h2 , p , * {
+
+	font-size : 0.875rem !important;
+}
+
+h3 , h4 , h5 , h6 {
+
+	font-size : 0.875rem !important;
+}
+
+img {
+
+	max-width : 100%;
+	border-radius : 6px !important;
+}
+
+.float-left img {
+
+	width : 140px;
+	height : 140px;
+	float : left;
+	margin : 0 1.375em 1.375em 0;
+}
+
+.header .nav ul {
+
+	list-style-type: none;
+	text-align : center;
+}
+
+.header .nav ul li {
+
+	display : inline-block;
+	margin-right : 2.1875em;
+	padding : 1.125em;
+}
+
+.tdmenu , .tpmenu , .amenu , .gmenu , .sdmenu , .samenu , .alistmenu , .stpmenu , .atpmenu , .ypmenu {
+
+	margin-bottom: 1.75em;
+}
+
+.tdmenu ul , .tpmenu ul , .amenu ul , .gformmenu ul , .sdmenu ul , .samenu ul , .alistmenu ul , .atpmenu ul , .stpmenu ul , .ypmenu ul {
+
+	list-style-type: none;
+	text-align : center;
+	margin-bottom : 1.3125em;
+}
+
+.tdmenu li , .tpmenu li , .amenu li , .gmenu li , .sdmenu li , .samenu li , .alistmenu li , .atpmenu li , .stpmenu li , .ypmenu li {
+
+	display : inline-block;
+	margin-right : 4%;
+}
+
+.tpmenu ul {
+
+	text-align : center;
+}
+
+.tsbody {
+
+		margin-bottom : 2.0em;
+}
+
+.psection {
+
+	line-height : 2.0em;
+}
+
+
+.footer {
+
+	clear : both;
+	text-align : center;
+}
+
+.footer p {
+
+	margin-bottom : 0.875em;
+}
+
+.footer ul {
+
+	list-style-type : none;
+}
+
+.footer li { 
+
+	display : inline-block;
+	margin-right : 1em;
+}
+
+.tform , .trform , .aform , .signup , .forgot , .signin {
+
+	width : 80%;
+	overflow : hidden;
+	margin : 0px auto;
+}
+
+.tform form p label, .trform form p label , .aform form p label , .gform form p label , .yform form p label , .cform form p label , .taform form p label , .lform form p label ,
+
+.signup form p label , .forgot form p label , .signin form p label {
+
+	width : 170px;
+	display : inline-block;
+	text-align : right;
+}
+
+.tform form p input, .trform form p input, .aform form p input, .gform form p input, .yform form p input, .cform form p input, .taform form p input, .lform form p input, .signup form p input, .forgot form p input ,
+
+.tform form select , .taform form select , .signin form select , .signin form p input , .trform form select , .aform form select {
+
+	border-radius : 8px;
+	padding : 4px;
+	border : 1px dashed gray;
+	width : 80%;
+	margin-left : 2.0em;
+}
+
+.tform form input[type='file'] {
+
+	padding : 1px !important;
+}
+
+.tradd .trform textarea , .aform textarea , .tadd textarea , .signup textarea , .forgot textarea , .signin textarea{
+
+	width : 100%;
+	resize: none;
+	padding : 1em;
+	border : 0.5px dashed gray;
+	border-radius: 8px;
+	height : 230px;
+	margin-bottom : 1.5em;
+}
+
+.tform form button, .trform form button, .aform form button, .gform form button, .taform form button, .sdelete form button, .yform form button, .cform form button, .lform form button ,
+
+.signup form button , .forgot form button , .signin form button {
+
+	float : right;
+	padding : 0.875em 3.0em;
+	border : 0.5px dashed gray;
+	border-radius : 8px;
+	display : block;
+}
+
+.alistd , .sbody {
+
+	width : 170px;
+	/*float : left; */
+	padding : 2%;
+	text-align : center;
+}
+
+.glist , .slist , .ylist , .clist , .llist {
+
+	padding : 1.3125em;
+}
+
+.glist li , .slist li , .ylist li , .clist li , .llist li {
+
+	margin-bottom : 0.5em;
+}
+
+.alist , .slist {
+
+	width : 100%;
+	overflow : hidden;
+}
+
+.alistdd , .slistdd {
+
+	width : 80%;
+	display : block;
+	margin : 0px auto;
+	height : 120px;
+	margin-bottom : 0.3125em;
+}
+
+.sdimage {
+
+	margin-bottom : 1.5em;
+}
+
+.tdpage .tdimage img , .sdpage .sdimage img {
+
+	height : 400px;
+	width : 300px;
+	display : block;
+	margin : 0px auto 1.5em;
+	border-radius : 8px;
+}
+
+.tdmenu , .tpmenu , .amenu , .gmenu , .sdmenu , .samenu , .alistmenu , .stpmenu , .atpmenu , .ypmenu {
+
+	margin-bottom: 1.75em;
+}
+
+.tdmenu ul , .tpmenu ul , .amenu ul , .gformmenu ul , .sdmenu ul , .samenu ul , .alistmenu ul , .atpmenu ul , .stpmenu ul , .ypmenu ul {
+
+	list-style-type: none;
+	text-align : center;
+	margin-bottom : 1.3125em;
+}
+
+.tdmenu li , .tpmenu li , .amenu li , .gmenu li , .sdmenu li , .samenu li , .alistmenu li , .atpmenu li , .stpmenu li , .ypmenu li {
+
+	display : inline-block;
+	margin-right : 4%;
+}
+
+.tdbodyc ul {
+
+	list-style-type: none;
+}
+
+.tdbodyc li {
+
+	display : inline-block;
+	text-align : center;
+	margin : 0px 2.5em 2.5em 0px;
+}
+
+.tdbodyc li img {
+
+	display : block;
+	height : 120px;
+	width : 120px;
+	margin : 0px auto;
+}
+
+.tdbodyc {
+
+	margin: 1.875em 0em 1.15em 0em;
+}
+
+.tdci {
+
+	width : 100%;
+	padding : 2%;
+	text-align: center;
+	overflow : hidden;
+}
+
+.tdci img {
+
+	height : 120px;
+	margin-bottom : 0.3125em;
+	width : 100%;
+	border-radius : 6px;
+}
+
+.tdc {
+
+	width : 170px;
+	margin : 15px 15px;
+}
+
+.tdphotos {
+
+	padding : 2.5em;
+}
+
+.tdphotos .tdindividuald img {
+
+	width : 250px;
+	height : 250px;
+}
+
+.tdphotos .tdindividuald {
+
+	margin: 1.5em auto;
+}
+
+.adimage img , .sdimage img{
+
+	width : 40%;
+	height : 500px;
+	display : block;
+	margin : 0px auto;
+}
+
+.treviews {
+
+	margin-top : 20px;
+}
+
+.treviewsh {
+
+	margin-bottom : 20px;
+}
+
+.treviews .treviewsh h5 a {
+
+	float : right;
+} 
+
+.treviews .treviewsbody p span {
+
+	margin-left : 30px;
+}
+
+.treviews .treviewsbody p span.date {
+
+	float : right;
+}
+
+.treviews .treviewsbody p.head {
+
+	margin-bottom : 0.3125em;
+}
+
+.treviewsbindividual {
+
+	margin-bottom : 1.875em;
+}
+
+.gdelete , .adelete , .cdelete , .ydelete , .ldelete {
+
+	overflow : hidden;
+}
+
+.gdelete button , .adelete button , .cdelete button , .ydelete button , .ldelete button {
+
+	padding : 0.875em 3.0em;
+	border : 0.5px dashed gray;
+	border-radius : 8px;
+	display : block;
+	float : right;
+}
+
+.gdelete h5 , .adelete h5{
+
+	margin-bottom : 1.5em;
+}
+
+@media screen and (max-width : 480px) {
+
+	.sbody {
+						width : 100%;
+	}
+
+	 .sdpage .sdimage img {
+
+	height : 400px;
+	width : 100%;
+	display : block;
+	margin : 0px auto 1.5em;
+	border-radius : 8px;
+}
+
+}
