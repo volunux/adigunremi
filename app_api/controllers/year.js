@@ -39,7 +39,10 @@ module.exports = {
 																																																									callback(null , yearResult);	});
 																																																	},
 				(arg1 , callback) => {
-																Title.find({'released_date' : config.id(arg1._id)})
+																if(arg1 === null) {		arg1 = {};
+																																	arg1['_id'] = 2233232		}
+																																															year = arg1['_id'];					
+																Title.find({'released_date' : year})
 																																										.exec((err , yearResult) => {
 																																																									callback(null , yearResult);		})
 																																														}],

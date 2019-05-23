@@ -2,23 +2,27 @@ extends layout
 
 block content
 
-	.stlay
-		.stlist
-			.stlayhead
-				h2 #{title} - #{name}
+	.atlay
+		.atlist
 
-			.stpmenu
-			
-			for title in titles	
-				.stsum
-					.sthead
+			.atlisthead
+				h2 Actor Titles
+				
+			.atpmenu
+				include ./include/tadd-menu
+
+		if titles
+			for title in titles
+
+				.atsum
+					.athead
 						h3
 							a(href ='/title/name') #{title.title}
 
-					.stsumdet
+					.atsumdet
 						img(src ='/images/fam.jpg')
 
-					.stsumbody
+					.atsumbody
 						p Orignal Title : #{title.original_title}
 						p Title: #{title.title}
 						p Ratings : #{title.ratings}
@@ -30,4 +34,5 @@ block content
 						p Spoken Languages : #{title.spoken_languages}
 						p Revenue : #{title.revenue}
 						p.syp Sypnosis : #{title.sypnosis}
-
+		else
+			p This genre have no titles.

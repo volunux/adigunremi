@@ -20,7 +20,7 @@ module.exports = {
 
 			axios.get(url).then((response) => { 	data = response.data.status , title = 'Genre : ' + config.capitalize(genreDetail);
 
-																																																							res.render('title' , {'title' : title , 'titles' : data});						})
+																																																							res.render('genre-title' , {'title' : title , 'titles' : data});						})
 										.catch((err) => {				status = err.response;
 																																																							res.render('error' , {'title' : 'Title' , 'error' : status})					});
 	},
