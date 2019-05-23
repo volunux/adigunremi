@@ -34,9 +34,7 @@ module.exports = {
 																						if (bitmapper)	bitmap = bitmapper.toString('hex' , 0 , 4);	});
 
 																										deleteItems.push({'Key' : x.key});
-
-																					if (!imageMagic.checkMagic(bitmap)) {		bitmap = '';
-																																																req.body.error4 = errors.error	} 	});	
+ 												});	
 
 																					params = {
 																											'Bucket' : 'actor-aremi' , 
