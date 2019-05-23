@@ -116,7 +116,7 @@ h2 , h2 span , h2 a {
 	padding : 10px;
 }
 
-.studio-list-item img , .actor-list-item img , .title-body-actor li img , .title-body .title-image img {
+.studio-list-item img , .actor-list-item img , .title-body-actor li img , .title-body .title-image img , .title-item .img-thumb img {
 
 	width : 120px;
 	height : 120px;
@@ -321,6 +321,7 @@ form {
 	.title-item {
 
 		width : 48%;
+		height : 360px;
 		margin-right : .5em;
 	}
 
