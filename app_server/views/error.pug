@@ -1,7 +1,6 @@
 extends layout
 
 block content
-		p #{error.message}
 		if (error.status == 404) && error.data.status.message
 			p #{error.status} - #{error.data.status.message}
 
