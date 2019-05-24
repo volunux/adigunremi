@@ -336,6 +336,11 @@ form {
 	line-height : 1.5 !important;
 }
 
+.title-item * {
+
+	line-height : 2.0 !important;
+}
+
 }
 
 @media all and (max-width : 480px) {
