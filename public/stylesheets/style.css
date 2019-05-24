@@ -336,7 +336,7 @@ form {
 	line-height : 2.0 !important;
 }
 
-.title-item * , .actor-detail , .studio-detail {
+.title-item * , .actor-detail * , .studio-detail * {
 
 	line-height : 2.0 !important;
 }
