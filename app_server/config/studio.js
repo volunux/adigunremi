@@ -28,25 +28,25 @@ module.exports = {
 																																																			'qs' : {}			} ,
 
 	'validate' : (req , res , next) => {	if (req.file) {
-		
-		key = req.file.key , params = {'Bucket' : 'actor-studio' , 'Key' : key };
-																																								s3.getObject(params , (err , data) => {		bitmap = data.Body.toString('hex' , 0 , 4);		});
 
-			if (!imageMagic.checkMagic(bitmap)) {		
-																							bitmap = '' ;	param1 = {'Bucket' : 'actor-studio' , 'Delete' : {
-																																																							'Objects' : [
-																																																														{'Key' : key }	
-																																																																						] ,
-																																																																								'Quiet' : false } };
+		var bitmap = fs.readFileSync('./public/studios/' + req.file.filename).toString('hex' , 0 , 4);
 
+			if (!imageMagic.checkMagic(bitmap)) {
+																				
+						fs.unlinkSync('./public/studios/' + req.file.filename);
+																																			req.body.error = {
+																																												'location' : 'body' ,
+																																																							'param' : 'photo' ,
+																																																																	'value' : '' ,
+																																																																									'msg' : 'Only Image files Allowed'		}	}  }
 
-																				s3.deleteObjects(param1 , (err, data) => {
-																																										if (err) console.log(err)   });
-																																																												req.body.error = errors.error 		}  }
-				if (!req.file) {	req.body.error2 = errors.error2			}
-
-																																		next(); 		
-																	} ,
+				if (!req.file) {
+													req.body.error2 = {
+																							'location' : 'body' ,
+																																		'param' : 'photo' ,
+																																												'value' : '' ,
+																																																				'msg' : 'Image Must be provided'		}	}
+															next(); 		} ,
 	'mConfig' : multerS3({
     												's3' : s3Conf ,
 																				    'bucket': 'actor-studio' ,

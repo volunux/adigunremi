@@ -8,35 +8,48 @@ var s3 = new aws.S3();
 
 module.exports = {
 
+	'multer' :  multer.diskStorage({
+ 																		'destination' : function (req, file, cb) {
+																																								var actorPath = './public/actors/';
+																																																											cb(null , actorPath);
+																											  },
+							'filename' : function (req, file, cb) {
+																													var ext =  path.extname(file.originalname) , possible = 'abcdefghijklmnopqrstuvwxyz0123456789' , imgUrl = '' ;
+
+																													for(var i = 0 ; i < 6 ; i += 1) {	imgUrl += possible.charAt(Math.floor(Math.random() * possible.length));		}
+
+																													fileName = imgUrl + ext;
+	    																																								cb(null, fileName)			}
+																																																																				}) ,
+	
 	'reqOptions' : {		'url' : 'http://limitless-stream-60828.herokuapp.com/api/actor/' ,
 																																		'method' : 'GET' ,
 																																												'json' : {},
-																																																			'qs' : {}			},
+																																																			'qs' : {}			} ,
+
 	'validate' : (req , res , next) => {	if (req.file) {
 
-		console.log(req.file);
+		var bitmap = fs.readFileSync('./public/actors/' + req.file.filename).toString('hex' , 0 , 4);
 
-		key = req.file.key , params = {'Bucket' : 'actor-aremi' , 'Key' : key };
-																																								s3.getObject(params , (err , data) => {		bitmap = data.Body.toString('hex' , 0 , 4);		});
+			if (!imageMagic.checkMagic(bitmap)) {
+																				
+						fs.unlinkSync('./public/actors/' + req.file.filename);
+																																			req.body.error = {
+																																												'location' : 'body' ,
+																																																							'param' : 'photo' ,
+																																																																	'value' : '' ,
+																																																																									'msg' : 'Only Image files Allowed'		}	}  }
 
-			if (!imageMagic.checkMagic(bitmap)) {		
-																							bitmap = '' ;	param1 = {'Bucket' : 'actor-aremi' , 'Delete' : {
-																																																							'Objects' : [
-																																																														{'Key' : key }	
-																																																																						] ,
-																																																																								'Quiet' : false } };
-
-
-																				s3.deleteObjects(param1 , (err, data) => {
-																																										if (err) console.log(err)   });
-																																																												req.body.error = errors.error 		}  }
-				if (!req.file) {	req.body.error2 = errors.error2			}
-
-																																		next(); 		
-																	} ,
+				if (!req.file) {
+													req.body.error2 = {
+																							'location' : 'body' ,
+																																		'param' : 'photo' ,
+																																												'value' : '' ,
+																																																				'msg' : 'Image Must be provided'		}	}
+															next(); 		} ,
 	'mConfig' : multerS3({
     												's3' : s3Conf ,
-																				    'bucket': 'actor-aremi' ,
+																				    'bucket': 'actor-studio' ,
 																				        												'acl': 'public-read-write' , 
 
 			    																																'key' : (req, file, cb) => {

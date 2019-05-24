@@ -1,60 +1,25 @@
-var multer = require('multer') , fs = require('fs') , path = require('path') , imageMagic = require('./photoMagic.js') , extra = require('fs-extra') , errors = require('./errors') , key = '' , params = '' ,
- 
-titleS3 = require('./aws/titleAws') , titleAWS = require('./aws/titleS3') , $filename = require('./filename') , bitmap = '' , aws = require('aws-sdk') , multerS3 = require('multer-s3') , s3Conf = titleS3() ,
-
-param1 = '' , deleteFiles = require('./delete') , titlePath = '' , deleteItems = [] , bitmapper = '';
-
-aws.config.update(titleAWS);
-
-var s3 = new aws.S3();
+var multer = require('multer') , fs = require('fs') , path = require('path') , request = require('request') , imageMagic = require('./photoMagic.js') , extra = require('fs-extra');
 
 module.exports = {
 
-	'uploadWare' : [{'name' : 'photo' , 'maxCount' : 5}] ,
-
-	'checkFileUpload' : (req , res , next) => {
-
-		if (!(req.files.photo.length !== 0)) {		req.body.error2 = errors.error4;		}
-																																											next();
-	} ,
+'uploadImages' : (fs , req , path , fields , files) => {
+																									var arr = new Array(files)[0];
+																																									for (var file in arr) {
+																																																							var tempPath = path.resolve(arr[file]['path']),
+																									 ext = path.extname(arr[file]['name']).toLowerCase(),
+																									 																												tPath = fields.title.toLowerCase().split(' ').join('_'),
+		targetPath = './public/titles/' + tPath + '/' + tPath + Date.now() + ext;																
+																																																		if (ext) {
+																																																								fs.rename(tempPath , targetPath , function(err) {					
+																																							console.log('finally');
+																																																									})
+																																																					}
 	
-	'validateFileUpload' : (req , res , next) => {
 
-																								req.files.photo.forEach((x) => {
-																										
-																										key = x.key ;
+																														}
 
-																										params = {'Bucket' : 'actor-aremi' , 'Key' : key };
-																										
-																										s3.getObject(params , (err , data) => { 
-																																																if (data) { console.log('Yes'); }
-																											
-																					if (data) {		bitmapper = data.Body;	}
-
-																						if (bitmapper)	bitmap = bitmapper.toString('hex' , 0 , 4);	});
-
-																										deleteItems.push({'Key' : x.key});
- 												});	
-
-																					params = {
-																											'Bucket' : 'actor-aremi' , 
-																																									'Delete' : {
-																																																'Objects': deleteItems , 
-																																																													'Quiet' : false		}		};
-																				if(req.body.error4) {
-																																s3.deleteObjects(params , (err , data) => {
-																																																								if (err) console.log(err)     
-																																																																					else console.log("Successfully deleted myBucket/myKey");   
-																																																					});		}
-																									next();
-	} ,
-
-	'addFileUpload' : (req , res , next) => {
-																							if (req.files.photo) {
-																																						req.body.photo = req.files.photo;
-																							}
-			next();
-	} ,
+},
+ 
 
 	'multer' :  multer.diskStorage({
  																		'destination' : function (req, file, cb) {
@@ -76,27 +41,58 @@ module.exports = {
 	    																																								cb(null, fileName)			}
 																																																																				}),
 
-	'mConfig' : multerS3({
-													's3' : s3Conf ,
-																			    'bucket': 'actor-aremi' ,
-																			        												'acl': 'public-read-write' , 
+	'uploadWare' : [{'name' : 'photo' , 'maxCount' : 5} , {'name' : 'trailer' , 'maxCount' : 1}, {'name' : 'cover_image' , 'maxCount' : 1}] ,
 
-			    																																'key' : (req , file , cb) => {
-			    																																																	if (req.body.title) {
+	'checkFileUpload' : (req , res , next) => { var titlePath = './public/titles/' + req.body.title.replace(/[^a-zA-Z 0-9]+/g , '').toLowerCase().split(' ').join('_');
 
-														    																																		titlePath = req.body.title.replace(/[^a-zA-Z 0-9]+/g , '').toLowerCase().split(' ').join('_');								
-			    																																										}
-			    																																																if (!req.body.title) {
+																					
+		if (!(req.files.photo.length !== 0)) {
+																									req.body.error2 = {
+																																			'location' : 'body' ,
+																																														'param' : 'photo' ,
+																																																								'value' : '' ,
+																																																																'msg' : 'At least 1 photo must be provided'		}	
+																									extra.emptyDirSync(titlePath);				}
 
-																																																		titlePath = req.session.compiledTitle.title.replace(/[^a-zA-Z 0-9]+/g , '').toLowerCase().split(' ').join('_');
-			    																																										}
-																																																		fileName = `titles/${titlePath}/${$filename(file)}`;
-			     																																																				
-			     																																																				cb(null, fileName)															} ,
+																						next();
+	} ,
+	
+	'validateFileUpload' : (req , res , next) => {
+		
 
-			    																																	'metadata' : (req , file , cb) => {
-			    																																																				cb(null , {'fieldName' : file.fieldname})				}
-															}) ,
+		if (req.files.photo) {
+																		req.files.photo.forEach((x) => {	
+
+																			try {		var bitmap = fs.readFileSync(x.path).toString('hex' , 0 , 4);		}  catch (err) { console.log(err); }
+
+
+				if (!imageMagic.checkMagic(bitmap)) {
+																					
+		extra.emptyDirSync(x.destination);
+
+																			req.body.error4 = {
+																													'location' : 'body' ,
+																																								'param' : 'photo' ,
+																																																		'value' : '' ,
+																																																										'msg' : 'Only Image files Allowed'		}	} 
+																		})	}
+									next();
+	} ,
+
+	'addFileUpload' : (req , res , next) => {
+																							if (req.files.cover_image) {
+																																						req.body.cover_image = req.files.cover_image;
+																							}
+
+																							if (req.files.photo) {
+																																						req.body.photo = req.files.photo;
+																							}
+
+																							if (req.files.trailer) {
+																																						req.body.trailer = req.files.trailer;
+																							}
+			next();
+	} ,
 
 	'reqOptions' : {		'url' : 'http://limitless-stream-60828.herokuapp.com/api/title/' ,
 																																		'method' : 'GET' ,
