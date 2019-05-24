@@ -94,6 +94,11 @@ h2 , h2 span , h2 a {
 	line-height: 3.0 !important;
 }
 
+.title-body * {
+
+	line-height : 2.0 !important;
+}
+
 .tadd ul {
 
 	list-style-type : none;
