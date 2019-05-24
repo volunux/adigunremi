@@ -331,12 +331,12 @@ form {
 		width : 100%;
 	}
 
-.title-body * {
+.title-detail * {
 
 	line-height : 2.0 !important;
 }
 
-.title-item * {
+.title-item * , .actor-detail , .studio-detail {
 
 	line-height : 2.0 !important;
 }
@@ -344,6 +344,13 @@ form {
 .title-detail , .actor-detail , .studio-detail , .genre-detail , .add-item {
 
 	width : 100%;
+}
+
+h1 , h1 span , h3 , h2 , h4 , h5 , h6 , h2 span, h3 span, h4 span, h5 span, h6 span  , h2 a , h3 a , h4 a , h5 a , h6 a , h2 i , h3 i , h4 i , h5 i , h6 i {
+
+		font-weight : bold !important;
+		margin-bottom : 2em;
+		margin-top : 2em;
 }
 
 }

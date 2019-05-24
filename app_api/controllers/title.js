@@ -208,9 +208,9 @@ module.exports = {
 
 	},
 
-	'titleAddReview' : (req , res) => {	var reviewBody = req.body ,	reviewTitleAdd = req.params.title.split('-').join(' ');
+	'titleAddReview' : (req , res) => {	var reviewBody = req.body ,	reviewTitleAdd = req.params.title;
 			
-			Title.findOne({'title' : new RegExp(reviewTitleAdd , 'i')})
+			Title.findOne({'url' : new RegExp(reviewTitleAdd , 'i')})
 																																	.exec((err , result) => {
 																																															result.reviews.push(reviewBody);
 				result.save((err , result) => {
