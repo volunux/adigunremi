@@ -333,12 +333,17 @@ form {
 
 .title-body * {
 
-	line-height : 1.5 !important;
+	line-height : 2.0 !important;
 }
 
 .title-item * {
 
 	line-height : 2.0 !important;
+}
+
+.title-detail , .actor-detail , .studio-detail , .genre-detail , .add-item {
+
+	width : 100%;
 }
 
 }
