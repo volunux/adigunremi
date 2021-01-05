@@ -25,7 +25,7 @@
     "@sendgrid/mail": "^6.3.1",
     "async": "^2.6.0",
     "aws-sdk": "^2.422.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.2",
     "colors": "^1.2.1",
